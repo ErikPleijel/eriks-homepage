@@ -48,8 +48,10 @@ strings scattered through Blade. The spec only asked for `locales` and
 - **`/` redirects to `/{default_locale}`** (`/en`). The site is always served
   under a locale segment; there is no locale-less page.
 - **Chapter route** resolves `content.{locale}.chapters.{chapter}` and
-  `abort_unless(view()->exists(...), 404)`, so chapters 2–10 (stubs that *do*
-  exist) return 200, while a truly missing chapter returns 404.
+  `abort_unless(view()->exists(...), 404)`, so chapters 2–12 (stubs that *do*
+  exist) return 200, while a truly missing chapter returns 404. There is no
+  hardcoded chapter-number range — availability is driven purely by whether the
+  Blade view exists, so extending the book is just a matter of adding files.
 
 ## Content folder convention
 
@@ -98,8 +100,158 @@ scoped `Alpine.data` component achieves the identical "one modal, all triggers"
 outcome with simpler, more local reasoning and no global state. `[x-cloak]` is
 defined in `app.css` so the modal stays hidden until Alpine boots.
 
+## Chapter count corrected 10 → 12
+
+The scaffold assumed **10** chapters; the book actually has **12**, which is
+what the live site's TOC shows. Corrected by:
+
+- Adding `chapter-11`/`chapter-12` stub views in both `content/en/chapters` and
+  `content/sv/chapters`, matching the chapters 2–10 stub pattern.
+- Extending both home-page TOCs to 12 entries. The chapter route needed **no**
+  change — it 404s on view existence, not a number range, so the new stubs are
+  enough.
+- The English TOC now carries the real chapter titles (from the live site).
+  **Chapter 1's title is still a placeholder** (`"Chapter 1"`) pending the final
+  wording. Swedish titles remain placeholders (`"Kapitel N"`) for now.
+
+## Cookie-free visit & click logging
+
+Visit/click analytics that needs **no consent banner** because it sets no
+tracking cookie and stores nothing that identifies a visitor.
+
+**What is stored** (`site_events` table, model `App\Models\SiteEvent`):
+
+- `event_type` — `'pageview'` or `'click'`.
+- `path` — the requested path (e.g. `en/chapters/chapter-1`), no leading slash.
+- `locale` — for pageviews, `app()->getLocale()`; for clicks, derived from the
+  first segment of the path the client reported (the click endpoint isn't
+  locale-prefixed, so we can't read the app locale there).
+- `referrer_host` — **host only**, parsed from the `Referer` header with
+  `parse_url(..., PHP_URL_HOST)`. We deliberately drop the full referring URL
+  because it can carry query strings.
+- `label` — the click target's label (null for pageviews).
+- `created_at` only. There is no `updated_at`: events are write-once, so the
+  model sets `const UPDATED_AT = null;` and the migration creates a single
+  `timestamp('created_at')`.
+
+**What is deliberately NOT stored:** the visitor's **IP address**, the
+**user-agent** string, and **any cross-session identifier** (no tracking
+cookie, no localStorage id, no fingerprint). Aggregate counts only — you can
+tell *how many* pageviews/clicks happened, never *who*. The only cookie in play
+is Laravel's existing functional session cookie; the click endpoint reuses its
+CSRF token rather than introducing any new cookie.
+
+**How it's wired:**
+
+- `LogPageView` middleware writes the `'pageview'` event. It's applied
+  **directly to the home and chapter routes**, not globally, so assets, the
+  `/events/click` endpoint, and everything else are never logged. Only `GET`s
+  are recorded.
+- `POST /events/click` → `EventController::click` writes the `'click'` event.
+  It keeps standard web-group CSRF and is rate-limited with `throttle:30,1`.
+- `resources/js/events.js` exposes `window.logEvent(label)`, which `fetch`es the
+  click endpoint with the current path and the CSRF token from the
+  `<meta name="csrf-token">` tag (added to the layout). It's fire-and-forget
+  (`keepalive: true`, errors swallowed) so analytics can never break a page.
+- **Example wiring only:** `window.logEvent('Amazon CTA')` is attached to the
+  Amazon CTA on the home page (both locales). It is intentionally **not** added
+  to every clickable element yet.
+
+**Viewing the data:** no admin/stats UI exists yet. For now, query it via
+`php artisan tinker`, e.g. `SiteEvent::where('event_type', 'pageview')->count()`
+or `SiteEvent::where('event_type', 'click')->get(['label', 'path'])`. A proper
+stats view is a future task.
+
+## Printed-book interest sign-ups (supersedes "preorder_signups")
+
+This feature is the Laravel-native port of the old one.com PHP form
+(`/c/xampp/htdocs/tsv/register_interest.php`). **It replaces the earlier
+`preorder_signups` design**, which was never built — build/use this instead.
+Table `book_interest_subscribers`, model `App\Models\BookInterestSubscriber`,
+controller `BookInterestController`, route `POST /book-interest`, component
+`<x-book-interest-form>` (wired onto the home page in both locales).
+
+**Why this table stores `consent_ip` / `consent_user_agent` (and `site_events`
+deliberately does not):** these two columns are **GDPR consent documentation** —
+a record that a specific person agreed to the stated terms, and the address /
+client the agreement came from. That is a lawful-basis paper trail tied to an
+identified individual who opted in, which is a different purpose from anonymous
+traffic measurement. The no-IP / no-user-agent policy on `site_events` is about
+*not* identifying anonymous visitors; it does not apply here, where the visitor
+has knowingly handed over their email and consented. The two are intentionally
+inconsistent for good reason.
+
+**Schema notes:** `created_at` only (`const UPDATED_AT = null;` on the model, a
+single `timestamp('created_at')` column). Unique index on `(email, book_code)`
+so each email can register once per edition; a duplicate is reported as "already
+on the list", never an error. `book_code` is `config('site.book_slug')` + the
+active locale (`faustian-bargain-en` / `faustian-bargain-sv`); `book_slug` and
+the GDPR `contact_email` live in `config/site.php` as the single source of truth.
+
+**Anti-spam measures ported from the old form:**
+
+- **Honeypot** — a hidden `website` field (`display:none`, an anti-bot trap, not
+  an a11y concern). If it's filled, the controller exits **silently** (`back()`
+  with no insert, no error, no message), matching the original rather than
+  revealing the trap.
+- **Minimum-time check** — instead of the old tamperable hidden `form_time`
+  field, the form-load time is stored **server-side in the session** when the
+  component renders (`BookInterestController::FORM_TIME_KEY`). A submission less
+  than 3 seconds after load is treated as a bot and rejected with a generic
+  "something went wrong, please try again" message.
+- **Rate limiting** — Laravel `throttle:5,10` on the route (5 per 10 min, keyed
+  by IP), replacing the old hand-rolled `SELECT COUNT(*) … INTERVAL 10 MINUTE`
+  query.
+
+**Consent text:** Swedish is the **original wording** carried over verbatim from
+the one.com form; English is an adapted equivalent (not a literal translation).
+The removal-request contact email is unchanged from the original
+(`epost@erikpleijel.se`, now `config('site.contact_email')`).
+
+**Viewing the data:** as with `site_events`, no admin UI yet — query via
+`php artisan tinker`, e.g. `BookInterestSubscriber::count()`.
+
+## Chapter content & the `content-image` component
+
+Chapter 1 (`content/en/chapters/chapter-1.blade.php`) is the first real chapter
+text, replacing the stub. Its TOC title in `content/en/home.blade.php` is now
+**"Breakout: Escaping the Prison of Toxic Passions"** (was the "title TBD"
+placeholder). The footnote uses the existing `<x-footnote-trigger>` /
+`<x-footnote-modal>` pair — no new footnote mechanism.
+
+**`content-image` component** (`resources/views/components/content-image.blade.php`)
+— a small reusable `<figure>` for in-chapter images, built now because the
+remaining 11 chapters need the same thing. Props:
+
+- `src`, `alt` (required), `caption` (optional — omitted entirely when absent).
+- `align` — `'right'` floats the figure so the following paragraph wraps it;
+  any other value (the default) is a block-centered figure with a constrained
+  width. Mirrors the `quote-card` prop style (required + optional, `$attributes`
+  merged so callers can still add classes).
+
+**Images are self-hosted, not hotlinked.** Both chapter-1 images were downloaded
+from the old site and saved under `public/images/chapters/chapter-1/`
+(`compass_ff.png`, `prst_hund.png`); the Blade references local `/images/...`
+paths. Convention for future chapters: `public/images/chapters/chapter-N/`.
+
+**Interpretive calls made while building this (flagged for review):**
+
+1. **Content warning styling.** The brief asked for "a distinct callout/alert
+   block, not a plain paragraph" but left the treatment open. Rendered it as an
+   amber left-border callout (`border-l-4 border-amber-500 bg-amber-50`,
+   `role="note"`) — reusing the site's existing amber accent (as on
+   `quote-card`) to signal caution without an alarming full-red error style.
+2. **Right-aligned image is responsive.** `align="right"` only floats from the
+   `sm` breakpoint up; on narrow/mobile screens the figure goes full-width and
+   stacks above its paragraph, since a hard float would crush the wrapping text
+   on a phone. The `prst_hund.png` image has no caption, per the source.
+
 ## Out of scope (separate follow-ups)
 
-Intentionally **not** built: the `site_events` table and any pageview/click
-logging (cookie-free design, decided but not yet built), the pre-order email
-table, and real content for chapters 2–10 (stubs only).
+Intentionally **not** built: a stats/admin UI for the `site_events` data (query
+via tinker for now — see above), an admin/export UI for
+`book_interest_subscribers`, and real content for chapters 2–12 (stubs only;
+chapter 1 is now done). All Swedish chapter titles, the Swedish chapter-1
+content, and chapter titles 2–12's Swedish equivalents are still pending. The
+earlier `preorder_signups` table/design is **dropped** in favour of
+`book_interest_subscribers` (see above).

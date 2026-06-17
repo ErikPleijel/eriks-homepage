@@ -21,6 +21,32 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Book slug
+    |--------------------------------------------------------------------------
+    |
+    | URL-safe identifier for the book. Combined with the active locale it
+    | forms the per-locale "book_code" recorded against printed-edition
+    | interest sign-ups, e.g. 'faustian-bargain-en' / 'faustian-bargain-sv'.
+    | Single source of truth so the code isn't a magic string in Blade/PHP.
+    |
+    */
+
+    'book_slug' => 'faustian-bargain',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Contact email
+    |--------------------------------------------------------------------------
+    |
+    | Shown in the GDPR consent text as the address for removal requests.
+    | Carried over from the original one.com interest form.
+    |
+    */
+
+    'contact_email' => 'epost@erikpleijel.se',
+
+    /*
+    |--------------------------------------------------------------------------
     | Available Locales
     |--------------------------------------------------------------------------
     |

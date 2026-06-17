@@ -6,6 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {{-- CSRF token for the cookie-free click logger (window.logEvent). Uses the
+         session's existing token — no new cookie. --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     {{-- Site title ("The Anchor in the Storm") on every page; an optional
          per-page title is prepended. NOT the book title. --}}
     <title>{{ $title ? $title.' — '.config('site.title') : config('site.title') }}</title>

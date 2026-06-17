@@ -1,10 +1,25 @@
 @php
-    // TOC for chapters 1–10. Only chapter-1 has a view yet; the rest 404 for
-    // now (real content is a separate follow-up task).
-    $chapters = collect(range(1, 10))->map(fn ($n) => [
-        'title' => "Chapter {$n}",
+    // TOC for all 12 chapters (the book's actual structure). Titles below match
+    // the live site's TOC; chapter 1's title is a placeholder pending the final
+    // wording. Chapter views are stubs — real content is a separate follow-up.
+    $chapterTitles = [
+        1 => 'Breakout: Escaping the Prison of Toxic Passions',
+        2 => "Reformation: The Battle at the Centre of Today's Political Storm",
+        3 => 'Trust: A Leap of Faith Begins an Adventure and Gives Life a Direction',
+        4 => "Growth: A Cunning Snake Whispers That We Don't Need to Change",
+        5 => 'Wisdom: How Trusting Faith Can Be Reason\'s Best Friend',
+        6 => 'Illumination: Education as a Way Out of the Shadowlands',
+        7 => 'Strength: Keep Your Head up When Everything Goes Wrong',
+        8 => 'Integration: Handle Differences and the Round Squares of Life',
+        9 => 'Secular: The Christian Invention That Saves Faith from Power',
+        10 => "X-Factor: Embrace Life's Mystery and Spark a Love of Science",
+        11 => 'Resilience: Can Humanism Survive Without a Divine Spark?',
+        12 => 'Anchor: The Primal Force that Makes the Soul Unsellable',
+    ];
+    $chapters = collect($chapterTitles)->map(fn ($title, $n) => [
+        'title' => $title,
         'route' => route('chapter', ['locale' => 'en', 'chapter' => "chapter-{$n}"]),
-    ])->all();
+    ])->values()->all();
 @endphp
 
 <x-layout>
@@ -50,10 +65,16 @@
         <section class="mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
             <h2 class="text-2xl font-bold">{{ config('site.book_title') }}</h2>
             <p class="mt-2 text-stone-300">Available now in paperback and ebook.</p>
+            {{-- Example wiring of the cookie-free click logger. Not yet added
+                 elsewhere — see DECISIONS.md. --}}
             <a href="#"
+               onclick="window.logEvent('Amazon CTA')"
                class="mt-5 inline-block rounded-md bg-amber-500 px-6 py-3 font-semibold text-stone-900 hover:bg-amber-400">
                 Order on Amazon
             </a>
         </section>
+
+        {{-- Register interest in the printed edition. --}}
+        <x-book-interest-form />
     </article>
 </x-layout>

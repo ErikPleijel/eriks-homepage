@@ -1,7 +1,8 @@
 @php
-    // Innehållsförteckning för kapitel 1–10. Endast kapitel-1 har en vy ännu;
-    // övriga ger 404 tills vidare (riktigt innehåll är en separat uppgift).
-    $chapters = collect(range(1, 10))->map(fn ($n) => [
+    // Innehållsförteckning för alla 12 kapitel (bokens faktiska struktur).
+    // Kapiteltitlarna är platshållare tills vidare; de engelska titlarna är
+    // redan ifyllda i en-versionen. Riktigt innehåll är en separat uppgift.
+    $chapters = collect(range(1, 12))->map(fn ($n) => [
         'title' => "Kapitel {$n}",
         'route' => route('chapter', ['locale' => 'sv', 'chapter' => "chapter-{$n}"]),
     ])->all();
@@ -50,10 +51,16 @@
         <section class="mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
             <h2 class="text-2xl font-bold">{{ config('site.book_title') }}</h2>
             <p class="mt-2 text-stone-300">Finns nu som pocket och e-bok.</p>
+            {{-- Exempel på den kakfria klickloggern. Ännu inte tillagd på andra
+                 ställen — se DECISIONS.md. --}}
             <a href="#"
+               onclick="window.logEvent('Amazon CTA')"
                class="mt-5 inline-block rounded-md bg-amber-500 px-6 py-3 font-semibold text-stone-900 hover:bg-amber-400">
                 Beställ på Amazon
             </a>
         </section>
+
+        {{-- Anmäl intresse för den tryckta utgåvan. --}}
+        <x-book-interest-form />
     </article>
 </x-layout>

@@ -1,5 +1,8 @@
 import './bootstrap';
 
+// Cookie-free click logger — exposes window.logEvent(label).
+import './events';
+
 // Alpine.js — guarded so we never double-initialize if another bundle/CDN
 // already set window.Alpine (mirrors the redcross_volunteers convention).
 import Alpine from 'alpinejs';

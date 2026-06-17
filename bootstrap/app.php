@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'setlocale' => \App\Http\Middleware\SetLocale::class,
+            'logpageview' => \App\Http\Middleware\LogPageView::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

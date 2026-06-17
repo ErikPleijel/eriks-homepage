@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookInterestController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,7 @@ Route::prefix('{locale}')
     ->group(function () {
         Route::get('/', function (string $locale) {
             return view("content.{$locale}.home");
-        })->name('home');
+        })->middleware('logpageview')->name('home');
 
         Route::get('/chapters/{chapter}', function (string $locale, string $chapter) {
             $view = "content.{$locale}.chapters.{$chapter}";
@@ -39,5 +41,35 @@ Route::prefix('{locale}')
             abort_unless(view()->exists($view), 404);
 
             return view($view);
-        })->name('chapter');
+        })->middleware('logpageview')->name('chapter');
     });
+
+/*
+|--------------------------------------------------------------------------
+| Click logging
+|--------------------------------------------------------------------------
+|
+| Cookie-free click tracking. Not locale-prefixed and not behind SetLocale —
+| the client posts {label, path} and the controller derives the locale from
+| the reported path. Standard web-group CSRF still applies (token rides the
+| existing session, no new cookie); throttled to keep it from being abused.
+|
+*/
+Route::post('/events/click', [EventController::class, 'click'])
+    ->middleware('throttle:30,1')
+    ->name('events.click');
+
+/*
+|--------------------------------------------------------------------------
+| Printed-book interest sign-up
+|--------------------------------------------------------------------------
+|
+| Ported from the old one.com PHP form. Not locale-prefixed: the form submits
+| a hidden book_code (locale-derived) and redirects back to the page it came
+| from. Standard web-group CSRF applies; throttle:5,10 (5 per 10 min, keyed by
+| IP) replaces the old hand-rolled SQL rate-limit query.
+|
+*/
+Route::post('/book-interest', [BookInterestController::class, 'store'])
+    ->middleware('throttle:5,10')
+    ->name('book-interest.store');
