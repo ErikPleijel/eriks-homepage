@@ -1,7 +1,8 @@
 @php
-    // TOC for all 12 chapters (the book's actual structure). Titles below match
-    // the live site's TOC; chapter 1's title is a placeholder pending the final
-    // wording. Chapter views are stubs — real content is a separate follow-up.
+    // TOC for the introduction + all 12 chapters (the book's actual structure).
+    // Titles below match the live site's TOC. Chapter views are stubs — real
+    // content is a separate follow-up. Using explicit 'label' keys so Introduction
+    // appears unnumbered and chapters keep their own 1–12 numbering.
     $chapterTitles = [
         1 => 'Breakout: Escaping the Prison of Toxic Passions',
         2 => "Reformation: The Battle at the Centre of Today's Political Storm",
@@ -16,13 +17,26 @@
         11 => 'Resilience: Can Humanism Survive Without a Divine Spark?',
         12 => 'Anchor: The Primal Force that Makes the Soul Unsellable',
     ];
-    $chapters = collect($chapterTitles)->map(fn ($title, $n) => [
-        'title' => $title,
-        'route' => route('chapter', ['locale' => 'en', 'chapter' => "chapter-{$n}"]),
-    ])->values()->all();
+
+    $chapters = array_merge(
+        [[
+            'label' => null, // unnumbered — Introduction precedes Chapter 1
+            'title' => 'Introduction: The 7 Classical Virtues as a Spiritual Immune System',
+            'route' => route('chapter', ['locale' => 'en', 'chapter' => 'introduction']),
+        ]],
+        collect($chapterTitles)->map(fn ($title, $n) => [
+            'label' => "{$n}.",
+            'title' => $title,
+            'route' => route('chapter', ['locale' => 'en', 'chapter' => "chapter-{$n}"]),
+        ])->values()->all()
+    );
 @endphp
 
 <x-layout>
+    <x-slot:hero>
+        <x-hero />
+    </x-slot:hero>
+
     <article class="prose-stone max-w-none">
         <h1 class="text-3xl font-bold tracking-tight">Welcome</h1>
 

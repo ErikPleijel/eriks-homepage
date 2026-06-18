@@ -17,6 +17,18 @@ return [
 
     'title' => 'The Anchor in the Storm',
 
+    /*
+    | Per-locale display titles for the hero banner. 'title' above stays the
+    | canonical (English) name used in the <title> tag; these are the localized
+    | strings shown visually in the hero. Falls back to 'title' if a locale is
+    | missing here.
+    */
+
+    'titles' => [
+        'en' => 'The Anchor in the Storm',
+        'sv' => 'Ankaret i stormen',
+    ],
+
     'book_title' => 'Faustian Bargain? No Thanks!',
 
     /*

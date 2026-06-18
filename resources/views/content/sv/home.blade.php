@@ -1,14 +1,26 @@
 @php
-    // Innehållsförteckning för alla 12 kapitel (bokens faktiska struktur).
-    // Kapiteltitlarna är platshållare tills vidare; de engelska titlarna är
-    // redan ifyllda i en-versionen. Riktigt innehåll är en separat uppgift.
-    $chapters = collect(range(1, 12))->map(fn ($n) => [
-        'title' => "Kapitel {$n}",
-        'route' => route('chapter', ['locale' => 'sv', 'chapter' => "chapter-{$n}"]),
-    ])->all();
+    // Innehållsförteckning — inledning + alla 12 kapitel (bokens faktiska struktur).
+    // Explicit 'label' per post så att Inledning visas utan nummer och kapitel
+    // behåller sin egna 1–12-numrering.
+    $chapters = array_merge(
+        [[
+            'label' => null, // utan nummer — Inledning föregår Kapitel 1
+            'title' => 'Inledning: De sju klassiska dygderna som ett andligt immunförsvar',
+            'route' => route('chapter', ['locale' => 'sv', 'chapter' => 'introduction']),
+        ]],
+        collect(range(1, 12))->map(fn ($n) => [
+            'label' => "{$n}.",
+            'title' => "Kapitel {$n}",
+            'route' => route('chapter', ['locale' => 'sv', 'chapter' => "chapter-{$n}"]),
+        ])->all()
+    );
 @endphp
 
 <x-layout>
+    <x-slot:hero>
+        <x-hero />
+    </x-slot:hero>
+
     <article class="prose-stone max-w-none">
         <h1 class="text-3xl font-bold tracking-tight">Välkommen</h1>
 
@@ -51,7 +63,7 @@
         <section class="mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
             <h2 class="text-2xl font-bold">{{ config('site.book_title') }}</h2>
             <p class="mt-2 text-stone-300">Finns nu som pocket och e-bok.</p>
-            {{-- Exempel på den kakfria klickloggern. Ännu inte tillagd på andra
+            {{-- Exempel på den kakfria klickloggaren. Ännu inte tillagd på andra
                  ställen — se DECISIONS.md. --}}
             <a href="#"
                onclick="window.logEvent('Amazon CTA')"

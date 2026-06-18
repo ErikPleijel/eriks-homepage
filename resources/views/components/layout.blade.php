@@ -21,14 +21,24 @@
      rendered inside {{ $slot }}. --}}
 <body x-data="footnotes" class="min-h-screen bg-stone-50 text-stone-900 antialiased font-sans">
     <header class="border-b border-stone-200 bg-white">
-        <div class="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-            <a href="{{ route('home', ['locale' => app()->getLocale()]) }}"
-               class="text-xl font-semibold tracking-tight">
-                {{ config('site.title') }}
-            </a>
+        <div class="mx-auto flex max-w-3xl items-center justify-end px-6 py-4">
+            {{-- Every page shows a hero (full on home, slim elsewhere) and the
+                 hero carries the site title + home link, so the header title is
+                 suppressed to avoid showing it twice. Kept as sr-only for screen
+                 readers / the document landmark. --}}
+            <span class="sr-only">{{ config('site.titles.'.app()->getLocale(), config('site.title')) }}</span>
             <x-language-switcher />
         </div>
     </header>
+
+    {{-- Full-width hero, between header and the constrained main. The home page
+         supplies its full-size banner via <x-slot:hero>; every other page gets
+         the slim default below. --}}
+    @isset($hero)
+        {{ $hero }}
+    @else
+        <x-hero :compact="true" />
+    @endisset
 
     <main class="mx-auto max-w-3xl px-6 py-10">
         {{ $slot }}

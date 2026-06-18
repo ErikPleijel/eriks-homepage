@@ -14,3 +14,98 @@
 [x-cloak] {
     display: none !important;
 }
+
+/*
+ | Chapter typography. Extracted from the repeated utility strings on the
+ | headings and paragraphs inside chapter <article>s so the markup stays
+ | semantic and every chapter renders consistently. Tweak spacing/colour here
+ | once rather than across 24 chapter files.
+ */
+@layer components {
+    /* "Chapter N" eyebrow above the title. */
+    .chapter-kicker {
+        @apply text-sm font-semibold uppercase tracking-wide text-stone-400;
+    }
+
+    /* Chapter <h1>. */
+    .chapter-title {
+        @apply mt-1 text-3xl font-bold tracking-tight;
+    }
+
+    /* Section <h2>. Clears any preceding float so a new section always starts
+       at full width regardless of how tall the preceding image was. */
+    .chapter-heading {
+        @apply clear-both mt-10 text-2xl font-bold tracking-tight;
+    }
+
+    /* Lead paragraph (slightly larger, opens the chapter). */
+    .chapter-lead {
+        @apply mt-6 text-lg leading-relaxed text-stone-700 italic;
+    }
+
+    /* Body paragraph. */
+    .chapter-text {
+        @apply mt-4 text-lg leading-relaxed text-stone-700;
+    }
+
+    /*
+     | Longer quoted passages embedded in chapter text (Bonhoeffer, Luther,
+     | Plato, Einstein, Marcus Aurelius, …). A real <blockquote>, distinct from
+     | the dashed <x-quotecard> placeholders: indented with a left border and a
+     | lighter italic treatment. Reusable anywhere — write
+     | <blockquote class="chapter-blockquote">…</blockquote>.
+     */
+    .chapter-blockquote {
+        @apply my-6 border-l-4 border-stone-300 pl-6 text-lg italic leading-relaxed text-stone-600;
+    }
+
+    /*
+     | Plain bullet / numbered lists inside chapter (and home) content articles.
+     | Tailwind's preflight strips list markers and padding globally and the
+     | typography plugin isn't installed, so a bare <ul><li> would render with
+     | no bullets. We restore sensible list styling scoped to the .prose-stone
+     | content wrapper, so authors can drop in a plain <ul>/<ol>.
+     */
+    .prose-stone ul,
+    .prose-stone ol {
+        @apply my-4 pl-6 text-lg leading-relaxed text-stone-700;
+    }
+    .prose-stone ul {
+        @apply list-disc;
+    }
+    .prose-stone ol {
+        @apply list-decimal;
+    }
+    .prose-stone li {
+        @apply mt-1;
+    }
+}
+
+/*
+ | content-image responsive width. The desktop width (--img-w) and a mobile
+ | floor (--img-w-mobile) are set inline per-figure by the <x-content-image>
+ | component. Reading them here lets a narrow desktop image still render wide on
+ | phones via a media query (impossible with inline styles alone).
+ | 640px == Tailwind's `sm` breakpoint.
+ |
+ | .content-image       — centered figures (default align)
+ | .content-image-right — right-floating figures (align="right"); always 100%
+ |                        wide on mobile, --img-w wide on desktop (default 50%).
+ */
+.content-image {
+    width: var(--img-w-mobile, 90%);
+}
+@media (min-width: 640px) {
+    .content-image {
+        width: var(--img-w, 100%);
+    }
+}
+
+.content-image-right {
+    width: 100%;
+}
+@media (min-width: 640px) {
+    .content-image-right {
+        width: var(--img-w, 50%);
+    }
+}
