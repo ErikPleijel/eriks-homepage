@@ -66,7 +66,7 @@
         {{-- //TODO use this?
         Amazon-CTA — använder BOKENS titel, inte webbplatsens titel. --}}
 
-        <section class="hidden mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
+        <section class=" mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
             <h2 class="text-2xl font-bold">{{ config('site.book_title') }}</h2>
             <p class="mt-2 text-stone-300">Finns nu som pocket och e-bok.</p>
             {{-- Exempel på den kakfria klickloggaren. Ännu inte tillagd på andra
