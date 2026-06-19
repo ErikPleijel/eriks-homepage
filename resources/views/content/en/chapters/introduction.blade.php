@@ -1,7 +1,10 @@
-<x-layout title="Introduction: The 7 Classical Virtues as a Spiritual Immune System">
+@php
+    $chapterKey = 'introduction';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Introduction</p>
-        <h1 class="chapter-title">The 7 Classical Virtues as a Spiritual Immune System</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <h2 class="chapter-heading">Self-Mastery – The Forgotten Key to Democracy's Survival</h2>
 
@@ -43,7 +46,17 @@
             – cut loose from reason's reins – rarely leads to truth.
         </p>
 
-        <x-quotecard>Can you be 100% honest….</x-quotecard>
+
+
+        <x-quotecard-image
+            src="/images/quotecard-eng-honest-but-wrong.jpg"
+            alt="Can someone be 100% honest — and still be completely wrong?"
+            text="Can someone be 100% honest — and still be completely wrong?"
+            lang="en"
+            id="honest-but-wrong"
+        />
+
+
 
         <p class="chapter-text">
             Without virtue, no one is fit to steer a nation. Unruly horses drag the
@@ -74,7 +87,13 @@
             soul and lost your freedom.
         </p>
 
-        <x-quotecard>Today's trap no.1</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-eng-mindless-scrolling.jpg"
+            alt="Mindless scrolling? Seize the reins. Focus on one thing for 10 minutes."
+            text="Mindless scrolling? Seize the reins.\nFocus on one thing for 10 minutes."
+            lang="en"
+            id="mindless-scrolling"
+        />
 
         <h2 class="chapter-heading">Faustian temptation</h2>
 
@@ -253,7 +272,16 @@
             dance to their tune by pushing the right buttons.
         </p>
 
-        <x-quotecard>Today's Trap #2 (of 3)</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-eng-marionette-hatred.jpg"
+            alt="Hatred makes people easy to manipulate. Seize the reins. Don't hate — unless you want to dance to someone else's tune."
+            text="Hatred makes people easy to manipulate. Seize the reins.\nDon't hate — unless you want to dance to someone else's tune."
+            lang="en"
+            id="marionette-hatred"
+        />
+
+
+
 
         <h2 class="chapter-heading">4. Faith: Overcome Unhealthy Mistrust</h2>
 
@@ -331,7 +359,13 @@
             start training our brains today!
         </p>
 
-        <x-quotecard>Today's Trap #3 (of 3)</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-eng-absolute-certainty.jpg"
+            alt="The feeling of absolute certainty is often no more than that: a feeling. Seize the reins. Listen more and be surprised."
+            text="The feeling of absolute certainty is often no more than that: a feeling.\nSeize the reins. Listen more and be surprised."
+            lang="en"
+            id="absolute-certainty"
+        />
 
         <h2 class="chapter-heading">6. Moderation: Avoid the Allure of Extremes</h2>
 
@@ -449,6 +483,12 @@
             demagogues' power cult, but points toward something worth living for.
         </p>
 
-        <x-food-for-thought label="Introduction" />
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+            <x-food-for-thought :number="0" lang="en" />
+            <x-food-for-thought-carousel :startNumber="0" lang="en" />
+        </div>
+
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>

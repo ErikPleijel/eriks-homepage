@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 12">
+  <!-- Blue background -->
+  <rect fill="#006AA7" width="20" height="12"/>
+  <!-- Yellow cross: vertical band centred at x=5.5, horizontal band centred at y=6 -->
+  <rect fill="#FECC02" x="4.5" y="0" width="2.5" height="12"/>
+  <rect fill="#FECC02" x="0" y="4.75" width="20" height="2.5"/>
+</svg>

@@ -86,4 +86,17 @@ return [
 
     'default_locale' => 'en',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Analytics key
+    |--------------------------------------------------------------------------
+    |
+    | Secret query-parameter value required to view /analytics. Must be present
+    | on every request (?key=...). Anyone without it receives a 404. Set via
+    | ANALYTICS_KEY in .env — never hard-code here.
+    |
+    */
+
+    'analytics_key' => env('ANALYTICS_KEY', ''),
+
 ];

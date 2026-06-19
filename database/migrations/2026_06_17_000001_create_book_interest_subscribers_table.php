@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email');
             $table->string('book_code'); // e.g. 'faustian-bargain-en' / '-sv'
-            $table->string('consent_ip')->nullable();
-            $table->string('consent_user_agent')->nullable();
+            $table->string('consent_ip', 45)->nullable();          // 45 chars covers IPv6 (max 39) with brackets/port
+            $table->string('consent_user_agent', 512)->nullable(); // 512 chars; typical UAs are ~100-200 chars, crawlers up to ~400
             $table->timestamp('created_at')->nullable();
 
             // One sign-up per email per book edition. A repeat submission is

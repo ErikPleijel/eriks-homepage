@@ -6,6 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     {{-- CSRF token for the cookie-free click logger (window.logEvent). Uses the
          session's existing token — no new cookie. --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,7 +32,7 @@
                  suppressed to avoid showing it twice. Kept as sr-only for screen
                  readers / the document landmark. --}}
             <span class="sr-only">{{ config('site.titles.'.app()->getLocale(), config('site.title')) }}</span>
-            <x-language-switcher />
+
         </div>
     </header>
 
@@ -40,7 +45,9 @@
         <x-hero :compact="true" />
     @endisset
 
-    <main class="mx-auto max-w-3xl px-6 py-10">
+    <x-main-nav />
+
+    <main class="mx-auto max-w-2xl px-6 py-10">
         {{ $slot }}
     </main>
 

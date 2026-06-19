@@ -22,6 +22,21 @@
  | once rather than across 24 chapter files.
  */
 @layer components {
+
+    /* Base button styles - removed the scale animation for a calmer feel */
+    .btn-action {
+        @apply border border-gray-300 rounded-full px-3 py-1 text-xs font-medium transition-colors duration-200;
+    }
+
+    /* Muted Stone variant: Light gray/stone background with dark gray text */
+    .btn-stone {
+        @apply bg-stone-200 text-stone-600 hover:bg-stone-200 hover:text-stone-800;
+    }
+
+    /* Humble Amber variant: Tinted, soft amber background instead of a neon pop */
+    .btn-amber {
+        @apply bg-amber-100 text-amber-700 hover:bg-amber-100 hover:text-amber-900;
+    }
     /* "Chapter N" eyebrow above the title. */
     .chapter-kicker {
         @apply text-sm font-semibold uppercase tracking-wide text-stone-400;

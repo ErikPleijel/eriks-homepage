@@ -1,7 +1,10 @@
-<x-layout title="Trust: A Leap of Faith Begins an Adventure and Gives Life a Direction">
+@php
+    $chapterKey = 'chapter-3';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Chapter 3</p>
-        <h1 class="chapter-title">Trust: A Leap of Faith Begins an Adventure and Gives Life a Direction</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <p class="chapter-lead">
             A faith that demands a reward breeds fear and vanity. But trust –

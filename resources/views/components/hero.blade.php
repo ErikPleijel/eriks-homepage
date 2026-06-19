@@ -35,6 +35,11 @@
     class="relative flex w-full items-center justify-center bg-cover bg-center bg-no-repeat text-center text-white"
     style="background-image: url('{{ asset('images/hero/bondi.jpg') }}'); {{ $sectionStyle }}"
 >
+    {{-- Flag-pair language switch, pinned to the top-right corner of the hero. --}}
+    <div class="absolute top-3 right-4">
+        <x-language-switch />
+    </div>
+
     <div class="flex flex-col items-center {{ $innerPad }}">
         {{-- Anchor icon, with a soft drop-shadow so it separates from the
              lighter sky/foam. --}}

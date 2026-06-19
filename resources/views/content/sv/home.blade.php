@@ -1,21 +1,3 @@
-@php
-    // Innehållsförteckning — inledning + alla 12 kapitel (bokens faktiska struktur).
-    // Explicit 'label' per post så att Inledning visas utan nummer och kapitel
-    // behåller sin egna 1–12-numrering.
-    $chapters = array_merge(
-        [[
-            'label' => null, // utan nummer — Inledning föregår Kapitel 1
-            'title' => 'Inledning: De sju klassiska dygderna som ett andligt immunförsvar',
-            'route' => route('chapter', ['locale' => 'sv', 'chapter' => 'introduction']),
-        ]],
-        collect(range(1, 12))->map(fn ($n) => [
-            'label' => "{$n}.",
-            'title' => "Kapitel {$n}",
-            'route' => route('chapter', ['locale' => 'sv', 'chapter' => "chapter-{$n}"]),
-        ])->all()
-    );
-@endphp
-
 <x-layout>
     <x-slot:hero>
         <x-hero />
@@ -30,20 +12,26 @@
             väntar innan kapitlen tar vid. Ersätt detta med den riktiga inledningen.
         </p>
 
-        {{-- Exempel på citatkort --}}
-        <x-quote-card
-            text="Stormen frågar inte om du är redo; den frågar bara om du är förankrad."
-            attribution="Platshållarmotto" />
+        <x-quotecard-image
+            src="/images/quotecard-swe-be-true-to-yourself.jpg"
+            alt="'Var sann mot dig själv!' säger vi. Gör det oss bättre – eller sämre?"
+            text="'Var sann mot dig själv!' säger vi.\nGör det oss bättre – eller sämre?"
+            lang="sv"
+            id="be-true-to-yourself"
+        />
+        <x-quotecard-image
+            src="/images/quotecard-swe-might-is-right.jpg"
+            alt="Makt är rätt — är det värt det? Mäktiga nationer kan bryta mot lagen och få världen att darra. Men rädsla är inte tillit. Nationer som inte går att lita på har inga verkliga vänner."
+            text="Makt är rätt — är det värt det?\nMäktiga nationer kan bryta mot lagen och få världen att darra.\nMen rädsla är inte tillit.\nNationer som inte går att lita på har inga verkliga vänner."
+            lang="sv"
+            id="might-is-right"
+        />
 
-        <x-quote-card
-            text="Att navigera i mångfalden är inte att välja en strand, utan att lära sig strömmarna emellan dem."
-            attribution="Erik Pleijel" />
 
-        <x-quote-card
-            text="Ett köpslående som kostar dig din kompass var aldrig något fynd." />
 
         {{-- Exempel på karusell med 3 bilder --}}
         <h2 class="mt-10 text-xl font-semibold">Några höjdpunkter</h2>
+
         <x-carousel label="Höjdpunkter">
             <div class="bg-amber-50 p-10 text-center">
                 <p class="text-xl font-medium">Bild ett — en tanke värd att dröja vid.</p>
@@ -56,11 +44,29 @@
             </div>
         </x-carousel>
 
-        {{-- Innehållsförteckning --}}
-        <x-toc :items="$chapters" heading="Kapitel" />
+        <x-quotecard-image
+            src="/images/quotecard-swe-emotions-horses.jpg"
+            alt="Känslor är kraftfulla hästar. De sätter dig liv i rörelse. Behärskar du dem – eller behärskar de dig?"
+            text="Känslor är kraftfulla hästar.\nDe sätter dig liv i rörelse.\nBehärskar du dem – eller behärskar de dig?"
+            lang="sv"
+            id="emotions-horses"
+        />
 
-        {{-- Amazon-CTA — använder BOKENS titel, inte webbplatsens titel. --}}
-        <section class="mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
+        <x-quotecard-image
+            src="/images/quotecard-swe-nationalism-alcohol.jpg"
+            alt="Nationell stolthet fungerar som alkohol. Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
+            text="Nationell stolthet fungerar som alkohol.\nSmå doser ger mod och självförtroende.\nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
+            lang="sv"
+            id="nationalism-alcohol"
+        />
+
+        {{-- Innehållsförteckning --}}
+        <x-toc heading="Kapitel" id="chapters" />
+
+        {{-- //TODO use this?
+        Amazon-CTA — använder BOKENS titel, inte webbplatsens titel. --}}
+
+        <section class="hidden mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
             <h2 class="text-2xl font-bold">{{ config('site.book_title') }}</h2>
             <p class="mt-2 text-stone-300">Finns nu som pocket och e-bok.</p>
             {{-- Exempel på den kakfria klickloggaren. Ännu inte tillagd på andra
@@ -73,6 +79,17 @@
         </section>
 
         {{-- Anmäl intresse för den tryckta utgåvan. --}}
-        <x-book-interest-form />
+
+        <x-buy-book lang="sv" />
+
+        {{-- SV page --}}
+        <x-book-excerpt-carousel
+            :slides="config('book-excerpts.navigation-i-mangfalden-sv')"
+            book="navigation-i-mangfalden" />
+
+        <x-about-teaser />
+
     </article>
+
 </x-layout>
+<x-site-footer />

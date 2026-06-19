@@ -211,6 +211,73 @@ The removal-request contact email is unchanged from the original
 **Viewing the data:** as with `site_events`, no admin UI yet — query via
 `php artisan tinker`, e.g. `BookInterestSubscriber::count()`.
 
+## `site_events.path` index — explicit prefix, not a plain index
+
+`path` is `varchar(2048)` to match `EventController`'s `max:2048` validation
+rule. Indexing that column under `utf8mb4` raises a key-length problem: 2,048
+chars × 4 bytes/char = **8,192 bytes**, which exceeds InnoDB's key prefix limit
+on every MySQL/MariaDB version — 767 bytes on MySQL ≤5.6 (pre-large-prefix), and
+3,072 bytes from MySQL 5.7.7+ / MariaDB 10.2+ with `DYNAMIC` row format. A plain
+`$table->index('path')` is wrong in all configurations.
+
+**Observed failure modes (not hypothetical):**
+
+- **MariaDB 10.4.32 (XAMPP, confirmed by `SHOW INDEX`):** no error — MariaDB
+  silently truncates the index to a 768-char prefix (`Sub_part=768`). The
+  migration appears to succeed, but the index created is not what was declared.
+- **MySQL 5.7:** hard-fails with "Specified key was too long; max key length is
+  3072 bytes."
+
+**Fix:** explicit **191-char prefix** (`path(191)`, 191 × 4 = 764 bytes — under
+the 767-byte floor of MySQL 5.6 with `utf8mb4`). Applied via `DB::statement()`
+on the `mysql` driver. SQLite (local dev) has no key-length concept, so the
+`else` branch uses a plain `$table->index('path', …)`. The driver-conditional
+lives in the migration's `up()` method after `Schema::create()`.
+
+191 chars was chosen as the **conservative safe floor across all MySQL/MariaDB
+versions that support `utf8mb4`**, not just the versions currently deployed — so
+this doesn't need revisiting if the production host or MySQL version changes.
+
+**Note:** no `.env.production` or deployment docs exist in the repo, so the
+production DB version and row format couldn't be verified directly. Testing was
+done against XAMPP's MariaDB 10.4.32 as the nearest available MySQL-family
+engine. The 191-char choice is conservative enough to be safe regardless of what
+the production server turns out to be, but `@@version` and
+`@@innodb_default_row_format` on the actual VPS are worth confirming next time
+there is direct server access.
+
+## Privacy posture: `SiteEvent` and `BookInterestSubscriber` are not the same
+
+Both tables are written to when a visitor acts on the site, and both use a
+`created_at`-only schema (write-once records). They are otherwise **opposite in
+privacy posture** and must never be treated uniformly.
+
+**`SiteEvent` — anonymous, no consent required.** Stores only aggregable facts:
+event type, path, locale, referrer host (host only, no full URL), click label.
+No IP address, no user-agent, no session identifier or fingerprint of any kind.
+Because no individual is identifiable from the stored data, this does not
+constitute personal-data processing under GDPR — and therefore does not require a
+consent banner or cookie notice. This is a real distinction, not a technicality:
+tools like Google Analytics require consent banners precisely because they set a
+persistent cross-session cookie and track individuals; this does not. The
+no-IP / no-user-agent constraint on `SiteEvent` reflects that design intent and
+must be preserved.
+
+**`BookInterestSubscriber` — identified person, explicit consent, narrow purpose.**
+Stores email, optional name, and — unlike `SiteEvent` — `consent_ip` and
+`consent_user_agent`. Those two columns are **consent documentation**: they record
+that a specific individual agreed to stated GDPR terms (the checkbox in the form),
+and where that agreement was given. This is a lawful-basis paper trail, not
+tracking. The data is collected for a single, stated purpose (notification of a
+print edition) and nothing else.
+
+The practical rule: do **not** apply the no-IP policy from `SiteEvent` to
+`BookInterestSubscriber` in the name of consistency. Removing `consent_ip` /
+`consent_user_agent` from the subscriber table would erase the consent evidence
+and weaken the legal posture of the sign-up — the opposite of what the
+no-IP policy achieves on the analytics side. The two models are intentionally
+asymmetric for good reason.
+
 ## Chapter content & the `content-image` component
 
 Chapter 1 (`content/en/chapters/chapter-1.blade.php`) is the first real chapter

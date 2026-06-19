@@ -1,7 +1,10 @@
-<x-layout title="Tillit: Trons vågspel startar ett äventyr och ger livet en riktning">
+@php
+    $chapterKey = 'chapter-3';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Kapitel 3</p>
-        <h1 class="chapter-title">Tillit: Trons vågspel startar ett äventyr och ger livet en riktning</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <p class="chapter-lead">
             En tro som kräver belöningar föder rädsla och fåfänga. Men tillit –

@@ -1,7 +1,10 @@
-<x-layout title="Utbrytning: Att ta sig ur de giftiga passionernas fängelse">
+@php
+    $chapterKey = 'chapter-1';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Kapitel 1</p>
-        <h1 class="chapter-title">Utbrytning: Att ta sig ur de giftiga passionernas fängelse</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <p class="chapter-lead">
             Jag berättar om mina erfarenheter från Rwanda 1994. Dessa "lärdomar från

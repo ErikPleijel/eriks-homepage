@@ -1,7 +1,10 @@
-<x-layout title="Inledning: De sju klassiska dygderna som ett andligt immunförsvar">
+@php
+    $chapterKey = 'introduction';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Inledning</p>
-        <h1 class="chapter-title">De sju klassiska dygderna som ett andligt immunförsvar</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <h2 class="chapter-heading">Självbemästring – den glömda nyckeln till demokratins överlevnad</h2>
 
@@ -42,7 +45,13 @@
             lössläppta från förnuftets tyglar – leder sällan till sanning.
         </p>
 
-        <x-quotecard>Kan man vara 100%...</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-swe-honest-but-wrong.jpg"
+            alt="Kan man vara 100% ärlig – och ändå ha totalt fel?"
+            text="Kan man vara 100% ärlig – och ändå ha totalt fel?"
+            lang="sv"
+            id="honest-but-wrong"
+        />
 
         <p class="chapter-text">
             Utan dygd kan ingen leda en nation. Otyglade hästar drar vagnen i diket –
@@ -73,7 +82,13 @@
             förlorat sin frihet.
         </p>
 
-        <x-quotecard>Vår tids fälla #1 (av 3)</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-swe-mindless-scrolling.jpg"
+            alt="Planlöst skrollande? Styr själv. Fokusera på en sak i 10 minuter."
+            text="Planlöst skrollande? Styr själv.\nFokusera på en sak i 10 minuter."
+            lang="sv"
+            id="mindless-scrolling"
+        />
 
         <h2 class="chapter-heading">Faustisk frestelse</h2>
 
@@ -253,7 +268,13 @@
             pipa, genom att spela på rätt knappar.
         </p>
 
-        <x-quotecard>Vår tids fälla #2 (av 3)</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-swe-marionette-hatred.jpg"
+            alt="Hat gör människor lätta att manipulera. Styr själv. Hata inte – såvida du inte vill dansa efter någon annans pipa."
+            text="Hat gör människor lätta att manipulera. Styr själv.\nHata inte – såvida du inte vill dansa efter någon annans pipa."
+            lang="sv"
+            id="marionette-hatred"
+        />
 
         <h2 class="chapter-heading">4. Tro: Övervinn ohälsosam misstro</h2>
 
@@ -333,7 +354,13 @@
             utveckla vishet. Låt oss börja träna upp våra hjärnor redan idag!
         </p>
 
-        <x-quotecard>Vår tids fälla #3 (av 3)</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-swe-absolute-certainty.jpg"
+            alt="Känslan av tvärsäkerhet är ofta inget annat än just detta: en känsla. Styr själv. Lyssna mer och bli överraskad."
+            text="Känslan av tvärsäkerhet är ofta inget annat än just detta: en känsla. Styr själv.\nLyssna mer och bli överraskad."
+            lang="sv"
+            id="absolute-certainty"
+        />
 
         <h2 class="chapter-heading">6. Måttfullhet: Lockas inte av ytterligheter</h2>
 

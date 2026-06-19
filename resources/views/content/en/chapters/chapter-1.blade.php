@@ -1,7 +1,10 @@
-<x-layout title="Breakout: Escaping the Prison of Toxic Passions">
+@php
+    $chapterKey = 'chapter-1';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Chapter 1</p>
-        <h1 class="chapter-title">Breakout: Escaping the Prison of Toxic Passions</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         {{-- Lead paragraph --}}
         <p class="chapter-lead">
@@ -79,6 +82,7 @@
         <x-content-image
             src="/images/chapters/chapter-1/compass_ff.png"
             alt="Compass pointing to Fear and Flattery, and not Compassion and Wisdom."
+            width="30"
             caption="Fear and flattery can disrupt the inner compass and lead us in the wrong direction." />
 
         <p class="chapter-text">
@@ -110,13 +114,20 @@
             build inner health and resilience.
         </p>
 
+        @php
+            $ch1Quote = "Good and evil aren\u{2019}t only a war between nations and ideologies.\nIt\u{2019}s also a drama within us.\nTo label others \u{2018}monsters\u{2019} is the first step toward becoming one.";
+        @endphp
+        <x-quotecard :text="$ch1Quote" lang="en" id="chapter-1" :show-slogan="true" />
+
         <h2 class="chapter-heading">What makes us human?</h2>
 
         {{-- Float right so the paragraph immediately following wraps around it. --}}
         <x-content-image
             align="right"
             src="/images/chapters/chapter-1/prst_hund.png"
+            width="30"
             alt="A man feeds a dog." />
+
 
         <p class="chapter-text">
             There is a fundamental difference between training an animal – like a
@@ -165,5 +176,12 @@
             there, in the world, or between nations. It is something that plays out
             inside each of us.
         </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+            <x-food-for-thought :number="1" lang="en" />
+            <x-food-for-thought-carousel :startNumber="1" lang="en" />
+        </div>
+
+
     </article>
 </x-layout>

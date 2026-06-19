@@ -1,55 +1,71 @@
-@php
-    // TOC for the introduction + all 12 chapters (the book's actual structure).
-    // Titles below match the live site's TOC. Chapter views are stubs — real
-    // content is a separate follow-up. Using explicit 'label' keys so Introduction
-    // appears unnumbered and chapters keep their own 1–12 numbering.
-    $chapterTitles = [
-        1 => 'Breakout: Escaping the Prison of Toxic Passions',
-        2 => "Reformation: The Battle at the Centre of Today's Political Storm",
-        3 => 'Trust: A Leap of Faith Begins an Adventure and Gives Life a Direction',
-        4 => "Growth: A Cunning Snake Whispers That We Don't Need to Change",
-        5 => 'Wisdom: How Trusting Faith Can Be Reason\'s Best Friend',
-        6 => 'Illumination: Education as a Way Out of the Shadowlands',
-        7 => 'Strength: Keep Your Head up When Everything Goes Wrong',
-        8 => 'Integration: Handle Differences and the Round Squares of Life',
-        9 => 'Secular: The Christian Invention That Saves Faith from Power',
-        10 => "X-Factor: Embrace Life's Mystery and Spark a Love of Science",
-        11 => 'Resilience: Can Humanism Survive Without a Divine Spark?',
-        12 => 'Anchor: The Primal Force that Makes the Soul Unsellable',
-    ];
-
-    $chapters = array_merge(
-        [[
-            'label' => null, // unnumbered — Introduction precedes Chapter 1
-            'title' => 'Introduction: The 7 Classical Virtues as a Spiritual Immune System',
-            'route' => route('chapter', ['locale' => 'en', 'chapter' => 'introduction']),
-        ]],
-        collect($chapterTitles)->map(fn ($title, $n) => [
-            'label' => "{$n}.",
-            'title' => $title,
-            'route' => route('chapter', ['locale' => 'en', 'chapter' => "chapter-{$n}"]),
-        ])->values()->all()
-    );
-@endphp
-
 <x-layout>
     <x-slot:hero>
         <x-hero />
     </x-slot:hero>
 
     <article class="prose-stone max-w-none">
-        <h1 class="text-3xl font-bold tracking-tight">Welcome</h1>
 
-        <p class="mt-4 text-lg leading-relaxed text-stone-700">
-            This is placeholder introductory copy for the site. It sets the tone for
-            the essays that follow and gives the reader a sense of what to expect
-            before they dive into the chapters. Replace this with the real intro.
-        </p>
+        <x-content-image
+            src="/images/compass_magnet.png"
+            alt="A magnet that interferes with a compass"
+            width="40" />
+
+        <h1 class="text-3xl font-bold tracking-tight">Does ‘Be Yourself’ Make You Better — or Worse?</h1>
+
+        <p class="chapter-text">I was taken aback. What did she mean?</p>
+
+        <p class="chapter-text">We were talking in a church youth group, and she explained that she had later turned away from the ideology she had grown up with.</p>
+
+        <p class="chapter-text">Being authentic – being true to yourself – was something I believed in deeply. How could such an ideal be connected to Nazism?</p>
+
+        <p class="chapter-text">As she went on to describe her parents' worldview, I remember thinking: this sounds a bit like Nietzsche – the emphasis on unlimited self-assertion, contempt for inhibition and moral constraints, the "will to power." I began to see how such ideas could fit together.</p>
+
+        <p class="chapter-text">What does it really mean to "be authentic"? Many understand it as giving free rein to one's feelings and not holding them back. With such an interpretation, even an SS officer might have believed he was living "authentically" and "honestly." Without an ethical North Star, authenticity easily collapses into cruelty.</p>
+
+        <p class="chapter-text">But it can also mean something very different: living in alignment with one's values and convictions. It means becoming a well-integrated person whose thoughts, emotions, and actions pull in the same direction – someone with the inner strength to resist not only external pressure, but also one's own impulses.</p>
+
+        <p class="chapter-text">Both of these views are called authentic.</p>
+
+        <p class="chapter-text">Here we face a fork in the road, leading in radically different directions.</p>
+
+        <p class="chapter-text">The question is not only which path feels more appealing and liberating, but where each path ultimately leads.</p>
+
+        <p class="chapter-text">The next time someone urges you "to be true to yourself" ask for clarification. True to what, exactly? To a passing feeling or to good values? Is it an excuse to offload raw impulses? Or is it about being true to what is true?</p>
+
+        <p class="chapter-text">At a deeper level, it becomes a question of identity. Who do you want to be when you are yourself? Some choose wisely, others choose poorly.</p>
+
+        <x-quotecard-image
+            src="/images/quotecard-eng-be-true-to-yourself.jpg"
+            alt="'Be true to yourself!' we say. Does that make you better — or worse?"
+            text="'Be true to yourself!' we say.\nDoes that make you better — or worse?"
+            lang="en"
+            id="be-true-to-yourself"
+        />
 
         {{-- Sample quote cards --}}
-        <x-quote-card
-            text="The storm does not ask whether you are ready; it only asks whether you are anchored."
-            attribution="Placeholder epigraph" />
+        <x-quotecard-image
+            src="/images/quotecard-eng-might-is-right.jpg"
+            alt="Might makes right — is it worth it? Powerful nations may break the law and make the world tremble. But fear is not trust. Nations that are not trusted have no real friends."
+            text="Might makes right — is it worth it?\nPowerful nations may break the law and make the world tremble.\nBut fear is not trust.\nNations that are not trusted have no real friends."
+            lang="en"
+            id="might-is-right"
+        />
+
+        <x-quotecard-image
+            src="/images/quotecard-eng-emotions-horses.jpg"
+            alt="Emotions are powerful horses. They set you in motion. Do you master them — or do they master you?"
+            text="Emotions are powerful horses.\nThey set you in motion.\nDo you master them — or do they master you?"
+            lang="en"
+            id="emotions-horses"
+        />
+
+        <x-quotecard-image
+            src="/images/quotecard-eng-nationalism-alcohol.jpg"
+            alt="National pride works like alcohol. Small doses provide courage and confidence. Larger doses bring tunnel vision, clouded judgment, and belligerence."
+            text="National pride works like alcohol.\nSmall doses provide courage and confidence.\nLarger doses bring tunnel vision, clouded judgment, and belligerence."
+            lang="en"
+            id="nationalism-alcohol"
+        />
 
         <x-quote-card
             text="To navigate plurality is not to choose one shore, but to learn the currents between them."
@@ -73,7 +89,7 @@
         </x-carousel>
 
         {{-- Table of contents --}}
-        <x-toc :items="$chapters" heading="Chapters" />
+        <x-toc heading="Chapters" id="chapters" />
 
         {{-- Amazon CTA — uses the BOOK title, not the site title. --}}
         <section class="mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
@@ -89,6 +105,15 @@
         </section>
 
         {{-- Register interest in the printed edition. --}}
-        <x-book-interest-form />
+        <x-buy-book />
+
+        {{-- EN page --}}
+        <x-book-excerpt-carousel
+            :slides="config('book-excerpts.adventures-and-reflections-en')"
+            book="adventures-and-reflections" />
+
+        <x-about-teaser />
+
     </article>
 </x-layout>
+<x-site-footer />

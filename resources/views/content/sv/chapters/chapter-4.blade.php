@@ -1,7 +1,10 @@
-<x-layout title="Mognad: En listig orm viskar att vi inte behöver förändras">
+@php
+    $chapterKey = 'chapter-4';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Kapitel 4</p>
-        <h1 class="chapter-title">Mognad: En listig orm viskar att vi inte behöver förändras</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <p class="chapter-lead">
             När tron avskräcker från mognad blir man ett lätt byte för tyranni.

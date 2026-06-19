@@ -1,7 +1,10 @@
-<x-layout title="Reformation: Kampen i centrum av dagens politiska storm">
+@php
+    $chapterKey = 'chapter-2';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Kapitel 2</p>
-        <h1 class="chapter-title">Reformation: Kampen i centrum av dagens politiska storm</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <p class="chapter-lead">
             Vad händer när tron blir en affärsuppgörelse och Gud liknar en

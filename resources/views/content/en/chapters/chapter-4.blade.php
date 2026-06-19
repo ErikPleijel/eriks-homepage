@@ -1,7 +1,10 @@
-<x-layout title="Growth: A Cunning Snake Whispers That We Don't Need to Change">
+@php
+    $chapterKey = 'chapter-4';
+    $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+@endphp
+<x-layout :title="$chMeta['layout_title']">
     <article class="prose-stone max-w-none">
-        <p class="chapter-kicker">Chapter 4</p>
-        <h1 class="chapter-title">Growth: A Cunning Snake Whispers That We Don't Need to Change</h1>
+        <x-chapter-header :meta="$chMeta" />
 
         <p class="chapter-lead">
             When faith discourages growth, we become easy prey to tyranny.
