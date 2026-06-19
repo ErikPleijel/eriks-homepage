@@ -22,6 +22,7 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+docs/deployment.md
 
 # VPS provisioning/deployment scripts — contain credentials, not for version control
 provision-eriks-homepage.sh
