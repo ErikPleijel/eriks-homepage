@@ -85,6 +85,7 @@ Route::get('/sv', fn () => redirect('/', 301));
 Route::get('/registrera', fn () => redirect('https://erikpleijel.se/', 301));
 Route::get('/webbdesign', fn () => redirect('https://erikpleijel.se/', 301));
 Route::get('/eng', fn () => redirect('https://erikpleijel.se/', 301));
+Route::get('/recensioner', fn () => redirect('https://erikpleijel.se/', 301));
 Route::get('/en/about', fn () => redirect('/about', 301));
 Route::get('/sv/om-mig', fn () => redirect('/om-mig', 301));
 Route::get('/sv/intresseanmalan', fn () => redirect('/intresseanmalan', 301));
