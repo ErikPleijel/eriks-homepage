@@ -17,6 +17,19 @@
         $enUrl = route('home', ['locale' => 'en']);
         $svUrl = route('home', ['locale' => 'sv']);
     }
+
+    // Force each locale's link onto its own brand domain — English always
+    // erikpleijel.com, Swedish always erikpleijel.se — regardless of which
+    // domain the visitor is currently on.
+    $forceHost = function (string $url, string $host) {
+        $parts = parse_url($url);
+        $path  = $parts['path'] ?? '/';
+        $query = isset($parts['query']) ? '?' . $parts['query'] : '';
+        return 'https://' . $host . $path . $query;
+    };
+
+    $enUrl = $forceHost($enUrl, 'erikpleijel.com');
+    $svUrl = $forceHost($svUrl, 'erikpleijel.se');
 @endphp
 
 
