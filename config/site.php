@@ -96,6 +96,8 @@ return [
 
     'default_locale' => 'en',
 
+    'swedish_hosts' => ['erikpleijel.se', 'www.erikpleijel.se'],
+
     /*
     |--------------------------------------------------------------------------
     | Analytics key

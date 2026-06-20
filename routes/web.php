@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\BookInterestController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SitemapController;
 use App\Support\ChapterData;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -41,8 +42,11 @@ Route::pattern('locale', implode('|', array_keys(config('site.locales'))));
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return redirect('/' . config('site.default_locale'));
+Route::get('/', function (\Illuminate\Http\Request $request) {
+    $locale = in_array($request->getHost(), config('site.swedish_hosts', []))
+        ? 'sv'
+        : config('site.default_locale');
+    return redirect('/' . $locale);
 });
 
 /*
@@ -113,6 +117,8 @@ Route::get('/about', function () {
 */
 
 Route::get('/analytics', [AnalyticsController::class, 'show'])->name('analytics');
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::get('/{slug}', function (string $slug) use ($enSlugs) {
     App::setLocale('en');

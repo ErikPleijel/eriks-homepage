@@ -37,7 +37,7 @@
 {{-- x-data="footnotes" mounts the shared footnote scope on the layout root so
      the single <x-footnote-modal/> below serves every <x-footnote-trigger/>
      rendered inside {{ $slot }}. --}}
-<body x-data="footnotes" class="min-h-screen bg-stone-50 text-stone-900 antialiased font-sans">
+<body x-data="footnotes" class="min-h-screen overflow-x-hidden bg-stone-50 text-stone-900 antialiased font-sans">
 <header class="border-b border-stone-200 bg-white">
     <div class="mx-auto flex max-w-3xl items-center justify-end px-6 py-4">
         {{-- Every page shows a hero (full on home, slim elsewhere) and the
