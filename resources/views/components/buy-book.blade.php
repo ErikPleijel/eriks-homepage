@@ -22,7 +22,7 @@
         ? ($isSv ? 'Köp boken'      : 'Buy the book')
         : ($isSv ? 'Köp böckerna'   : 'Buy the books');
     $closeLabel = $isSv ? 'Stäng' : 'Close';
-    $interestFormUrl = route('book-interest.form', ['locale' => 'sv']);
+    $interestFormUrl = url('/intresseanmalan');
 
 
     // External-link icon reused throughout

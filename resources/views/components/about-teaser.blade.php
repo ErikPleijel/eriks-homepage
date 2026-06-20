@@ -1,9 +1,7 @@
 @php
     $locale   = app()->getLocale();
     $isSv     = $locale === 'sv';
-    $aboutUrl = $isSv
-        ? route('about.sv', ['locale' => 'sv'])
-        : route('about.en');
+    $aboutUrl = $isSv ? url('/om-mig') : url('/about');
 
     $heading  = $isSv ? 'Om mig'    : 'About me';
     $readMore = $isSv ? 'Läs mer →' : 'Read more →';

@@ -1,11 +1,9 @@
 @php
     $locale   = app()->getLocale();
     $isSv     = $locale === 'sv';
-    $homeUrl  = route('home', ['locale' => $locale]);
-    $chapUrl  = $homeUrl . '#chapters';
-    $aboutUrl = $isSv
-        ? route('about.sv', ['locale' => 'sv'])
-        : route('about.en');
+    $homeUrl  = url('/');
+    $chapUrl  = url('/') . '#chapters';
+    $aboutUrl = $isSv ? url('/om-mig') : url('/about');
 
     $label = [
         'home'    => $isSv ? 'Hem'     : 'Home',

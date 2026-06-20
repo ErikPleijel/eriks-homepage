@@ -117,15 +117,11 @@ class ChapterData
     /**
      * Generate the canonical URL for a chapter.
      *
-     * EN chapters live at site root (no locale prefix): /breakout-…
-     * SV chapters live under /sv/: /sv/utbrytning-…
+     * All chapters live at the site root; the slug is locale-specific (derived
+     * from the localized title) and the correct domain is set by the host.
      */
     private static function chapterUrl(string $viewKey, string $title, string $locale): string
     {
-        $slug = Str::slug($title);
-
-        return $locale === 'en'
-            ? url($slug)
-            : url("sv/{$slug}");
+        return url(Str::slug($title));
     }
 }

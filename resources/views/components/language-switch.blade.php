@@ -1,35 +1,7 @@
 @php
-    use Illuminate\Support\Facades\Route;
-
-    $locale  = app()->getLocale();
-    $isHome  = Route::currentRouteName() === 'home';
-
-    // For home pages the locale is the first URL segment, so we can swap it.
-    // For chapter pages and all other routes we fall back to the other locale's
-    // home page because EN and SV chapter slugs do not match each other.
-    if ($isHome) {
-        $segments    = request()->segments();
-        $enSegments  = array_merge(['en'], array_slice($segments, 1));
-        $svSegments  = array_merge(['sv'], array_slice($segments, 1));
-        $enUrl = url(implode('/', $enSegments));
-        $svUrl = url(implode('/', $svSegments));
-    } else {
-        $enUrl = route('home', ['locale' => 'en']);
-        $svUrl = route('home', ['locale' => 'sv']);
-    }
-
-    // Force each locale's link onto its own brand domain — English always
-    // erikpleijel.com, Swedish always erikpleijel.se — regardless of which
-    // domain the visitor is currently on.
-    $forceHost = function (string $url, string $host) {
-        $parts = parse_url($url);
-        $path  = $parts['path'] ?? '/';
-        $query = isset($parts['query']) ? '?' . $parts['query'] : '';
-        return 'https://' . $host . $path . $query;
-    };
-
-    $enUrl = $forceHost($enUrl, 'erikpleijel.com');
-    $svUrl = $forceHost($svUrl, 'erikpleijel.se');
+    $locale = app()->getLocale();
+    $enUrl  = 'https://erikpleijel.com/';
+    $svUrl  = 'https://erikpleijel.se/';
 @endphp
 
 

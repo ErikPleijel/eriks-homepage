@@ -12,9 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'setlocale' => \App\Http\Middleware\SetLocale::class,
-            'logpageview' => \App\Http\Middleware\LogPageView::class,
+            'setlocale'         => \App\Http\Middleware\SetLocale::class,
+            'setlocalefromhost' => \App\Http\Middleware\SetLocaleFromHost::class,
+            'logpageview'       => \App\Http\Middleware\LogPageView::class,
         ]);
+        $middleware->appendToGroup('web', \App\Http\Middleware\SetLocaleFromHost::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

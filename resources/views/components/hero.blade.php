@@ -22,7 +22,7 @@
     $dividerMargin= $compact ? 'my-3'                            : 'my-3 sm:my-5';
     $taglineSize  = $compact ? 'text-xs sm:text-sm'              : 'text-xs sm:text-lg';
 
-    $homeUrl = route('home', ['locale' => app()->getLocale()]);
+    $homeUrl = url('/');
 @endphp
 
 {{--

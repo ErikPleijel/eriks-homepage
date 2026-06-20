@@ -18,31 +18,29 @@ class SitemapController extends Controller
         $urls = [];
 
         // Home pages
-        $enHome = route('home', ['locale' => 'en']);
-        $svHome = route('home', ['locale' => 'sv']);
+        $enHome = 'https://erikpleijel.com/';
+        $svHome = 'https://erikpleijel.se/';
         $urls[] = $this->paired($enHome, $enHome, $svHome, $this->mtime('content/en/home'));
         $urls[] = $this->paired($svHome, $enHome, $svHome, $this->mtime('content/sv/home'));
 
         // About pages
-        $enAbout = route('about.en');
-        $svAbout = route('about.sv', ['locale' => 'sv']);
+        $enAbout = 'https://erikpleijel.com/about';
+        $svAbout = 'https://erikpleijel.se/om-mig';
         $urls[] = $this->paired($enAbout, $enAbout, $svAbout, $this->mtime('content/en/about'));
         $urls[] = $this->paired($svAbout, $enAbout, $svAbout, $this->mtime('content/sv/about'));
 
         // Book-interest sign-up form (SV only, no EN alternate)
-        $urls[] = $this->single(route('book-interest.form', ['locale' => 'sv']));
+        $urls[] = $this->single('https://erikpleijel.se/intresseanmalan');
 
-        // Chapters — pair EN and SV by position (config order is identical for both locales)
-        $enSlugMap = ChapterData::slugMap('en');
-        $enItems   = array_values(array_filter(ChapterData::tocItems('en'), fn($i) => isset($i['url'])));
-        $svItems   = array_values(array_filter(ChapterData::tocItems('sv'), fn($i) => isset($i['url'])));
+        // Chapters — use explicit domain strings; pair by viewKey so order doesn't matter
+        $enSlugMap    = ChapterData::slugMap('en');          // enSlug  => viewKey
+        $svSlugByView = array_flip(ChapterData::slugMap('sv')); // viewKey => svSlug
 
-        foreach ($enItems as $idx => $enItem) {
-            $enUrl   = $enItem['url'];
-            $svUrl   = ($svItems[$idx] ?? null)['url'] ?? $enUrl;
-            $enSlug  = basename(parse_url($enUrl, PHP_URL_PATH));
-            $viewKey = $enSlugMap[$enSlug] ?? null;
-            $lastmod = $viewKey ? $this->chapterMtime($viewKey) : null;
+        foreach ($enSlugMap as $enSlug => $viewKey) {
+            $svSlug  = $svSlugByView[$viewKey] ?? null;
+            $enUrl   = 'https://erikpleijel.com/' . $enSlug;
+            $svUrl   = $svSlug ? 'https://erikpleijel.se/' . $svSlug : $enUrl;
+            $lastmod = $this->chapterMtime($viewKey);
 
             $urls[] = $this->paired($enUrl, $enUrl, $svUrl, $lastmod);
             $urls[] = $this->paired($svUrl, $enUrl, $svUrl, $lastmod);

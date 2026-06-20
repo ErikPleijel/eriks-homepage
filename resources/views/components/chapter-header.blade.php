@@ -3,7 +3,7 @@
 @php
     $locale        = app()->getLocale();
     $isSv          = $locale === 'sv';
-    $chapUrl       = route('home', ['locale' => $locale]) . '#chapters';
+    $chapUrl       = url('/') . '#chapters';
     $contentsLabel = $isSv ? 'Innehåll' : 'Contents';
     $aboutLabel    = $isSv ? 'Om boken'  : 'About this book';
     $closeLabel    = $isSv ? 'Stäng'     : 'Close';
