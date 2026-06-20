@@ -82,6 +82,9 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 
 Route::get('/en', fn () => redirect('/', 301));
 Route::get('/sv', fn () => redirect('/', 301));
+Route::get('/registrera', fn () => redirect('https://erikpleijel.se/', 301));
+Route::get('/webbdesign', fn () => redirect('https://erikpleijel.se/', 301));
+Route::get('/eng', fn () => redirect('https://erikpleijel.se/', 301));
 Route::get('/en/about', fn () => redirect('/about', 301));
 Route::get('/sv/om-mig', fn () => redirect('/om-mig', 301));
 Route::get('/sv/intresseanmalan', fn () => redirect('/intresseanmalan', 301));
@@ -97,8 +100,8 @@ Route::get('/sv/{slug}', fn (string $slug) => redirect('/'.$slug, 301));
 */
 
 Route::get('/book/introduction-the-seven-classical-virtues-as-a-spiritual-immune-system',
-    fn () => redirect('/introduction-the-7-classical-virtues-as-a-spiritual-immune-system', 301));
-Route::get('/book/{slug}', fn (string $slug) => redirect('/'.$slug, 301));
+    fn () => redirect('https://erikpleijel.com/introduction-the-7-classical-virtues-as-a-spiritual-immune-system', 301));
+Route::get('/book/{slug}', fn (string $slug) => redirect('https://erikpleijel.com/'.$slug, 301));
 Route::get('/bok/{slug}', fn (string $slug) => redirect('/'.$slug, 301));
 
 /*
