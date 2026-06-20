@@ -1,4 +1,4 @@
-@props(['title' => null, 'ogTitle' => null, 'ogDescription' => null, 'ogImage' => null])
+@props(['title' => null, 'ogTitle' => null, 'ogDescription' => null, 'ogImage' => null, 'alternates' => null])
 
     <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="scroll-smooth">
@@ -31,6 +31,16 @@
     <meta property="og:description" content="{{ $ogDescription ?? config('site.descriptions.'.app()->getLocale(), config('site.descriptions.en')) }}">
     <meta property="og:image" content="{{ $ogImage ?? asset('images/hero/'.( app()->getLocale() === 'sv' ? 'bondi-og-swe.jpg' : 'bondi-og.jpg')) }}">
     <meta name="twitter:card" content="summary_large_image">
+
+    @if ($alternates)
+        @if ($alternates['en'])
+        <link rel="alternate" hreflang="en" href="{{ $alternates['en'] }}" />
+        @endif
+        @if ($alternates['sv'])
+        <link rel="alternate" hreflang="sv" href="{{ $alternates['sv'] }}" />
+        @endif
+        <link rel="alternate" hreflang="x-default" href="{{ $alternates['en'] ?? $alternates['sv'] }}" />
+    @endif
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

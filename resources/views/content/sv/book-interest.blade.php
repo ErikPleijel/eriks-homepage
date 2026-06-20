@@ -1,4 +1,4 @@
-<x-layout title="Intresseanmälan">
+<x-layout title="Intresseanmälan" :alternates="['en' => null, 'sv' => 'https://erikpleijel.se/intresseanmalan']">
     <article class="prose-stone max-w-none">
         <nav class="mb-6 text-sm">
             <a href="{{ url('/') }}"

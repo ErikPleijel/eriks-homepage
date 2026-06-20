@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :alternates="['en' => 'https://erikpleijel.com/', 'sv' => 'https://erikpleijel.se/']">
     <x-slot:hero>
         <x-hero />
     </x-slot:hero>
@@ -75,6 +75,7 @@
                 :show-slogan="false"
                 :number="2"
             />
+
 
             <x-quotecard-image
                 src="/images/quotecard-eng-might-is-right.jpg"

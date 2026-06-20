@@ -1,4 +1,4 @@
-<x-layout title="About me">
+<x-layout title="About me" :alternates="['en' => 'https://erikpleijel.com/about', 'sv' => 'https://erikpleijel.se/om-mig']">
 
     <article class="prose-stone max-w-none">
 

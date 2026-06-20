@@ -1,8 +1,9 @@
 @php
     $chapterKey = 'chapter-8';
     $chMeta     = \App\Support\ChapterData::forView($chapterKey, app()->getLocale());
+    $alternates = \App\Support\ChapterData::alternates($chapterKey);
 @endphp
-<x-layout :title="$chMeta['layout_title']">
+<x-layout :title="$chMeta['layout_title']" :alternates="$alternates">
     <article class="prose-stone max-w-none">
         <x-chapter-header :meta="$chMeta" />
 

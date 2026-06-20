@@ -5,7 +5,9 @@
     trailing odd card centered on its own row.
 --}}
 <div class="relative left-1/2 right-1/2 -mx-[50vw] w-screen px-6">
-    <div class="mx-auto flex max-w-4xl flex-wrap justify-center gap-5">
+    <div class="mx-auto grid max-w-4xl grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
         {{ $slot }}
     </div>
 </div>
+
+

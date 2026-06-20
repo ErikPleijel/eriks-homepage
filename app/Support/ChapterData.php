@@ -92,6 +92,26 @@ class ChapterData
     }
 
     /**
+     * Return fully-qualified EN and SV URLs for a chapter's alternate hreflang tags.
+     *
+     * Uses the same slugMap pairing the SitemapController uses. Hard-coded domains
+     * match the sitemap: erikpleijel.com for EN, erikpleijel.se for SV.
+     */
+    public static function alternates(string $viewKey): array
+    {
+        $enSlugByView = array_flip(self::slugMap('en'));
+        $svSlugByView = array_flip(self::slugMap('sv'));
+
+        $enSlug = $enSlugByView[$viewKey] ?? null;
+        $svSlug = $svSlugByView[$viewKey] ?? null;
+
+        return [
+            'en' => $enSlug ? 'https://erikpleijel.com/' . $enSlug : null,
+            'sv' => $svSlug ? 'https://erikpleijel.se/' . $svSlug : null,
+        ];
+    }
+
+    /**
      * Build a slug => view-name lookup map for the given locale.
      *
      * Used by routes/web.php at boot time to register slug-based routes.

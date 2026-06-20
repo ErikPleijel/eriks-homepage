@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :alternates="['en' => 'https://erikpleijel.com/', 'sv' => 'https://erikpleijel.se/']">
     <x-slot:hero>
         <x-hero />
     </x-slot:hero>
