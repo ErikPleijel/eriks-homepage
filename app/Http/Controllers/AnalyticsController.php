@@ -62,6 +62,15 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->get();
 
+        $referrerBreakdown = DB::table('site_events')
+            ->select('referrer_host', DB::raw('COUNT(*) as total'))
+            ->where('created_at', '>=', $now->copy()->subHours(24))
+            ->whereNotNull('referrer_host')
+            ->where('referrer_host', '!=', '')
+            ->groupBy('referrer_host')
+            ->orderByDesc('total')
+            ->get();
+
         return view('analytics', compact(
             'now',
             'totalSubscribers',
@@ -70,6 +79,7 @@ class AnalyticsController extends Controller
             'pageviews24h',
             'dailyRows',
             'localeBreakdown',
+            'referrerBreakdown',
         ));
     }
 }

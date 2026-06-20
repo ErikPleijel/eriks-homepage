@@ -88,5 +88,28 @@
         </tbody>
     </table>
 
+    {{-- ── Referrer breakdown ────────────────────────────────────────────── --}}
+    <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem; margin-top:2rem;">
+        Referrers · last 24h
+    </h2>
+    <table class="tbl" style="width:100%; border-collapse:collapse; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
+        <thead>
+            <tr>
+                <th style="text-align:left;">Referrer</th>
+                <th class="num">Visits</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($referrerBreakdown as $row)
+            <tr>
+                <td>{{ $row->referrer_host }}</td>
+                <td class="num">{{ number_format($row->total) }}</td>
+            </tr>
+            @empty
+            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No referrer data in the last 24h.</td></tr>
+            @endforelse
+        </tbody>
+    </table>
+
 </body>
 </html>
