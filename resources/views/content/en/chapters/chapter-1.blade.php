@@ -150,6 +150,10 @@
             different. It will lack an inner moral compass.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Good and Evil</h2>
 
         <p class="chapter-text">
@@ -177,11 +181,30 @@
             inside each of us.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-            <x-food-for-thought :number="1" lang="en" />
-            <x-food-for-thought-carousel :startNumber="1" lang="en" />
-        </div>
+        <x-quotecard
+            id="chapter-1"
+            text="Good and evil aren't only a war between nations and ideologies.
+It's also a drama&nbsp;within&nbsp;us.
+To label others 'monsters' is the first step toward&nbsp;becoming&nbsp;one."
+            align="center"
+            lang="en"
+        />
 
+        <p class="chapter-text">
+            The ancient Greek thinkers encouraged self-reflection. ‘Know thyself’, they said. Socrates' believed that a life without self-reflection – an "unexamined life" – has no meaning. This is essential for us to grow and develop as human beings.
+        </p>
+
+        <p class="chapter-text">
+            Many churches dedicate a part of the mass to self-reflection and confession. They believe that divine love frees us from fear and reduces the need for false defences and excuses. This makes it easier to recognise and deal with our own dark sides. Self-awareness is key to avoiding moral blindness.
+        </p>
+
+        <p class="chapter-text">
+            These two traditions are commonly symbolised by 'Athens' and 'Jerusalem'. Athens represents philosophy, reason, education and research. Jerusalem stands for faith, spirituality, divinity and hope. This is the good alliance that we need to rediscover and revive.
+        </p>
+
+        <x-food-for-thought :number="1" lang="en" />
 
     </article>
+    <x-toc heading="Chapters" />
 </x-layout>
+<x-site-footer />

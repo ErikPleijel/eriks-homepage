@@ -73,10 +73,8 @@
         <x-content-image
             src="/images/chapters/chapter-3/faith-in-faith_col.png"
             alt="Cartoon priest looking at a text: Don't have too much faith in your own faith!"
-            caption="Beware of spiritual short-circuits! If your faith makes you feel superior to people of other faiths, you are just looking for an ego boost. Then you don't have faith in God, but &quot;faith in your faith&quot;."
-            width="60" />
-
-        <x-quotecard>#3</x-quotecard>
+            caption="Beware of spiritual short-circuits! If your faith makes you feel superior to people of other faiths, you are just looking for an ego boost. Then you don't have faith in God, but 'faith in your faith'."
+            width="50" />
 
         <h2 class="chapter-heading">A Liberating Leap of Faith</h2>
 
@@ -126,6 +124,15 @@
             Christian faith really seriously.
         </p>
 
+        <x-quotecard
+            id="chapter-3"
+            header="Beware of Spiritual Short-Circuits"
+            text="If faith makes you feel superior, it has become an&nbsp;ego&nbsp;boost.
+Then you no longer have faith in God — but faith in&nbsp;your&nbsp;faith."
+            align="center"
+            lang="en"
+        />
+
         <h2 class="chapter-heading">No Animal Training for Humans</h2>
 
         <p class="chapter-text">
@@ -153,6 +160,11 @@
             God and man are united in a common project – this is the meaning of
             the expression "following Christ".
         </p>
+
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Follow This Young Man</h2>
 
@@ -218,6 +230,9 @@
             means first of all learning not to hate and despise other people.
         </p>
 
-        <x-food-for-thought :number="3" />
+        <x-food-for-thought :number="3" lang="en" />
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

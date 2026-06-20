@@ -181,7 +181,7 @@
             src="/images/chapters/chapter-6/Cicero.JPG"
             alt="Cicero"
             align="right"
-            width="30" />
+            width="15" />
 
         <p class="chapter-text">
             Vi bör dock komma ihåg att det vi idag kallar för demokrati är mer ett
@@ -222,6 +222,10 @@
             lever i en skuggvärld där vi förväxlar illusioner med verklighet. Vi
             längtar efter äkta kunskap och en sann förståelse av världen.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Illusionen om frihet i skugglandet</h2>
 
@@ -280,7 +284,14 @@
             vara goda eftersom de känns behagliga.
         </p>
 
-        <x-quotecard>Vad är frihet...</x-quotecard>
+        <x-quotecard
+            id="chapter-6"
+            header="Vad är frihet?"
+            text="Sann frihet är inte att säga vad som faller&nbsp;en&nbsp;in.
+Sann frihet är att befrias från egots snäva&nbsp;horisonter."
+            align="center"
+            lang="sv"
+        />
 
         <h2 class="chapter-heading">Vägen ut ur skuggvärlden</h2>
 
@@ -397,6 +408,9 @@
             aptiten på makt och kampen för rättvisa är lika levande i dag som då.
         </p>
 
-        <x-food-for-thought :number="6" />
+        <x-food-for-thought :number="6" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

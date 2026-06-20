@@ -86,6 +86,10 @@
             upholds human dignity.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Three Parts of the Anchor</h2>
 
         <p class="chapter-text">
@@ -122,7 +126,14 @@
             cruelty and sees it as something to be admired.
         </p>
 
-        <x-quotecard>the symbol that…</x-quotecard>
+        <x-quotecard
+            id="chapter-12"
+            header="The Symbol That Overturns the&nbsp;World's&nbsp;Logic"
+            text="The world believes in the survival of&nbsp;the&nbsp;strongest.
+The Resurrection reveals the survival of&nbsp;the&nbsp;gentle-hearted."
+            align="center"
+            lang="en"
+        />
 
         <p class="chapter-text">
             Faith in the Cross is a protection against this fall into darkness. It
@@ -193,7 +204,9 @@
             fear. You learn to drive your own chariot. With trusting faith, your soul
             is not for sale.
         </p>
+        <x-food-for-thought :number="12" lang="en" />
 
-        <x-food-for-thought :number="12" />
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

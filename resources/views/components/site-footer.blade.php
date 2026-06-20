@@ -117,11 +117,7 @@
                                target="_blank" rel="noopener noreferrer"
                                class="underline underline-offset-2 transition-colors hover:text-amber-700">Cicero statue</a>
                         </li>
-                        <li>illustrations by Erik Pleijel – released under
-                            <a href="https://creativecommons.org/publicdomain/zero/1.0/"
-                               target="_blank" rel="noopener noreferrer license"
-                               class="underline underline-offset-2 transition-colors hover:text-amber-700">CC0 1.0 Universal (Public Domain Dedication)</a>
-                        </li>
+
                     @endif
                 </ul>
             </div>

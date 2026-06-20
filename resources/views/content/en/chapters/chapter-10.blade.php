@@ -56,7 +56,7 @@
         <x-content-image
             src="/images/chapters/chapter-10/andromeda.JPG"
             alt="Andromeda galaxy"
-            width="60" />
+            width="40" />
 
         <p class="chapter-text">
             The Big Bang does not explain the creation of the world, but its
@@ -143,7 +143,7 @@
             src="/images/chapters/chapter-10/bird.JPG"
             alt="Osprey"
             caption="Why did evolution create birds? Was it a happy coincidence and pure chance? Or is there some kind of natural law of evolution that increases the odds?"
-            width="50" />
+            width="40" />
 
         <p class="chapter-text">
             To understand the difference, imagine a casino where the player is
@@ -191,7 +191,7 @@
         <x-content-image
             src="/images/chapters/chapter-10/evol_tab_eng.png"
             alt="1. Law-evolution (Deism) 2. Chance-evolution (Atheism) 3. Guided evolution (Theism) 4. Living force-evolution (Pantheism)"
-            width="70" />
+            width="50" />
 
         <p class="chapter-text">
             In the second case, chance-evolution, there is no need for a God. This
@@ -218,7 +218,13 @@
             secure foundation for atheism.
         </p>
 
-        <x-quotecard>Excessive faith in …</x-quotecard>
+        <x-quotecard
+            id="chapter-10"
+            text="Excessive faith in reason can damage reason&nbsp;itself.
+If we demand answers to everything, we often settle for bad&nbsp;answers."
+            align="center"
+            lang="en"
+        />
 
         <h2 class="chapter-heading">The True, the Good, the Beautiful</h2>
 
@@ -265,6 +271,10 @@
             beautiful – this is sometimes called "the Platonic Trinity". Does it
             originate from the mysterious X-factor?
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">The Thrill of Emptiness</h2>
 
@@ -323,7 +333,7 @@
             src="/images/chapters/chapter-10/QuestForSigns.png"
             alt="Road signs pointing in different directions: 'Quest for truth' and 'Quest for control'."
             caption="A wrong turn may damage the intellect."
-            width="65" />
+            width="50" />
 
         <h2 class="chapter-heading">Beyond the Illusion of Control</h2>
 
@@ -360,7 +370,9 @@
             this age of growing anti-science sentiment, we need to light a spark of
             love for sound science and real truth-seeking.
         </p>
+        <x-food-for-thought :number="10" lang="en" />
 
-        <x-food-for-thought :number="10" />
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

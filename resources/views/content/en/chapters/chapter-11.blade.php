@@ -230,6 +230,10 @@
             eventually lose its way – or crash, spectacularly.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Navigation Without a North Star</h2>
 
         <p class="chapter-text">
@@ -248,7 +252,13 @@
             driving force. We risk mirroring the very hatred we seek to oppose.
         </p>
 
-        <x-quotecard>If we resist…</x-quotecard>
+        <x-quotecard
+            id="chapter-11"
+            text="If we resist evil with hatred, we become what&nbsp;we&nbsp;oppose.
+We need more than outrage — we need a faith that draws us toward&nbsp;the&nbsp;good."
+            align="center"
+            lang="en"
+        />
 
         <p class="chapter-text">
             Another risk is equally evident: human beings long to belong to something
@@ -315,6 +325,9 @@
             part of the problem than the solution.
         </p>
 
-        <x-food-for-thought :number="11" />
+        <x-food-for-thought :number="11" lang="en" />
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

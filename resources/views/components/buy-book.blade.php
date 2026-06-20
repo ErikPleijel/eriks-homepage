@@ -1,5 +1,6 @@
 @props([
-    'lang' => null,  // null = auto-detect via app()->getLocale(); pass 'en'|'sv' to override
+    'lang'   => null,  // null = auto-detect via app()->getLocale(); pass 'en'|'sv' to override
+    'single' => false, // true = "Buy the book" / "Köp boken"; false = "Buy the books" / "Köp böckerna"
 ])
 
 {{-- Google Fonts: Cinzel + Cormorant Garamond (browser deduplicates duplicate hrefs) --}}
@@ -17,9 +18,12 @@
     $locale     = $lang ?? app()->getLocale();
     $isSv       = $locale === 'sv';
     $uid        = 'bb_' . uniqid('', false);
-    $btnLabel   = $isSv ? 'Köp böckerna'  : 'Buy the books';
-    $closeLabel = $isSv ? 'Stäng'       : 'Close';
+    $btnLabel   = $single
+        ? ($isSv ? 'Köp boken'      : 'Buy the book')
+        : ($isSv ? 'Köp böckerna'   : 'Buy the books');
+    $closeLabel = $isSv ? 'Stäng' : 'Close';
     $interestFormUrl = route('book-interest.form', ['locale' => 'sv']);
+
 
     // External-link icon reused throughout
     $extIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 shrink-0 opacity-60" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>';
@@ -82,7 +86,7 @@
         type="button"
         @click="show()"
         style="font-family:'Cinzel',serif"
-        class="inline-flex items-center gap-2 rounded border border-[#D4AF5A] bg-[#FDF8EE] px-5 py-2.5 text-sm tracking-widest text-[#1A2A44] transition-colors hover:border-[#C0A060] hover:bg-[#F5EDD8]"
+        class="inline-flex items-center gap-2 rounded border border-[#D4AF5A] bg-[#FDF8EE] px-5 py-2.5 text-sm tracking-widest text-[#1A2A44] transition-colors hover:border-[#C0A060] hover:bg-[#F5EDD8] cursor-pointer"
     >
         <span class="text-[#B8960C]" aria-hidden="true">✦</span>
         {{ $btnLabel }}
@@ -128,7 +132,7 @@
             <button
                 type="button"
                 @click="close()"
-                class="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-[#8B7340] transition-colors hover:bg-[#F0E8D0] hover:text-[#1A2A44]"
+                class="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-[#8B7340] transition-colors hover:bg-[#F0E8D0] hover:text-[#1A2A44] cursor-pointer"
                 aria-label="{{ $closeLabel }}"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -235,7 +239,7 @@
                                 Faustian Bargain? No Thanks!
                             </p>
                             <p class="mb-1 text-xs text-stone-400">106 sidor · engelska</p>
-                            <p class="mb-4 text-xs italic text-stone-500">
+                            <p class="mb-4 text-xl text-stone-500">
                                 Ingen svensk utgåva finns ännu —
                                 <a href="{{ $interestFormUrl }}"
                                    class="text-[#B8960C] underline underline-offset-2 hover:no-underline">anmäl ditt intresse</a>

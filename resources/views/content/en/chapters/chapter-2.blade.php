@@ -6,7 +6,6 @@
     <article class="prose-stone max-w-none">
         <x-chapter-header :meta="$chMeta" />
 
-
         <p class="chapter-lead">
             What happens when faith becomes a transaction and God resembles a mafia
             boss? This chapter examines how distorted theology can lead to a moral
@@ -54,6 +53,10 @@
             thinking.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Don't Worship the Mafia Godfather!</h2>
 
         <p class="chapter-text">
@@ -97,7 +100,13 @@
             of Christianity.
         </p>
 
-        <x-food-for-thought :number="2" />
+        <x-quotecard
+            id="chapter-2"
+            header="The shadow side of faith:"
+            text="The moment worship of God turns into worship of power, moral principle collapses into 'might&nbsp;is&nbsp;right.'"
+            align="center"
+            lang="en"
+        />
 
         <h2 class="chapter-heading">No Bargains with God</h2>
 
@@ -164,5 +173,9 @@
             this idea may seem unsettling – even frightening. But in the end, it
             is profoundly liberating.
         </p>
+        <x-food-for-thought :number="2" lang="en" />
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

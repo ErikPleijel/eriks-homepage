@@ -74,10 +74,10 @@
         <x-content-image
             src="/images/chapters/chapter-3/faith-in-faith_swe.png"
             alt="Präst ser på text: Tro inte för mycket på din egen tro!"
-            caption="Se upp för andliga kortslutningar! Om din tro får dig att känna dig överlägsen andra med en annan tro, då är du bara ute efter att blåsa upp ditt ego. Då har du ingen tro på Gud, utan &quot;tro på din tro&quot;."
-            width="70" />
+            caption="Se upp för andliga kortslutningar! Om din tro får dig att känna dig överlägsen andra med en annan tro, då är du bara ute efter att blåsa upp ditt ego. Då har du ingen tro på Gud, utan 'tro på din tro'."
+            width="50" />
 
-        <x-quotecard>#3</x-quotecard>
+
 
         <h2 class="chapter-heading">Ett befriande vågspel</h2>
 
@@ -127,6 +127,15 @@
             möjligt att ta Gud och den kristna tron på verkligt allvar.
         </p>
 
+        <x-quotecard
+            id="chapter-3"
+            header="Se upp för andliga kortslutningar:"
+            text="Om tron får dig att känna dig överlägsen har den blivit en&nbsp;egoboost.
+Då har du inte längre tro på Gud – utan tro på&nbsp;din&nbsp;tro."
+            align="center"
+            lang="sv"
+        />
+
         <h2 class="chapter-heading">Ingen dressyr för människor</h2>
 
         <p class="chapter-text">
@@ -155,6 +164,11 @@
             Gud och människa förenas i ett gemensamt projekt – det är detta som
             är innebörden i uttrycket "att följa Kristus".
         </p>
+
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Följ denne unge man</h2>
 
@@ -223,6 +237,9 @@
             lära sig att inte hata och förakta.
         </p>
 
-        <x-food-for-thought :number="3" />
+        <x-food-for-thought :number="3" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

@@ -33,7 +33,7 @@
             src="/images/chapters/chapter-7/streckg_eng.png"
             alt="Jerusalem and Athens: Enlightenment, Reformation, Renaissance, Middle Ages, Christianity, Judaism, Stoicism, Greek philosophy"
             align="right"
-            width="45" />
+            width="25" />
 
         <p class="chapter-text">
             Alf Ahlberg wrote: "The humanist tradition is based above all on a
@@ -254,9 +254,9 @@
             src="/images/chapters/chapter-7/MarcusAurelius.JPG"
             alt="Marcus Aurelius"
             caption="&quot;The best way to take revenge is to not to resemble those who have done us wrong.&quot; Marcus Aurelius"
-            width="60" />
+            width="30" />
 
-        <x-quotecard>Anger can be justified…</x-quotecard>
+
 
         <h2 class="chapter-heading">Hope When Everything Seems to Go Wrong</h2>
 
@@ -294,7 +294,9 @@
                 label="5"
                 text="From &quot;Letters from prison&quot;." />
         </blockquote>
+        <x-food-for-thought :number="7" lang="en" />
 
-        <x-food-for-thought :number="7" />
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

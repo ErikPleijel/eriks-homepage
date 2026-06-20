@@ -108,9 +108,17 @@
             src="/images/chapters/chapter-8/roundsquare.png"
             alt="A round square"
             caption="The solution to a seeming contradiction. A round square is actually a cylinder: from one perspective it looks like a circle, from another like a square. Through syntheses, the opposites of life can be reconciled."
-            width="70" />
+            width="35" />
 
-        <x-quotecard>Avoid two extremes.</x-quotecard>
+        <x-quotecard
+            id="chapter-8"
+            header="Avoid two extremes:"
+            text="“Politically correct” — respectful&nbsp;but&nbsp;insincere.
+“Politically incorrect” — sincere&nbsp;but&nbsp;disrespectful.
+Be truthful — and&nbsp;considerate."
+            align="center"
+            lang="en"
+        />
 
         <h2 class="chapter-heading">Avoid Stubborn Dogmatism and Lazy Relativism</h2>
 
@@ -176,7 +184,7 @@
             src="/images/chapters/chapter-8/aristoteles_2.png"
             alt="Aristotle"
             caption="Aristotle"
-            width="50" />
+            width="25" />
 
         <p class="chapter-text">
             In the Nicomachean Ethics, Aristotle developed a theory of how we can
@@ -233,6 +241,10 @@
             expert in one area can create a false sense of being an expert in
             everything.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">The Practical Relevance of Bildung</h2>
 
@@ -291,7 +303,9 @@
             Bildung is our existential defence – it is how we keep the servant from
             becoming the master.
         </p>
+        <x-food-for-thought :number="8" lang="en" />
 
-        <x-food-for-thought :number="8" />
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

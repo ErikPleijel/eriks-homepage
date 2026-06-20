@@ -53,6 +53,10 @@
             utan att tänka.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Dyrka inte maffians gudfader!</h2>
 
         <p class="chapter-text">
@@ -98,7 +102,13 @@
             kristendomens själ.
         </p>
 
-        <x-quotecard>Trons skuggsida</x-quotecard>
+        <x-quotecard
+            id="chapter-2"
+            header="Trons skuggsida:"
+            text="I samma ögonblick som dyrkan av Gud blir dyrkan av makt, urholkas moralen till “den&nbsp;starkares&nbsp;rätt”."
+            align="center"
+            lang="sv"
+        />
 
         <h2 class="chapter-heading">Inget köpslående med Gud</h2>
 
@@ -165,5 +175,9 @@
             har någon kontroll. Till en början kan denna idé verka oroande – till
             och med skrämmande. Men i slutändan är det djupt befriande.
         </p>
+        <x-food-for-thought :number="2" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

@@ -53,7 +53,15 @@
             responsibility.
         </p>
 
-        <x-quotecard>a key to growth</x-quotecard>
+        <x-quotecard
+            id="chapter-4"
+            header="A Key to Growth"
+            text="If you are helpless, ask for help — not&nbsp;forgiveness.
+If you have done wrong, seek forgiveness — not&nbsp;excuses."
+            align="center"
+            lang="en"
+        />
+
 
         <p class="chapter-text">
             Yet the language of human agency and freedom sometimes provokes anxiety
@@ -200,7 +208,9 @@
             his lips. The Inquisitor shuddered. "Go," he said, "go, and return no
             more... do not come again... never, never!"
         </p>
+        <x-food-for-thought :number="4" lang="en" />
 
-        <x-food-for-thought :number="4" />
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

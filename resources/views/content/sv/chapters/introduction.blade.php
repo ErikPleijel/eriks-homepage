@@ -22,7 +22,7 @@
         <x-content-image
             src="/images/chapters/introduction/chariot_bild.png"
             alt="Vagnförare som styr två hästar"
-            width="60" />
+            width="40" />
 
         <h2 class="chapter-heading">Harmonisk styrka.</h2>
 
@@ -82,13 +82,7 @@
             förlorat sin frihet.
         </p>
 
-        <x-quotecard-image
-            src="/images/quotecard-swe-mindless-scrolling.jpg"
-            alt="Planlöst skrollande? Styr själv. Fokusera på en sak i 10 minuter."
-            text="Planlöst skrollande? Styr själv.\nFokusera på en sak i 10 minuter."
-            lang="sv"
-            id="mindless-scrolling"
-        />
+
 
         <h2 class="chapter-heading">Faustisk frestelse</h2>
 
@@ -132,7 +126,7 @@
             src="/images/chapters/introduction/marionett.png"
             alt="Marionett"
             align="right"
-            width="25" />
+            width="15" />
 
         <p class="chapter-text">
             I sin iver att känna sig mäktiga har dessa anhängare kompromissat med sin
@@ -157,7 +151,14 @@
             att bygga motståndskraft mot den faustiska pakten.
         </p>
 
-        <x-quotecard>En vänlig påminnelse</x-quotecard>
+        <x-quotecard
+            id="chapter-0"
+            header="En vänlig påminnelse till dem som lockas av oinskränkt&nbsp;makt:"
+            text="“Vad hjälper det en människa om hon vinner hela världen men förlorar sin&nbsp;själ?”
+— Matteus 16:26 —"
+            align="center"
+            lang="sv"
+        />
 
         <h2 class="chapter-heading">1. Mod: Undvik vägen till den mörka sidan</h2>
 
@@ -404,6 +405,10 @@
             integrera.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">7. Hopp: Övervinn cynism och aptiten på kaos</h2>
 
         <p class="chapter-text">
@@ -448,7 +453,7 @@
             src="/images/chapters/introduction/keep_img.jpg"
             alt="Keep calm and carry on"
             align="right"
-            width="30" />
+            width="15" />
 
         <p class="chapter-text">
             Även vi lever i en farlig tid. Auktoritära ledare blir populära genom att
@@ -479,6 +484,14 @@
             utan pekar mot något värt att leva för.
         </p>
 
-        <x-food-for-thought label="Introduction" />
+
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+            <x-food-for-thought :number="0" lang="sv" />
+            {{--<x-food-for-thought-carousel :startNumber="0" lang="sv" />--}}
+        </div>
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

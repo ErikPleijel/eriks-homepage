@@ -120,7 +120,18 @@
             grymhet och ser den som något som ska beundras.
         </p>
 
-        <x-quotecard>Symbolen som vänder på världens...</x-quotecard>
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
+
+        <x-quotecard
+            id="chapter-12"
+            header="Symbolen som vänder på världens&nbsp;logik"
+            text="Världen tror på de starkastes överlevnad.
+Uppståndelsen uppenbarar de mildhjärtades&nbsp;överlevnad."
+            align="center"
+            lang="sv"
+        />
 
         <p class="chapter-text">
             Tron på korset är ett skydd mot att dras in i detta mörker. Den leder
@@ -189,7 +200,9 @@
             och rädsla. Man lär sig att bli sin egen vagnförare. Med en tillitsfull
             tro är ens själ inte till salu.
         </p>
+        <x-food-for-thought :number="12" lang="sv" />
 
-        <x-food-for-thought :number="12" />
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

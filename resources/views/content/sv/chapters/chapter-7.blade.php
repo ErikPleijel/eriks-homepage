@@ -33,7 +33,7 @@
             src="/images/chapters/chapter-7/streckg_swe.png"
             alt="Aten och Jerusalem: Judendom, Kristendom, grekisk filosofi, stoicism, medeltiden, reformationen, renässansen, upplysningen."
             align="right"
-            width="45" />
+            width="25" />
 
         <p class="chapter-text">
             Alf Ahlberg skrev: "Den humanistiska traditionen vilar framför allt på
@@ -183,6 +183,9 @@
             Huvudsaken är att vrede inte blir ett nöje och en ohejdad vana.
         </p>
 
+
+        <p></p>
+
         <x-quotecard-image
             src="/images/quotecard-swe-conversation-derails.jpg"
             alt="När samtalet spårar ur … Svara inte på elakhet med elakhet. Pausa. Stå emot impulsen att slå tillbaka. Ersätt reaktion med reflektion – och återvänd lugnt till sakfrågan. Ställ en klargörande fråga – utan sarkasm eller ironi. Om inget förbättras har du gjort din del – dra dig ur med värdighet. Detta är sann styrka."
@@ -254,9 +257,9 @@
             src="/images/chapters/chapter-7/MarcusAurelius.JPG"
             alt="Marcus Aurelius"
             caption="&quot;Det bästa sättet att hämnas är att inte likna dem som gjort oss orätt.&quot; Marcus Aurelius"
-            width="60" />
+            width="30" />
 
-        <x-quotecard>Vrede kan vara ...</x-quotecard>
+
 
         <h2 class="chapter-heading">Hopp när allt verkar gå fel</h2>
 
@@ -293,7 +296,9 @@
                 label="5"
                 text="Ur Motstånd och underkastelse." />
         </blockquote>
+        <x-food-for-thought :number="7" lang="sv" />
 
-        <x-food-for-thought :number="7" />
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

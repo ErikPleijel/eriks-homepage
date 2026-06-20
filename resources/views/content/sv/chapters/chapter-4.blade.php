@@ -53,7 +53,16 @@
             är vårt ansvar.
         </p>
 
-        <x-quotecard>En nyckel till mognad</x-quotecard>
+
+        <x-quotecard
+            id="chapter-3"
+            header="Se upp för andliga kortslutningar:"
+            text="Om tron får dig att känna dig överlägsen har den blivit en&nbsp;egoboost.
+Då har du inte längre tro på Gud – utan tro på&nbsp;din&nbsp;tro."
+            align="center"
+            lang="sv"
+        />
+
 
         <p class="chapter-text">
             Men talet om mänsklig handlingsförmåga och frihet väcker ibland oro i
@@ -205,7 +214,9 @@
             han, "gå och kom aldrig mer tillbaka... kom aldrig mer tillbaka...
             aldrig, aldrig!"
         </p>
+        <x-food-for-thought :number="4" lang="sv" />
 
-        <x-food-for-thought :number="4" />
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

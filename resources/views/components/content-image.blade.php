@@ -9,7 +9,7 @@
     'mobileWidth' => null,  // Mobile width % for centered figures only. Omitted = max(width, 90)
                             // so a narrow desktop image isn't tiny on a phone. Right-floats
                             // always stack full-width on mobile (this prop is ignored for them).
-])
+]);
 
 @php
     $isRight = $align === 'right';
@@ -25,12 +25,12 @@
     // Both cases use CSS custom properties read by .content-image / .content-image-right
     // in app.css — inline styles can't do breakpoints on their own.
     $figureClass = $isRight
-        ? 'content-image-right mb-4 sm:float-right sm:ml-6 sm:mb-4'
+        ? 'content-image-right mt-4 mb-4 sm:float-right sm:ml-6 sm:mb-4'
         : 'content-image my-8 mx-auto';
 
     $figureStyle = $isRight
-        ? "--img-w: {$desktopW}%;"
-        : "--img-w: {$desktopW}%; --img-w-mobile: {$mobileW}%;";
+        ? "--img-w: $desktopW%;"
+        : "--img-w: $desktopW%; --img-w-mobile: $mobileW%;";
 @endphp
 
 <figure {{ $attributes->merge(['class' => $figureClass]) }} style="{{ $figureStyle }}">

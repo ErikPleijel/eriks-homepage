@@ -4,13 +4,38 @@
     </x-slot:hero>
 
     <article class="prose-stone max-w-none">
-        <h1 class="text-3xl font-bold tracking-tight">Välkommen</h1>
 
-        <p class="mt-4 text-lg leading-relaxed text-stone-700">
-            Detta är en platshållartext som inledning till webbplatsen. Den anger
-            tonen för essäerna som följer och ger läsaren en känsla av vad som
-            väntar innan kapitlen tar vid. Ersätt detta med den riktiga inledningen.
-        </p>
+        <x-content-image
+            src="/images/compass_magnet.png"
+            alt="En magnet som stör en kompass"
+            width="40" />
+
+        <h2 class="text-3xl font-bold tracking-tight">”Var dig själv” – gör det oss bättre eller sämre?</h2>
+
+
+        <p class="chapter-text font-bold">”Mina föräldrar var nazister,” sade hon. ”Och de lärde mig att vara autentisk.”</p>
+
+        <p class="chapter-text">Jag blev smått chockerad. <i>Vad menade hon?</i></p>
+
+        <p class="chapter-text">Vi samtalade i en kyrklig ungdomsgrupp, och hon förklarade att hon senare hade vänt sig bort från den ideologi hon vuxit upp med.</p>
+
+        <p class="chapter-text font-bold">Att vara autentisk – att vara sann mot sig själv – var något jag själv trodde starkt på. Hur kunde ett sådant ideal kopplas till nazismen? </p>
+
+        <p class="chapter-text">När hon fortsatte att beskriva sina föräldrars världsbild minns jag att jag tänkte: <i>det här låter lite grand som Nietzsche</i> – betoningen på gränslös självhävdelse, förakt för hämningar och moraliska begränsningar, ”viljan till makt”. Jag började ana hur det trots allt kunde hänga ihop.</p>
+
+        <p class="chapter-text">Vad betyder det egentligen att ”vara autentisk”? Många uppfattar det som att ge fritt utlopp för sina känslor och inte hålla dem tillbaka. <b>Med en sådan tolkning hade till och med en SS-officer kunnat tro att han levde ”autentiskt” och ”ärligt”.</b> Utan en etisk polstjärna förfaller autenticitet lätt till grymhet.</b></p>
+
+        <p class="chapter-text">Men det kan också betyda något helt annat: att leva i linje med sina värderingar och övertygelser. Det innebär att bli en väl integrerad människa vars tankar, känslor och handlingar drar åt samma håll – någon med inre styrka att stå emot inte bara yttre tryck, utan också sina egna impulser.</p>
+
+        <p class="chapter-text">Båda dessa synsätt kallas autentiska. Frågan är inte bara vilken väg som känns mest tilltalande och befriande, utan också vart varje väg slutligen leder.</p>
+
+        <p class="chapter-text">Frågan är inte bara vilken väg som känns mest tilltalande och befriande, utan också vart varje väg slutligen leder.</p>
+
+        <p class="chapter-text font-bold">Nästa gång någon uppmanar dig att ”vara sann mot dig själv”, be om ett förtydligande. Sann mot vad, egentligen? Mot en flyktig känsla eller mot goda värden? Är det en ursäkt för att ge utlopp för sina råa impulser? Eller är det att vara sann mot det som är sant? </p>
+
+        <p class="chapter-text mb-10">På ett djupare plan blir det en fråga om identitet. Vem vill du vara när du är dig själv? Somliga väljer klokt, andra väljer oklokt. </p>
+
+
 
         <x-quotecard-image
             src="/images/quotecard-swe-be-true-to-yourself.jpg"
@@ -19,73 +44,70 @@
             lang="sv"
             id="be-true-to-yourself"
         />
-        <x-quotecard-image
-            src="/images/quotecard-swe-might-is-right.jpg"
-            alt="Makt är rätt — är det värt det? Mäktiga nationer kan bryta mot lagen och få världen att darra. Men rädsla är inte tillit. Nationer som inte går att lita på har inga verkliga vänner."
-            text="Makt är rätt — är det värt det?\nMäktiga nationer kan bryta mot lagen och få världen att darra.\nMen rädsla är inte tillit.\nNationer som inte går att lita på har inga verkliga vänner."
-            lang="sv"
-            id="might-is-right"
-        />
+
+
+        <div class="h-20"></div>
+
+        <h2 class="text-3xl font-bold tracking-tight text-center">Hur man förlorar vänner i 3 steg</h2>
+
+        <p class="text-center italic mb-4">Från individuell självbemästring till nationall självbemästring till världen.</p>
+
+        <x-quotecard-grid>
+
+            <x-quotecard-image
+                src="/images/quotecard-swe-emotions-horses.jpg"
+                alt="Känslor är kraftfulla hästar. De sätter dig liv i rörelse. Behärskar du dem – eller behärskar de dig?"
+                text="Känslor är kraftfulla hästar./nDe sätter dig liv i rörelse./nBehärskar du dem – eller behärskar de dig?"
+                lang="en"
+                id="emotions-horses"
+                :show-slogan="false"
+                :number="1"
+            />
+
+            <x-quotecard-image
+                src="/images/quotecard-swe-nationalism-alcohol.jpg"
+                alt="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
+                text="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende./nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
+                lang="en"
+                id="nationalism-alcohol"
+                :show-slogan="false"
+                :number="2"
+            />
+
+            <x-quotecard-image
+                src="/images/quotecard-swe-might-is-right.jpg"
+                alt="Makt är rätt — är det värt det? Mäktiga nationer kan bryta mot lagen och få världen att darra. Men rädsla är inte tillit. Nationer som inte går att lita på har inga verkliga vänner."
+                text="Makt är rätt — är det värt det?\nMäktiga nationer kan bryta mot lagen och få världen att darra.\nMen rädsla är inte tillit.\nNationer som inte går att lita på har inga verkliga vänner."
+                lang="sv"
+                id="might-is-right"
+                :show-slogan="false"
+                :number="3"
+            />
+
+            <x-quotecard-image
+                src="/images/quotecard_fb_swe.jpg"
+                alt="Faustiski pakt, definition"
+                text="faus·tisk pakt\n/ˈfaʊstɪsk pakt/1.\nI myten: en uppgörelse med djävulen där man säljer sin själ i utbyte mot makt eller status.\n2. I vidare mening: en överens-kommelse där man vinner en omedelbar fördel till priset av frihet eller integritet.\nSe även: frestelse · korruption"
+                lang="en"
+                id="might-is-right"
+                :show-slogan="false"
+            />
+        </x-quotecard-grid>
+
+        <div class="h-20"></div>
+
+        <x-book-title-badge />
+        <div class="flex justify-center mb-2">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
+        <x-book-actions book="faustian-bargain" />
 
 
 
-        {{-- Exempel på karusell med 3 bilder --}}
-        <h2 class="mt-10 text-xl font-semibold">Några höjdpunkter</h2>
-
-        <x-carousel label="Höjdpunkter">
-            <div class="bg-amber-50 p-10 text-center">
-                <p class="text-xl font-medium">Bild ett — en tanke värd att dröja vid.</p>
-            </div>
-            <div class="bg-stone-100 p-10 text-center">
-                <p class="text-xl font-medium">Bild två — en fråga som boken återkommer till.</p>
-            </div>
-            <div class="bg-amber-50 p-10 text-center">
-                <p class="text-xl font-medium">Bild tre — en inbjudan att läsa vidare.</p>
-            </div>
-        </x-carousel>
-
-        <x-quotecard-image
-            src="/images/quotecard-swe-emotions-horses.jpg"
-            alt="Känslor är kraftfulla hästar. De sätter dig liv i rörelse. Behärskar du dem – eller behärskar de dig?"
-            text="Känslor är kraftfulla hästar.\nDe sätter dig liv i rörelse.\nBehärskar du dem – eller behärskar de dig?"
-            lang="sv"
-            id="emotions-horses"
-        />
-
-        <x-quotecard-image
-            src="/images/quotecard-swe-nationalism-alcohol.jpg"
-            alt="Nationell stolthet fungerar som alkohol. Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
-            text="Nationell stolthet fungerar som alkohol.\nSmå doser ger mod och självförtroende.\nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
-            lang="sv"
-            id="nationalism-alcohol"
-        />
-
-        {{-- Innehållsförteckning --}}
+        {{-- Table of contents --}}
         <x-toc heading="Kapitel" id="chapters" />
 
-        {{-- //TODO use this?
-        Amazon-CTA — använder BOKENS titel, inte webbplatsens titel. --}}
-
-        <section class=" mt-12 rounded-lg bg-stone-900 p-8 text-center text-white">
-            <h2 class="text-2xl font-bold">{{ config('site.book_title') }}</h2>
-            <p class="mt-2 text-stone-300">Finns nu som pocket och e-bok.</p>
-            {{-- Exempel på den kakfria klickloggaren. Ännu inte tillagd på andra
-                 ställen — se DECISIONS.md. --}}
-            <a href="#"
-               onclick="window.logEvent('Amazon CTA')"
-               class="mt-5 inline-block rounded-md bg-amber-500 px-6 py-3 font-semibold text-stone-900 hover:bg-amber-400">
-                Beställ på Amazon
-            </a>
-        </section>
-
-        {{-- Anmäl intresse för den tryckta utgåvan. --}}
-
-        <x-buy-book lang="sv" />
-
-        {{-- SV page --}}
-        <x-book-excerpt-carousel
-            :slides="config('book-excerpts.navigation-i-mangfalden-sv')"
-            book="navigation-i-mangfalden" />
+        <x-food-for-thought-carousel :startNumber="0" lang="sv" />
 
         <x-about-teaser />
 

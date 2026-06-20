@@ -30,16 +30,26 @@
 
     /* Muted Stone variant: Light gray/stone background with dark gray text */
     .btn-stone {
-        @apply bg-stone-200 text-stone-600 hover:bg-stone-200 hover:text-stone-800;
+        @apply bg-stone-100 text-stone-600 cursor-pointer hover:bg-stone-300 hover:text-stone-900;
     }
 
     /* Humble Amber variant: Tinted, soft amber background instead of a neon pop */
     .btn-amber {
-        @apply bg-amber-100 text-amber-700 hover:bg-amber-100 hover:text-amber-900;
+        @apply bg-amber-100 text-amber-700 cursor-pointer hover:bg-amber-200 hover:text-amber-950;
     }
+    /* Book title above the chapter kicker. */
+    .chapter-book-title {
+        @apply text-base italic text-stone-400;
+    }
+
+    /* "Contents" link below the chapter kicker. */
+    .chapter-toc-link {
+        @apply relative -top-[2px] normal-case text-sm text-stone-400 underline transition-colors hover:text-stone-600;
+    }
+
     /* "Chapter N" eyebrow above the title. */
     .chapter-kicker {
-        @apply text-sm font-semibold uppercase tracking-wide text-stone-400;
+        @apply text-xl font-semibold uppercase tracking-wide text-stone-400;
     }
 
     /* Chapter <h1>. */

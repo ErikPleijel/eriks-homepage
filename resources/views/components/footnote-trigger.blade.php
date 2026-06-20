@@ -13,6 +13,6 @@
 <button
     type="button"
     @click="show(@js($label), @js($text))"
-    class="align-super text-xs font-semibold text-amber-600 hover:text-amber-700"
+    class="align-super text-sm font-semibold text-amber-600 hover:text-amber-700 cursor-pointer"
     aria-label="Show footnote {{ $label }}"
->*</button>
+>(*)</button>

@@ -29,7 +29,7 @@
         'share'        => $isSv ? 'Dela'                               : 'Share',
         'slogan'       => $isSv ? '💬 Idéer växer i gruppchattar 🌱'  : '💬 Ideas grow in group chats 🌱',
         'shareCaption' => '👉 ErikPleijel.se',
-        'shareLink'    => $isSv ? 'https://ErikPleijel.se'             : 'https://ErikPleijel.se/eng',
+        'shareLink' => $isSv ? 'https://ErikPleijel.se' : 'https://ErikPleijel.com',
     ];
 @endphp
 
@@ -79,6 +79,8 @@
     const LBL_COPY      = @js($labels['copyText']);
     const LBL_COPIED    = @js($labels['copied']);
     const LBL_SHARE     = @js($labels['share']);
+    const SITE_DOMAIN = @js($isSv ? 'ErikPleijel.se' : 'ErikPleijel.com');
+    const BOOK_TITLE  = @js($isSv ? 'Faustisk pakt? Nej tack!' : 'Faustian Bargain? No Thanks!');
 
     // ── canvas drawing ───────────────────────────────────────────────────────
 
@@ -185,17 +187,21 @@
 
         gradRule(900, 1);
 
-        ctx.font         = 'italic 28px "Cormorant Garamond", "Georgia", serif';
-        ctx.fillStyle    = '#B8960C';
+        ctx.font         = 'italic bold 42px "Cormorant Garamond", "Georgia", serif';
+        ctx.fillStyle    = '#8B6F1E';
         ctx.textAlign    = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('Faustian Bargain? No Thanks!', W / 2, 940);
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '1.5px';
+        ctx.fillText(BOOK_TITLE, W / 2, 940);
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
 
-        ctx.font         = '22px "Cinzel", serif';
-        ctx.fillStyle    = '#C8A050';
+        ctx.font         = 'bold 33px "Cinzel", serif';
+        ctx.fillStyle    = '#8B6F1E';
         ctx.textAlign    = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText('ErikPleijel.se', W / 2, 982);
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '2px';
+        ctx.fillText(SITE_DOMAIN, W / 2, 990);
+        if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
 
         preview.src = canvas.toDataURL('image/jpeg', 0.92);
     }

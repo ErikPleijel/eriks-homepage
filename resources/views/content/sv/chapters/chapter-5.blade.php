@@ -25,7 +25,7 @@
             src="/images/chapters/chapter-5/pzlhammare_sm.png"
             alt="Pussel med hjälp av hammare"
             caption="Envishet och dåligt omdöme. Man utgår från den bild man vill se och anpassar bitarna därefter."
-            width="60" />
+            width="30" />
 
         <p class="chapter-text">
             Vi lever i en komplicerad och problemfylld värld. Nu mer än någonsin
@@ -96,6 +96,10 @@
             kan få människor att helt fastna i denna mentala fälla.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Hur man blir en religiös besserwisser</h2>
 
         <p class="chapter-text">
@@ -128,7 +132,14 @@
             Det är inte alls svårt att snärja in sig själv i falska insikter.
         </p>
 
-        <x-quotecard>när vi kräver...</x-quotecard>
+        <x-quotecard
+            id="chapter-5"
+            text="När vi kräver total visshet nöjer vi oss ofta med tvärsäkert&nbsp;nonsens.
+Vi bör vara tacksamma när vår världsbild skakas&nbsp;om&nbsp;ibland."
+            align="center"
+            lang="sv"
+        />
+
 
         <h2 class="chapter-heading">Verklig tro handlar inte om tvärsäkerhet</h2>
 
@@ -190,7 +201,7 @@
             src="/images/chapters/chapter-5/kop_rev.png"
             alt="Från geocentrisk till heliocentrisk världsbild. Planeterna kretsar kring solen, som står i centrum."
             caption="Förr i tiden trodde folk att jorden står i centrum och att allting kretsar kring dem. Kopernikus visade att det tvärtom är solen som står i centrum."
-            width="80" />
+            width="50" />
 
         <p class="chapter-text">
             Förnuftet kan göra misstag och foga ihop saker som egentligen inte alls
@@ -208,7 +219,13 @@
             bildning.
         </p>
 
-        <x-quotecard>Tron ger dig mod...</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-eng-courage-to-be-wrong.jpg"
+            alt="Faith gives you the courage to admit you may be wrong!"
+            text="Faith gives you the courage to admit you may be wrong!"
+            lang="en"
+            id="courage-to-be-wrong"
+        />
 
         <p class="chapter-text">
             Att fästa sitt hjärta vid Gud innebär att inte fixera sig för mycket
@@ -218,6 +235,9 @@
             världsbild rubbas då och då. Tillitstron är förnuftets bästa vän.
         </p>
 
-        <x-food-for-thought :number="5" />
+        <x-food-for-thought :number="5" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

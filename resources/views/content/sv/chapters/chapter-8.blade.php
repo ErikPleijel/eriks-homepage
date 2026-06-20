@@ -107,11 +107,19 @@
             src="/images/chapters/chapter-8/roundsquare.png"
             alt="En rund kvadrat"
             caption="Lösningen på en skenbar motsägelse. En rund kvadrat är i själva verket en cylinder: Från ett perspektiv ser den ut som en cirkel, från ett annat ser den ut som en kvadrat. Genom äkta synteser kan livets motsatser förenas."
-            width="70" />
+            width="35" />
 
-        <x-quotecard>undvik två ytterligheter...</x-quotecard>
 
-        <h2 class="chapter-heading">Undvik envis dogmatism och slapp relativism</h2>
+
+        <x-quotecard
+            id="chapter-8"
+            header="Undvik två ytterligheter:"
+            text="“Politiskt korrekt” – respektfull&nbsp;men&nbsp;oärlig.
+“Politiskt inkorrekt” — ärlig&nbsp;men&nbsp;respektlös.
+Var sanningsenlig – och&nbsp;hänsynsfull."
+            align="center"
+            lang="sv"
+        />
 
         <p class="chapter-text">
             Rättroende dogmatiker kan inte ha fel. Men det kan inte heller
@@ -175,7 +183,7 @@
             src="/images/chapters/chapter-8/aristoteles_2.png"
             alt="Aristoteles"
             caption="Aristoteles"
-            width="50" />
+            width="25" />
 
         <p class="chapter-text">
             I boken Den nikomachiska etiken utvecklade Aristoteles en teori om hur
@@ -194,6 +202,10 @@
             vi ofta finna den gyllene medelvägen och inte gå till överdrift åt något
             håll. Vi får varken överreagera eller underreagera.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">"Halvbildade experter"</h2>
 
@@ -290,6 +302,9 @@
             vi förhindrar att vår tjänare blir vår herre.
         </p>
 
-        <x-food-for-thought :number="8" />
+        <x-food-for-thought :number="8" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

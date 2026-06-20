@@ -108,7 +108,15 @@
             and destroys judgement.
         </p>
 
-        <x-quotecard>national pride works like…</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-eng-nationalism-alcohol.jpg"
+            alt="National pride works like alcohol. Small doses provide courage and confidence. Larger doses bring tunnel vision, clouded judgment, and belligerence."
+            text="National pride works like alcohol.\nSmall doses provide courage and confidence.\nLarger doses bring tunnel vision, clouded judgment, and belligerence."
+            lang="en"
+            id="nationalism-alcohol"
+            :show-slogan="true"
+
+        />
 
         <p class="chapter-text">
             Of course, there is a healthy form of national pride grounded in
@@ -118,6 +126,10 @@
             protects not only strangers and minorities. It also protects us
             Christians – especially from ourselves.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Who Cheers for the Referee?</h2>
 
@@ -280,6 +292,9 @@
             himself.
         </p>
 
-        <x-food-for-thought :number="9" />
+        <x-food-for-thought :number="9" lang="en" />
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

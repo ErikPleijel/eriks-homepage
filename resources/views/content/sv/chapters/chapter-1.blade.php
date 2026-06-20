@@ -83,7 +83,7 @@
             src="/images/chapters/chapter-1/kompass2_sve.png"
             alt="Kompass som pekar på rädsla och smicker, snarare än medkänsla och klokhet."
             caption="Rädsla och smicker kan störa den inre kompassen och leda oss i fel riktning."
-            width="60" />
+            width="30" />
 
         <p class="chapter-text">
             Jag kan bara spekulera om vad fångarna tänkte och trodde, men jag
@@ -120,7 +120,9 @@
         <x-content-image
             src="/images/chapters/chapter-1/prst_hund.png"
             alt="En man matar en hund."
-            align="right" />
+            align="right"
+            width="30"
+        />
 
         <p class="chapter-text">
             Det finns en grundläggande skillnad mellan att dressera ett djur –
@@ -142,6 +144,10 @@
             och fel. Det kan lära sig att "skälla" på främlingar enbart för att de
             är annorlunda. Det kommer att sakna en inre moralkompass.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Gott och ont</h2>
 
@@ -170,7 +176,14 @@
             och en av oss.
         </p>
 
-        <x-quotecard>Kampen mellan...</x-quotecard>
+        <x-quotecard
+            id="chapter-1"
+            text="Kampen mellan ont och gott utspelar sig inte bara mellan nationer och ideologier.
+Den är också ett drama&nbsp;inom&nbsp;oss.
+Att kalla andra monster är det första steget mot att själv&nbsp;bli&nbsp;ett."
+            align="center"
+            lang="sv"
+        />
 
         <p class="chapter-text">
             De gamla grekiska tänkarna uppmanade till självreflektion. "Känn dig
@@ -193,5 +206,10 @@
             representerar tro, andlighet, gudomlighet och hopp. Detta är den goda
             alliansen som vi behöver återupptäcka och återuppliva.
         </p>
+
+        <x-food-for-thought :number="1" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

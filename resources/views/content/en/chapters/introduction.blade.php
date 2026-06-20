@@ -87,13 +87,7 @@
             soul and lost your freedom.
         </p>
 
-        <x-quotecard-image
-            src="/images/quotecard-eng-mindless-scrolling.jpg"
-            alt="Mindless scrolling? Seize the reins. Focus on one thing for 10 minutes."
-            text="Mindless scrolling? Seize the reins.\nFocus on one thing for 10 minutes."
-            lang="en"
-            id="mindless-scrolling"
-        />
+
 
         <h2 class="chapter-heading">Faustian temptation</h2>
 
@@ -137,7 +131,7 @@
             src="/images/chapters/introduction/marionett.png"
             alt="Marionette"
             align="right"
-            width="25" />
+            width="15" />
 
         <p class="chapter-text">
             In their eagerness to feel powerful, these followers have compromised their
@@ -162,7 +156,14 @@
             build resilience against the Faustian pact.
         </p>
 
-        <x-quotecard>A gentle reminder…</x-quotecard>
+        <x-quotecard
+            id="chapter-0"
+            header="A gentle reminder for those drawn to unrestrained&nbsp;power:"
+            text="“What does it profit a man if&nbsp;he&nbsp;gains the whole world but&nbsp;loses&nbsp;his&nbsp;soul?”
+— Matthew 16:26 —"
+            align="center"
+            lang="en"
+        />
 
         <h2 class="chapter-heading">1. Courage: Avoid the Path to the Dark Side</h2>
 
@@ -408,6 +409,10 @@
             integrate.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">7. Hope: Overcome Cynicism and the Appetite for Chaos</h2>
 
         <p class="chapter-text">
@@ -452,7 +457,7 @@
             src="/images/chapters/introduction/keep_img.jpg"
             alt="Keep calm and carry on"
             align="right"
-            width="30" />
+            width="15" />
 
         <p class="chapter-text">
             We too live in dangerous times. Authoritarian leaders become popular by
@@ -483,12 +488,15 @@
             demagogues' power cult, but points toward something worth living for.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+        <x-food-for-thought :number="0" lang="en" />
+
+       {{-- <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             <x-food-for-thought :number="0" lang="en" />
             <x-food-for-thought-carousel :startNumber="0" lang="en" />
-        </div>
+        </div>--}}
 
 
         <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

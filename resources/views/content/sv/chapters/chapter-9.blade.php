@@ -107,7 +107,15 @@
             en giftig cocktail som förhärdar hjärtat och förstör omdömet.
         </p>
 
-        <x-quotecard>Nationell stolthet fungerar som alkohol...</x-quotecard>
+        <x-quotecard-image
+            src="/images/quotecard-swe-nationalism-alcohol.jpg"
+            alt="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
+            text="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende./nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
+            lang="en"
+            id="nationalism-alcohol"
+            :show-slogan="true"
+
+        />
 
         <p class="chapter-text">
             Naturligtvis finns det en sund nationalstolthet som bygger på
@@ -117,6 +125,10 @@
             bara främlingar och minoriteter. Det skyddar också oss kristna – inte
             minst från oss själva.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Vem hejar på domaren?</h2>
 
@@ -274,7 +286,9 @@
             grupptillhörighet. I stället gav den honom styrkan att ägna sitt liv åt
             något som var större än han själv.
         </p>
+        <x-food-for-thought :number="9" lang="sv" />
 
-        <x-food-for-thought :number="9" />
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

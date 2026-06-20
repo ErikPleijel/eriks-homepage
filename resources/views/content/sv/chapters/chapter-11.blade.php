@@ -238,6 +238,10 @@
             så småningom att tappa kursen – eller krascha spektakulärt.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Livet utan en etisk polstjärna</h2>
 
         <p class="chapter-text">
@@ -257,7 +261,13 @@
             riskerar att spegla just det hat som vi försöker motverka.
         </p>
 
-        <x-quotecard>Om vi bekämpar ondskan med hat...</x-quotecard>
+        <x-quotecard
+            id="chapter-11"
+            text="Om vi bekämpar ondskan med hat förvandlas vi lätt till&nbsp;dess&nbsp;spegelbild.
+Vi behöver mer än upprördhet – vi behöver en tro som drar oss&nbsp;mot&nbsp;det&nbsp;goda."
+            align="center"
+            lang="sv"
+        />
 
         <p class="chapter-text">
             En annan risk är lika uppenbar: människan längtar efter att tillhöra
@@ -325,6 +335,9 @@
             sig vara mer en del av problemet än lösningen.
         </p>
 
-        <x-food-for-thought :number="11" />
+        <x-food-for-thought :number="11" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

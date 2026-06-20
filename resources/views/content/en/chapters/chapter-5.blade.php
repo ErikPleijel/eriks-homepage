@@ -25,7 +25,7 @@
             src="/images/chapters/chapter-5/pzlhammare_sm.png"
             alt="Putting the pieces of the puzzle together with a hammer."
             caption="Stubbornness and poor judgement. You start with the image you want to see and adapt the pieces accordingly."
-            width="60" />
+            width="30" />
 
         <p class="chapter-text">
             We live in a complicated and troubled world. Now more than ever, we
@@ -96,6 +96,10 @@
             deception – can make people completely stuck in this mental trap.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">How to Become a Religious Know-It-All</h2>
 
         <p class="chapter-text">
@@ -128,7 +132,13 @@
             entangled in false insights.
         </p>
 
-        <x-quotecard>when we demand total certainty</x-quotecard>
+        <x-quotecard
+            id="chapter-5"
+            text="When we demand total certainty, we often settle for confident&nbsp;nonsense.
+We should be grateful when our worldview is shaken once&nbsp;in&nbsp;a&nbsp;while."
+            align="center"
+            lang="en"
+        />
 
         <h2 class="chapter-heading">Real Faith Is Not About Stubborn Certainty</h2>
 
@@ -192,7 +202,7 @@
             src="/images/chapters/chapter-5/kop_rev.png"
             alt="From geocentric to heliocentric worldview. The planets orbit the sun, which is at the centre."
             caption="In the past, people believed that the earth was at the centre and that everything revolved around it. Copernicus showed that, on the contrary, the sun is at the centre."
-            width="80" />
+            width="50" />
 
         <p class="chapter-text">
             Reason can make mistakes and put things together that don't belong
@@ -226,7 +236,9 @@
             your worldview is shaken from time to time. Trusting faith is reason's
             best friend.
         </p>
+        <x-food-for-thought :number="5" lang="en" />
 
-        <x-food-for-thought :number="5" />
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

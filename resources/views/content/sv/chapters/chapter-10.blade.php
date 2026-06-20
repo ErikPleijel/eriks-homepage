@@ -58,7 +58,7 @@
         <x-content-image
             src="/images/chapters/chapter-10/andromeda.JPG"
             alt="Andromedagalaxen"
-            width="60" />
+            width="40" />
 
         <p class="chapter-text">
             Big Bang förklarar inte världens skapelse, utan dess historiska
@@ -144,7 +144,7 @@
             src="/images/chapters/chapter-10/bird.JPG"
             alt="Fiskgjuse"
             caption="Varför skapade evolutionen fåglar? Berodde det på en lycklig slump och rena tillfälligheter? Eller finns det någon slags evolutionär naturlag som ökar chanserna?"
-            width="50" />
+            width="40" />
 
         <p class="chapter-text">
             För att förstå skillnaden kan man föreställa sig hur det går till på
@@ -192,7 +192,7 @@
         <x-content-image
             src="/images/chapters/chapter-10/evol_tab4_swe.jpg"
             alt="1. Lag-evolution (deism) 2. Slump-evolution (ateism) 3. Målstyrd evolution (teism) 4. Livskraft-evolution (panteism)"
-            width="70" />
+            width="50" />
 
         <p class="chapter-text">
             I det andra fallet, slumpstyrd evolution, behövs ingen Gud. Detta är
@@ -221,7 +221,13 @@
             säker grund för ateism.
         </p>
 
-        <x-quotecard>Överdriven tro på förnuftet...</x-quotecard>
+        <x-quotecard
+            id="chapter-10"
+            text="Överdriven tro på förnuftet kan skada förnuftet&nbsp;självt.
+Om vi kräver svar på allt nöjer vi oss ofta med dåliga&nbsp;svar."
+            align="center"
+            lang="sv"
+        />
 
         <h2 class="chapter-heading">Det sanna, det goda, det sköna</h2>
 
@@ -269,6 +275,10 @@
             goda, det sköna – detta kallas ibland för "den platonska treenigheten".
             Har detta sitt ursprung i den mystiska X-faktorn?
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">Tomhetens lockelse</h2>
 
@@ -325,7 +335,7 @@
             src="/images/chapters/chapter-10/vagval_vetensk.png"
             alt="Vägskyltar som pekar i olika riktningar: 'Vilja till sanning' och 'Vilja till kontroll'."
             caption="En felsväng kan skada intellektet."
-            width="70" />
+            width="50" />
 
         <h2 class="chapter-heading">Bortom illusionen av kontroll</h2>
 
@@ -363,6 +373,9 @@
             en gnista av kärlek till sund vetenskap och verkligt sanningssökande.
         </p>
 
-        <x-food-for-thought :number="10" />
+        <x-food-for-thought :number="10" lang="sv" />
+
+        <x-toc heading="Kapitel" />
     </article>
 </x-layout>
+<x-site-footer />

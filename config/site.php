@@ -29,7 +29,17 @@ return [
         'sv' => 'Ankaret i stormen',
     ],
 
+    'descriptions' => [
+        'en' => '',
+        'sv' => '',
+    ],
+
     'book_title' => 'Faustian Bargain? No Thanks!',
+
+    'book_titles' => [
+        'en' => 'Faustian Bargain? No Thanks!',
+        'sv' => 'Faustisk pakt? Nej tack!',
+    ],
 
     /*
     |--------------------------------------------------------------------------

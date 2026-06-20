@@ -183,7 +183,7 @@
             src="/images/chapters/chapter-6/Cicero.JPG"
             alt="Cicero"
             align="right"
-            width="30" />
+            width="15" />
 
         <p class="chapter-text">
             We should remember, however, that what we now call democracy is more a
@@ -223,6 +223,10 @@
             we're living in a world of shadows, confusing illusion with reality. We
             long for real knowledge and a true understanding of the world.
         </p>
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         <h2 class="chapter-heading">The Illusion of Freedom in the Shadowlands</h2>
 
@@ -282,7 +286,15 @@
             revenge are believed to be good because they are pleasurable.
         </p>
 
-        <x-quotecard>what is freedom?</x-quotecard>
+        <x-quotecard
+            id="chapter-6"
+            header="What is freedom?"
+            text="True freedom is not saying whatever comes&nbsp;to&nbsp;mind.
+It is being liberated from the narrow horizons of&nbsp;our&nbsp;own&nbsp;egos."
+            align="center"
+            lang="en"
+        />
+
 
         <h2 class="chapter-heading">The Path Out of the Shadowlands</h2>
 
@@ -398,6 +410,9 @@
             and the struggle for justice are ever new.
         </p>
 
-        <x-food-for-thought :number="6" />
+        <x-food-for-thought :number="6" lang="en" />
+
+        <x-toc heading="Chapters" />
     </article>
 </x-layout>
+<x-site-footer />

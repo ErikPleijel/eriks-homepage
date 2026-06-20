@@ -19,6 +19,7 @@
     }
 @endphp
 
+
 <div class="flex items-center gap-1.5" role="navigation" aria-label="Language">
     @if ($locale === 'en')
         <span aria-current="true" class="block opacity-40" title="English (current)">
@@ -27,7 +28,7 @@
                  class="h-4 w-6 rounded-sm object-cover shadow-sm" />
         </span>
         <a href="{{ $svUrl }}"
-           class="block opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-stone-400 rounded-sm"
+           class="block transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-stone-400 rounded-sm"
            aria-label="Byt till svenska">
             <img src="{{ asset('images/flags/se.svg') }}"
                  alt="Svenska"
@@ -35,7 +36,7 @@
         </a>
     @else
         <a href="{{ $enUrl }}"
-           class="block opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-stone-400 rounded-sm"
+           class="block transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-stone-400 rounded-sm"
            aria-label="Switch to English">
             <img src="{{ asset('images/flags/uk.svg') }}"
                  alt="English"

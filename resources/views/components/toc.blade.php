@@ -16,6 +16,20 @@
 @php
     $tocItems     = $items ?? \App\Support\ChapterData::tocItems(app()->getLocale());
     $isStructured = $items === null;
+
+    // Compare paths only — avoids APP_URL vs real request host mismatch.
+    // request()->path() returns 'sv/slug' or 'slug' (no leading slash).
+    $currentPath = request()->path();
+    $navItems    = array_values(array_filter($tocItems, fn($i) => isset($i['url'])));
+    $currentUrl  = null;
+    $nextUrl     = null;
+    foreach ($navItems as $idx => $nav) {
+        if (ltrim(parse_url($nav['url'], PHP_URL_PATH), '/') === $currentPath) {
+            $currentUrl = $nav['url'];
+            $nextUrl    = $navItems[$idx + 1]['url'] ?? null;
+            break;
+        }
+    }
 @endphp
 
 <nav {{ $attributes->merge(['class' => 'my-8']) }} aria-label="{{ $heading ?? 'Table of contents' }}">
@@ -31,11 +45,16 @@
             @foreach ($tocItems as $item)
 
                 @if ($item['type'] === 'intro')
+                    @php $isCurrent = $item['url'] === $currentUrl; $isNext = $item['url'] === $nextUrl; @endphp
                     <div class="mb-4">
-                        <a href="{{ $item['url'] }}"
-                           class="text-amber-700 underline-offset-2 hover:underline">
-                            {{ $item['title'] }}
-                        </a>
+                        @if ($isCurrent)
+                            <span class="text-stone-400">{{ $item['title'] }}</span>
+                        @else
+                            <a href="{{ $item['url'] }}"
+                               class="text-amber-700 underline-offset-2 hover:underline {{ $isNext ? 'underline' : '' }}">
+                                {{ $item['title'] }}
+                            </a>
+                        @endif
                     </div>
 
                 @elseif ($item['type'] === 'part')
@@ -44,14 +63,19 @@
                     </p>
 
                 @elseif ($item['type'] === 'chapter')
+                    @php $isCurrent = $item['url'] === $currentUrl; $isNext = $item['url'] === $nextUrl; @endphp
                     <div class="flex items-baseline gap-2 mt-1">
                         <span class="shrink-0 w-6 text-right text-sm text-stone-400">
                             {{ $item['number'] }}.
                         </span>
-                        <a href="{{ $item['url'] }}"
-                           class="text-amber-700 underline-offset-2 hover:underline">
-                            {{ $item['title'] }}
-                        </a>
+                        @if ($isCurrent)
+                            <span class="text-stone-400">{{ $item['title'] }}</span>
+                        @else
+                            <a href="{{ $item['url'] }}"
+                               class="text-amber-700 underline-offset-2 hover:underline {{ $isNext ? 'underline' : '' }}">
+                                {{ $item['title'] }}
+                            </a>
+                        @endif
                     </div>
 
                 @endif
