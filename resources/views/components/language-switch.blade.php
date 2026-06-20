@@ -1,7 +1,12 @@
 @php
     $locale = app()->getLocale();
-    $enUrl  = 'https://erikpleijel.com/';
-    $svUrl  = 'https://erikpleijel.se/';
+    if (app()->environment('local')) {
+        $enUrl = url('/') . '?locale=en';
+        $svUrl = url('/') . '?locale=sv';
+    } else {
+        $enUrl = 'https://erikpleijel.com/';
+        $svUrl = 'https://erikpleijel.se/';
+    }
 @endphp
 
 

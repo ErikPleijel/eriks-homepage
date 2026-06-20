@@ -166,7 +166,7 @@
 
                         <div class="flex flex-col">
                             <div class="mb-4 flex justify-center">
-                                <img src="/images/NavDiv35.PNG"
+                                <img src="/images/NavDiv35.png"
                                      alt="Omslag: Navigation i mångfalden"
                                      class="h-44 w-auto rounded object-cover shadow-md">
                             </div>
