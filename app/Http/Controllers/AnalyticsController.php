@@ -94,6 +94,17 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->get();
 
+        // ── Visitors by country — dropdown-scoped, allow-listed ───────────────
+        $countriesBreakdown = DB::table('site_events')
+            ->select('country_code', DB::raw('COUNT(*) as total'))
+            ->where('event_type', 'pageview')
+            ->where('created_at', '>=', $rangeCutoff)
+            ->whereIn('path', $allowedPaths)
+            ->whereNotNull('country_code')
+            ->groupBy('country_code')
+            ->orderByDesc('total')
+            ->get();
+
         // ── Locale breakdown — dropdown-scoped ────────────────────────────────
         $localeBreakdown = DB::table('site_events')
             ->select('locale', DB::raw('COUNT(*) as total'))
@@ -112,6 +123,9 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->get();
 
+        // ── Pageview chart — dropdown-scoped ──────────────────────────────────
+        $chartPoints = $this->chartBuckets($range, $rangeCutoff, $now, $allowedPaths);
+
         return view('analytics', compact(
             'now',
             'range',
@@ -122,10 +136,99 @@ class AnalyticsController extends Controller
             'dailyRows',
             'excludedStats',
             'visitedPages',
+            'countriesBreakdown',
             'localeBreakdown',
             'referrerBreakdown',
+            'chartPoints',
         ));
     }
+
+    // ── Chart helpers ─────────────────────────────────────────────────────────
+
+    private function chartBuckets(string $range, Carbon $cutoff, Carbon $now, array $allowedPaths): array
+    {
+        [$sqlExpr, $keyFn, $stepFn, $startFn] = $this->chartBucketConfig($range);
+
+        $rawRows = DB::table('site_events')
+            ->selectRaw("($sqlExpr) as bucket, COUNT(*) as total")
+            ->where('event_type', 'pageview')
+            ->where('created_at', '>=', $cutoff)
+            ->whereIn('path', $allowedPaths)
+            ->groupByRaw($sqlExpr)
+            ->orderByRaw($sqlExpr)
+            ->get()
+            ->keyBy('bucket');
+
+        $cursor = $startFn($cutoff->copy());
+        $points = [];
+        while ($cursor->lte($now)) {
+            $key      = $keyFn($cursor->copy());
+            $points[] = [
+                'key'   => $key,
+                'value' => (int) ($rawRows[$key]->total ?? 0),
+                'label' => $this->chartLabel($range, $cursor->copy()),
+            ];
+            $stepFn($cursor);
+        }
+
+        return $points;
+    }
+
+    private function chartBucketConfig(string $range): array
+    {
+        return match ($range) {
+            '30m' => [
+                "DATE_FORMAT(created_at, '%Y-%m-%d %H:%i')",
+                fn (Carbon $c) => $c->format('Y-m-d H:i'),
+                fn (Carbon $c) => $c->addMinute(),
+                fn (Carbon $c) => $c->startOfMinute(),
+            ],
+            '3h' => [
+                "CONCAT(DATE_FORMAT(created_at,'%Y-%m-%d %H:'),LPAD(FLOOR(MINUTE(created_at)/5)*5,2,'0'))",
+                fn (Carbon $c) => $c->format('Y-m-d H:') . str_pad((int) ($c->minute / 5) * 5, 2, '0', STR_PAD_LEFT),
+                fn (Carbon $c) => $c->addMinutes(5),
+                fn (Carbon $c) => tap($c, fn ($c) => $c->setMinute((int) ($c->minute / 5) * 5)->startOfMinute()),
+            ],
+            '24h' => [
+                "DATE_FORMAT(created_at, '%Y-%m-%d %H:00')",
+                fn (Carbon $c) => $c->format('Y-m-d H:00'),
+                fn (Carbon $c) => $c->addHour(),
+                fn (Carbon $c) => $c->startOfHour(),
+            ],
+            '7d', '28d' => [
+                'DATE(created_at)',
+                fn (Carbon $c) => $c->format('Y-m-d'),
+                fn (Carbon $c) => $c->addDay(),
+                fn (Carbon $c) => $c->startOfDay(),
+            ],
+            '3mo', '6mo' => [
+                'DATE(DATE_SUB(created_at, INTERVAL WEEKDAY(created_at) DAY))',
+                fn (Carbon $c) => $c->copy()->startOfWeek(Carbon::MONDAY)->format('Y-m-d'),
+                fn (Carbon $c) => $c->addWeek(),
+                fn (Carbon $c) => $c->startOfWeek(Carbon::MONDAY),
+            ],
+            '12mo' => [
+                "DATE_FORMAT(created_at, '%Y-%m-01')",
+                fn (Carbon $c) => $c->format('Y-m-01'),
+                fn (Carbon $c) => $c->addMonth(),
+                fn (Carbon $c) => $c->startOfMonth(),
+            ],
+        };
+    }
+
+    private function chartLabel(string $range, Carbon $c): string
+    {
+        return match (true) {
+            in_array($range, ['30m', '3h'], true) => $c->format('H:i'),
+            $range === '24h'                       => $c->format('H:00'),
+            in_array($range, ['7d', '28d'], true)  => $c->format('M j'),
+            in_array($range, ['3mo', '6mo'], true) => $c->format('M j'),
+            $range === '12mo'                      => $c->format('M y'),
+            default                                => $c->format('Y-m-d'),
+        };
+    }
+
+    // ── Shared helpers ────────────────────────────────────────────────────────
 
     private function rangeCutoff(Carbon $now, string $range): Carbon
     {

@@ -19,6 +19,7 @@ class SiteEvent extends Model
         'event_type',
         'path',
         'locale',
+        'country_code',
         'referrer_host',
         'label',
     ];

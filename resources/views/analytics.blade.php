@@ -65,7 +65,84 @@
             <option value="{{ $value }}" {{ $range === $value ? 'selected' : '' }}>{{ $label }}</option>
             @endforeach
         </select>
-        <span style="font-size:.7rem; color:#9ca3af;">Controls: Visited pages · Locale · Referrers</span>
+        <span style="font-size:.7rem; color:#9ca3af;">Controls: Chart · Visited pages · Countries · Locale · Referrers</span>
+    </div>
+
+    {{-- ── Pageview chart ──────────────────────────────────────────────────── --}}
+    <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem;">
+        Pageviews over time · {{ $rangeLabels[$range] }}
+    </h2>
+    <div style="background:#fff; border:1px solid #e5e7eb; border-radius:6px; padding:.75rem 1rem 1rem; margin-bottom:2rem;">
+    @php
+        $svgW  = 680;
+        $svgH  = 140;
+        $padL  = 38;
+        $padR  = 12;
+        $padT  = 10;
+        $padB  = 26;
+        $plotW = $svgW - $padL - $padR;
+        $plotH = $svgH - $padT - $padB;
+
+        $vals   = array_column($chartPoints, 'value');
+        $maxVal = $vals ? max(max($vals), 1) : 1;
+        $n      = count($chartPoints);
+
+        $xOf = fn($i) => $n > 1 ? $padL + ($i / ($n - 1)) * $plotW : $padL + $plotW / 2;
+        $yOf = fn($v) => $padT + $plotH - ($v / $maxVal) * $plotH;
+
+        // Polyline points string
+        $pts = [];
+        foreach ($chartPoints as $i => $pt) {
+            $pts[] = round($xOf($i), 1) . ',' . round($yOf($pt['value']), 1);
+        }
+        $polyPts = implode(' ', $pts);
+
+        // Y-axis ticks at 0 %, 50 %, 100 % (keep it minimal)
+        $yTicks = [0, 0.5, 1.0];
+
+        // Show at most ~7 x-axis labels
+        $labelEvery = max(1, (int) ceil($n / 7));
+    @endphp
+    <svg viewBox="0 0 {{ $svgW }} {{ $svgH }}"
+         style="width:100%; height:{{ $svgH }}px; display:block; overflow:visible;"
+         aria-hidden="true">
+
+        {{-- Y gridlines and labels --}}
+        @foreach ($yTicks as $frac)
+            @php
+                $yG = round($padT + $plotH * (1 - $frac), 1);
+                $vG = (int) round($maxVal * $frac);
+            @endphp
+            <line x1="{{ $padL }}" y1="{{ $yG }}" x2="{{ $svgW - $padR }}" y2="{{ $yG }}"
+                  stroke="#e5e7eb" stroke-width="1"/>
+            <text x="{{ $padL - 4 }}" y="{{ $yG + 3.5 }}"
+                  text-anchor="end" font-size="9" font-family="ui-monospace,monospace" fill="#9ca3af">{{ $vG }}</text>
+        @endforeach
+
+        {{-- X axis baseline --}}
+        <line x1="{{ $padL }}" y1="{{ $padT + $plotH }}" x2="{{ $svgW - $padR }}" y2="{{ $padT + $plotH }}"
+              stroke="#d1d5db" stroke-width="1"/>
+
+        {{-- Polyline --}}
+        @if ($n > 1)
+        <polyline points="{{ $polyPts }}" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+        @elseif ($n === 1)
+        <circle cx="{{ round($xOf(0), 1) }}" cy="{{ round($yOf($chartPoints[0]['value']), 1) }}"
+                r="3" fill="#3b82f6"/>
+        @endif
+
+        {{-- X-axis labels --}}
+        @foreach ($chartPoints as $i => $pt)
+            @if ($i % $labelEvery === 0 || $i === $n - 1)
+            <text x="{{ round($xOf($i), 1) }}" y="{{ $svgH - 2 }}"
+                  text-anchor="middle" font-size="9" font-family="ui-monospace,monospace" fill="#9ca3af">{{ $pt['label'] }}</text>
+            @endif
+        @endforeach
+
+    </svg>
+    @if ($n === 0)
+    <p style="font-size:.75rem; color:#9ca3af; text-align:center; margin:.5rem 0 0;">No pageviews in this period.</p>
+    @endif
     </div>
 
     {{-- ── Visited pages — dropdown-scoped ───────────────────────────────── --}}
@@ -87,6 +164,31 @@
             </tr>
             @empty
             <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No pageviews in this period.</td></tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    {{-- ── Visitors by country — dropdown-scoped ─────────────────────────── --}}
+    <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem;">
+        Visitors by country · {{ $rangeLabels[$range] }} · pageviews · GeoLite2
+    </h2>
+    <table class="tbl" style="width:100%; border-collapse:collapse; margin-bottom:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
+        <thead>
+            <tr>
+                <th style="text-align:left;">Country</th>
+                <th class="num">Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($countriesBreakdown as $row)
+            <tr>
+                <td>{{ $row->country_code }}</td>
+                <td class="num">{{ number_format($row->total) }}</td>
+            </tr>
+            @empty
+            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">
+                No country data yet — place GeoLite2-Country.mmdb in storage/geoip/ to enable.
+            </td></tr>
             @endforelse
         </tbody>
     </table>
