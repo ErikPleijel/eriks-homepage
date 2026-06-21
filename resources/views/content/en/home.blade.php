@@ -63,6 +63,7 @@
                 lang="en"
                 id="emotions-horses"
                 :show-slogan="false"
+                spacing="my-1"
                 :number="1"
             />
 
@@ -73,6 +74,7 @@
                 lang="en"
                 id="nationalism-alcohol"
                 :show-slogan="false"
+                spacing="my-1"
                 :number="2"
             />
 
@@ -84,6 +86,7 @@
                 lang="en"
                 id="might-is-right"
                 :show-slogan="false"
+                spacing="my-1"
                 :number="3"
             />
 
@@ -93,6 +96,7 @@
                 text="faus·tian bar·gain\n /ˈfaʊstiən ˈbɑːrɡən/\n 1.In myth: a bargain with the devil, trading one’s soul for power or status.\n 2.More broadly: Any deal where immediate advantage is gained at the cost of freedom or integrity.\nSee also: temptation · corruption"
                 lang="en"
                 id="faustian-bargain"
+                spacing="my-1"
                 :show-slogan="false"
             />
         </x-quotecard-grid>
