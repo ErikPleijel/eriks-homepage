@@ -33,14 +33,14 @@ class AnalyticsController extends Controller
         // Use whichever is more recent: the relative cutoff or the hard floor.
         $rangeCutoff = $relativeCutoff->lt($floor) ? $floor->copy() : $relativeCutoff;
 
+        // ── Allow-list of real page paths ─────────────────────────────────────
+        $allowedPaths = $this->buildAllowList();
+
         // ── Top stat row ──────────────────────────────────────────────────────
         $totalSubscribers  = BookInterestSubscriber::count();
         $newSubscribers24h = BookInterestSubscriber::where('created_at', '>=', $now->copy()->subHours(24))->count();
-        $pageviews3h       = DB::table('site_events')->where('event_type', 'pageview')->where('created_at', '>=', $now->copy()->subHours(3))->count();
-        $pageviews24h      = DB::table('site_events')->where('event_type', 'pageview')->where('created_at', '>=', $now->copy()->subHours(24))->count();
-
-        // ── Allow-list of real page paths ─────────────────────────────────────
-        $allowedPaths = $this->buildAllowList();
+        $pageviews3h  = DB::table('site_events')->where('event_type', 'pageview')->where('created_at', '>=', $now->copy()->subHours(3))->whereIn('path', $allowedPaths)->count();
+        $pageviews24h = DB::table('site_events')->where('event_type', 'pageview')->where('created_at', '>=', $now->copy()->subHours(24))->whereIn('path', $allowedPaths)->count();
 
         // ── Daily breakdown — last 10 calendar days (UTC), newest first ───────
         // Fixed window; not affected by the dropdown.
