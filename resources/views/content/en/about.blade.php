@@ -19,7 +19,7 @@
             <p class="chapter-text mt-3">A few years later, I was hit by an even greater shock. I witnessed firsthand the tragic consequences of unrestrained passions. In the opening chapter of <i>Adventures and Reflections</i>, I describe my experiences during the 1994 genocide in Rwanda. This is what happens when the Faustian Bargain is accepted on a massive scale. It was not a pleasant sight.</p>
         </div>
         <div>
-            <h2 class="text-2xl mt-8">Excerpts from the book:</h2>
+            <h2 class="chapter-heading">Excerpts from the book:</h2>
         </div>
 
 

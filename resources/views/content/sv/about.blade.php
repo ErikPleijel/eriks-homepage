@@ -20,7 +20,7 @@
             <p class="chapter-text mt-3">Några år senare kom en ännu större chock. Jag bevittnade på nära håll de tragiska följderna av otyglade passioner. I inledningskapitlet av <i>Navigation i mångfalden</i> berättar jag om mina erfarenheter under folkmordet i Rwanda 1994. Detta är vad som händer när den faustiska pakten accepteras i stor skala. Det var ingen behaglig syn.</p>
         </div>
         <div>
-            <h2 class="text-2xl mt-8">Utdrag ur boken:</h2>
+            <h2 class="chapter-heading ">Utdrag ur boken:</h2>
         </div>
 
         {{-- ── Bokutdrag ────────────────────────────────────────────────────────── --}}
