@@ -59,7 +59,7 @@
             Time range
         </label>
         <select id="range-select"
-                onchange="const u=new URL(window.location.href);u.searchParams.set('range',this.value);location.href=u.href"
+                onchange="location.href='?key={{ request()->query('key') }}&range='+this.value"
                 style="font-family:inherit; font-size:.8rem; border:1px solid #d1d5db; border-radius:4px; padding:.3rem .5rem; background:#fff; color:#111827; cursor:pointer;">
             @foreach ($rangeLabels as $value => $label)
             <option value="{{ $value }}" {{ $range === $value ? 'selected' : '' }}>{{ $label }}</option>
