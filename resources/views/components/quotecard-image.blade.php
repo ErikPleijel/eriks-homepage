@@ -6,6 +6,7 @@
     'id'         => 'image-card', // download filename slug
     'showSlogan' => true,   // show/hide the "Ideas grow in group chats" line
     'number'     => null,   // optional small numbered badge, top-left corner
+    'spacing'    => 'my-16', // vertical margin on the outer wrapper, e.g. "my-4"
 ])
 
 @php
@@ -96,7 +97,7 @@
 })();
 </script>
 
-<div x-data="{{ $uid }}()" class="mx-auto w-full max-w-sm my-16">
+<div x-data="{{ $uid }}()" class="mx-auto w-full max-w-sm {{ $spacing }}">
     {{-- Static image — no canvas, no placeholder GIF; the file already exists --}}
     <div class="relative overflow-hidden rounded-xl border border-stone-200 aspect-square">
         @if ($number !== null)

@@ -62,6 +62,7 @@
                 id="emotions-horses"
                 :show-slogan="false"
                 :number="1"
+                spacing="my-1"
             />
 
             <x-quotecard-image
@@ -72,6 +73,7 @@
                 id="nationalism-alcohol"
                 :show-slogan="false"
                 :number="2"
+                spacing="my-1"
             />
 
             <x-quotecard-image
@@ -82,6 +84,7 @@
                 id="might-is-right"
                 :show-slogan="false"
                 :number="3"
+                spacing="my-1"
             />
 
             <x-quotecard-image
@@ -90,6 +93,7 @@
                 text="faus·tisk pakt\n/ˈfaʊstɪsk pakt/1.\nI myten: en uppgörelse med djävulen där man säljer sin själ i utbyte mot makt eller status.\n2. I vidare mening: en överens-kommelse där man vinner en omedelbar fördel till priset av frihet eller integritet.\nSe även: frestelse · korruption"
                 lang="en"
                 id="faustian-bargain"
+                spacing="my-1"
                 :show-slogan="false"
             />
         </x-quotecard-grid>
