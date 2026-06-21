@@ -150,6 +150,10 @@ If you have done wrong, seek forgiveness — not&nbsp;excuses."
             resilience against the Faustian bargain.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">The Serpent and The Grand Inquisitor</h2>
 
         <p class="chapter-text">

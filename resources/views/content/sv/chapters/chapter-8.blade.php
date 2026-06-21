@@ -181,7 +181,7 @@ Var sanningsenlig – och&nbsp;hänsynsfull."
         </p>
 
         <x-content-image
-            src="/images/chapters/chapter-8/aristoteles_2.png"
+            src="/images/chapters/chapter-8/aristotle.jpg"
             alt="Aristoteles"
             caption="Aristoteles"
             width="25" />

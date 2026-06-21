@@ -5,25 +5,31 @@
         {{-- ── Biography ──────────────────────────────────────────────────────── --}}
         <h1 class="chapter-title">About me</h1>
 
-        <div class="mt-8 flex flex-col gap-8 sm:flex-row sm:items-start">
-            <div class="flex-shrink-0 sm:w-1/3">
-                <img
-                    src="/images/ErikPleijelPortrait_sm.jpg"
-                    alt="Portrait of Erik Pleijel"
-                    class="w-full max-w-[280px] rounded object-cover"
-                >
-            </div>
-            <div class="sm:w-2/3">
-                {{-- Bio text — edit here to update the author description --}}
-                <p class="chapter-text">My name is Erik Pleijel, and I'm from Sweden. My outlook has been shaped by both study and experience, including hands-on work with water supply projects in Africa and Asia. To me, theology and philosophy are most valuable when they offer guidance for everyday life.</p>
-            </div>
-        </div>
+        <div class="mt-4 block overflow-hidden">
+            <img
+                src="/images/ErikPleijelPortrait_sm.jpg"
+                alt="Portrait of Erik Pleijel"
+                class="float-left mr-4 mb-2 w-[120px] rounded object-cover"
+            >
 
+            <p class="chapter-text">My name is Erik Pleijel, and I'm from Sweden. My outlook has been shaped by both study and experience, including hands-on work with water supply projects in Africa and Asia. To me, theology and philosophy are most valuable when they offer guidance for everyday life.</p>
+
+            <p class="chapter-text mt-3">'Be yourself' may be the most popular piece of self-help advice in the world. It came as a small shock to me that authenticity can have a dark side (<a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="underline">read here</a>). To look inward is not always to find a treasure of wonderful things.</p>
+
+            <p class="chapter-text mt-3">A few years later, I was hit by an even greater shock. I witnessed firsthand the tragic consequences of unrestrained passions. In the opening chapter of <i>Adventures and Reflections</i>, I describe my experiences during the 1994 genocide in Rwanda. This is what happens when the Faustian Bargain is accepted on a massive scale. It was not a pleasant sight.</p>
+        </div>
+        <div>
+            <h2 class="text-2xl mt-8">Excerpts from the book:</h2>
+        </div>
 
 
         <x-book-excerpt-carousel
             :slides="config('book-excerpts.adventures-and-reflections-en', [])"
             book="adventures-and-reflections" />
+
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="en" :single="true" />
+        </div>
 
         {{-- ── Press reviews ────────────────────────────────────────────────────── --}}
         <section class="mt-12">

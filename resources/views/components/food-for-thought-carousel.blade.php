@@ -39,6 +39,18 @@
                     return CHAPTERS[this.currentIndex][LANG] || '';
                 },
 
+                // Chapter label for the small heading above the question, e.g. "2. REFORMATION".
+                // Derived from deepdive_{lang} by taking the text after the <br>
+                // (the part after "Deep dive: Read chapter") and uppercasing it.
+                // Chapter-0 (Introduction) has no numbered label in deepdive text,
+                // so it's handled as a special case.
+                get currentChapterLabel() {
+                    const raw = CHAPTERS[this.currentIndex]['deepdive_' + LANG] || '';
+                    const parts = raw.split('<br>');
+                    const tail = (parts[1] || '').trim();
+                    return tail.toUpperCase();
+                },
+
                 next() {
                     this.currentIndex = (this.currentIndex + 1) % 13;
                 },
@@ -87,7 +99,7 @@
     {{-- Question card: parchment background, gold border, corner ornaments —
          all CSS/DOM now, no canvas. Question text updates reactively via
          x-text as currentIndex changes. --}}
-    <div class="relative aspect-square overflow-hidden rounded-2xl border-2 border-[#D6CAAB] bg-[#FDF8EE] p-8 shadow-sm">
+    <div class="relative aspect-[4/3] overflow-hidden rounded-2xl border-2 border-[#D6CAAB] bg-[#FDF8EE] p-8 shadow-sm">
 
         {{-- Inner gold hairline border --}}
         <div class="pointer-events-none absolute inset-3 rounded-xl border border-[#D4AF5A]" aria-hidden="true"></div>
@@ -98,8 +110,12 @@
         <span class="pointer-events-none absolute bottom-5 left-5 h-6 w-6 border-b-2 border-l-2 border-[#C0A060]" aria-hidden="true"></span>
         <span class="pointer-events-none absolute bottom-5 right-5 h-6 w-6 border-b-2 border-r-2 border-[#C0A060]" aria-hidden="true"></span>
 
-        {{-- Question text, vertically centered --}}
-        <div class="relative flex h-full items-center justify-center text-center">
+        {{-- Question text + small chapter label, vertically centered as a group --}}
+        <div class="relative flex h-full flex-col items-center justify-center text-center gap-2">
+            <p x-show="currentChapterLabel"
+               x-text="currentChapterLabel"
+               class="text-xs font-semibold tracking-[0.15em] text-[#B8A06A]">
+            </p>
             <p x-text="currentQuestion"
                style="font-family: 'Cormorant Garamond', Georgia, serif;"
                class="text-2xl italic leading-snug text-[#1A2A44] sm:text-3xl">
@@ -112,19 +128,23 @@
     <div class="mt-3 flex items-center gap-2">
         <button type="button" @click="prev()"
                 aria-label="{{ $labels['prev'] }}"
-                class="flex-none w-10 h-10 rounded-full bg-amber-400 text-white hover:bg-amber-500 transition-colors flex items-center justify-center text-lg font-bold leading-none cursor-pointer">
-            ←
+                class="flex-none w-10 h-10 rounded-full bg-stone-500 text-white hover:bg-stone-600 transition-colors flex items-center justify-center cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+            </svg>
         </button>
 
         <button type="button" @click="showAnswer()"
-                class="flex-1 rounded-full bg-amber-500 text-white py-2 px-3 text-sm font-bold hover:bg-amber-600 transition-colors text-center leading-tight cursor-pointer">
+                class="flex-1 rounded-full bg-stone-500 text-white py-2 px-3 text-sm font-bold hover:bg-stone-600 transition-colors text-center leading-tight cursor-pointer">
             {{ $labels['showAnswer'] }}
         </button>
 
         <button type="button" @click="next()"
                 aria-label="{{ $labels['next'] }}"
-                class="flex-none w-10 h-10 rounded-full bg-amber-400 text-white hover:bg-amber-500 transition-colors flex items-center justify-center text-lg font-bold leading-none cursor-pointer">
-            →
+                class="flex-none w-10 h-10 rounded-full bg-stone-500 text-white hover:bg-stone-600 transition-colors flex items-center justify-center cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18l6-6-6-6" />
+            </svg>
         </button>
     </div>
 
@@ -138,8 +158,8 @@
                     @click="goTo(i - 1)"
                     class="rounded-full transition-all duration-150 focus:outline-none cursor-pointer"
                     :class="currentIndex === i - 1
-                        ? 'w-3 h-3 bg-amber-500'
-                        : 'w-2 h-2 bg-stone-300 hover:bg-stone-400'">
+                    ? 'w-3 h-3 bg-stone-500'
+                    : 'w-2 h-2 bg-stone-300 hover:bg-stone-400'">
             </button>
         </template>
     </div>

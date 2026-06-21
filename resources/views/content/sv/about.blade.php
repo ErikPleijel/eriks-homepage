@@ -5,18 +5,22 @@
         {{-- ── Biografi ─────────────────────────────────────────────────────────── --}}
         <h1 class="chapter-title">Om mig</h1>
 
-        <div class="mt-8 flex flex-col gap-8 sm:flex-row sm:items-start">
-            <div class="flex-shrink-0 sm:w-1/3">
-                <img
-                    src="/images/ErikPleijelPortrait_sm.jpg"
-                    alt="Porträtt av Erik Pleijel"
-                    class="w-full max-w-[280px] rounded object-cover"
-                >
-            </div>
-            <div class="sm:w-2/3">
-                {{-- Biografitext — redigera här för att uppdatera författarens beskrivning --}}
-                <p class="chapter-text">Jag heter Erik Pleijel. Min världsbild har formats av både studier och erfarenhet, inklusive praktiskt arbete med vattenförsörjningsprojekt i Afrika och Asien. För mig är teologi och filosofi som mest värdefulla när de kan ge vägledning i vardagen.</p>
-            </div>
+        <div class="mt-4 block overflow-hidden">
+            <img
+                src="/images/ErikPleijelPortrait_sm.jpg"
+                alt="Portrait of Erik Pleijel"
+                class="float-left mr-4 mb-2 w-[120px] rounded object-cover"
+            >
+
+            <p class="chapter-text">Jag heter Erik Pleijel. Min världsbild har formats av både studier och erfarenhet, inklusive praktiskt arbete med vattenförsörjningsprojekt i Afrika och Asien. För mig är teologi och filosofi som mest värdefulla när de kan ge vägledning i vardagen.</p>
+
+            <p class="chapter-text mt-3">”Var dig själv” är kanske det mest populära självhjälpsrådet i världen. För mig kom det som en liten chock att autenticitet kan ha en mörk sida (<a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="underline">läs här</a>). Att vända blicken inåt innebär inte alltid att hitta en skatt av underbara saker.
+            </p>
+
+            <p class="chapter-text mt-3">Några år senare kom en ännu större chock. Jag bevittnade på nära håll de tragiska följderna av otyglade passioner. I inledningskapitlet av <i>Navigation i mångfalden</i> berättar jag om mina erfarenheter under folkmordet i Rwanda 1994. Detta är vad som händer när den faustiska pakten accepteras i stor skala. Det var ingen behaglig syn.</p>
+        </div>
+        <div>
+            <h2 class="text-2xl mt-8">Utdrag ur boken:</h2>
         </div>
 
         {{-- ── Bokutdrag ────────────────────────────────────────────────────────── --}}

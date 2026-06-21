@@ -21,7 +21,7 @@
             'copied'       => $isSv ? 'Kopierad ✅'                        : 'Copied ✅',
             'share'        => $isSv ? 'Dela'                               : 'Share',
             'slogan'       => $isSv ? '💬 Idéer växer i gruppchattar 🌱'  : '💬 Ideas grow in group chats 🌱',
-            'shareCaption' => '👉 ErikPleijel.se',
+            'shareCaption'    => $isSv ? '👉 ErikPleijel.se' : '👉 ErikPleijel.com',
             'shareLink'    => $isSv ? 'https://ErikPleijel.se' : 'https://ErikPleijel.com',
         ];
 
@@ -287,7 +287,7 @@
         })();
     </script>
 
-    <div x-data="{{ $uid }}()" class="my-12 max-w-sm mx-auto">
+    <div x-data="{{ $uid }}()" class="my-16 max-w-sm mx-auto">
         {{-- Off-screen canvas used for drawing; never shown to the user --}}
         <canvas id="{{ $uid }}_c" width="1080" height="1080"
                 class="hidden" aria-hidden="true"></canvas>

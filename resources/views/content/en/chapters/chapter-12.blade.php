@@ -194,7 +194,7 @@ The Resurrection reveals the survival of&nbsp;the&nbsp;gentle-hearted."
             src="/images/chapters/chapter-12/anchor_img.png"
             alt="Anchor"
             align="right"
-            width="30" />
+            width="15" />
 
         <p class="chapter-text">
             In the Christian tradition, God is known as Creator, Saviour, and Helper

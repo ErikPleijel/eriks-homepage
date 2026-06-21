@@ -7,9 +7,8 @@
     'width'       => null,  // Desktop display width as a percentage, e.g. "60".
                             // Omitted = 100 (centered) or 50 (right-float) of the text column.
     'mobileWidth' => null,  // Mobile width % for centered figures only. Omitted = max(width, 90)
-                            // so a narrow desktop image isn't tiny on a phone. Right-floats
-                            // always stack full-width on mobile (this prop is ignored for them).
-]);
+
+])
 
 @php
     $isRight = $align === 'right';

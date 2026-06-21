@@ -4,8 +4,8 @@
     $locale        = app()->getLocale();
     $isSv          = $locale === 'sv';
     $chapUrl       = url('/') . '#chapters';
-    $contentsLabel = $isSv ? 'Innehåll' : 'Contents';
-    $aboutLabel    = $isSv ? 'Om boken'  : 'About this book';
+    $contentsLabel = $isSv ? 'Kapitel' : 'Chapters';
+    $aboutLabel    = $isSv ? 'Om boken'  : 'About the book';
     $closeLabel    = $isSv ? 'Stäng'     : 'Close';
     $blurb         = config('book-blurb.faustian-bargain.'.$locale);
 @endphp

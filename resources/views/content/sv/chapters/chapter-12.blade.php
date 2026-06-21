@@ -190,7 +190,7 @@ Uppståndelsen uppenbarar de mildhjärtades&nbsp;överlevnad."
             src="/images/chapters/chapter-12/anchor_img.png"
             alt="Ankare"
             align="right"
-            width="30" />
+            width="15" />
 
         <p class="chapter-text">
             I den kristna traditionen är Gud känd som Skapare, Frälsare och Hjälpare

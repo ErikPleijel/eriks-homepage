@@ -43,12 +43,17 @@ class BookInterestController extends Controller
             return back()->with('book_interest_status', 'error');
         }
 
+        $messages = match (app()->getLocale()) {
+            'sv' => ['consent.accepted' => 'Du behöver godkänna villkoren för att skicka in formuläret.'],
+            default => [],
+        };
+
         $validated = $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'book_code' => ['required', 'string', Rule::in($this->allowedBookCodes())],
             'consent' => ['accepted'],
-        ]);
+        ], $messages);
 
         // A repeat sign-up for the same edition isn't an error — tell the
         // visitor they're already on the list instead.

@@ -98,7 +98,7 @@
         </p>
 
         <div class="flex justify-center m-12">
-            <x-buy-book lang="en" :single="true" />
+            <x-buy-book lang="sv" :single="true" />
         </div>
 
         <h2 class="chapter-heading">Hur man blir en religiös besserwisser</h2>
@@ -221,9 +221,9 @@ Vi bör vara tacksamma när vår världsbild skakas&nbsp;om&nbsp;ibland."
         </p>
 
         <x-quotecard-image
-            src="/images/quotecard-eng-courage-to-be-wrong.jpg"
-            alt="Faith gives you the courage to admit you may be wrong!"
-            text="Faith gives you the courage to admit you may be wrong!"
+            src="/images/quotecard-swe-courage-to-be-wrong.jpg"
+            alt="Tron ger dig mod att erkänna att du kan ha fel!"
+            text="Tron ger dig mod att erkänna att du kan ha fel!"
             lang="en"
             id="courage-to-be-wrong"
         />

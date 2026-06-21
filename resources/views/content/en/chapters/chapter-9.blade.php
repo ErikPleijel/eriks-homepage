@@ -238,7 +238,7 @@
         </p>
 
         <x-quotecard-image
-            src="/images/quotecard-eng-law-and-restraint.jpg"
+            src="/images/quotecard-eng-law-and-restraint1.jpg"
             alt="Rules, law and self-restraint cannot always stop evil regimes. But they may stop good people from becoming evil."
             text="Rules, law and self-restraint cannot always stop evil regimes.\nBut they may stop good people from becoming evil."
             lang="en"

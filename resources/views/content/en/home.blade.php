@@ -50,7 +50,7 @@
 
         <div class="h-20"></div>
 
-        <h2 class="text-3xl font-bold tracking-tight text-center">How To Lose Friends in 3 Steps</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-center">How To Lose Friends in 3&nbsp;Steps</h2>
 
         <p class="text-center italic mb-4">From individual self-mastery to national self-mastery to the world.</p>
 
@@ -92,14 +92,12 @@
                 alt="Faustian Bargain, definition"
                 text="faus·tian bar·gain\n /ˈfaʊstiən ˈbɑːrɡən/\n 1.In myth: a bargain with the devil, trading one’s soul for power or status.\n 2.More broadly: Any deal where immediate advantage is gained at the cost of freedom or integrity.\nSee also: temptation · corruption"
                 lang="en"
-                id="might-is-right"
+                id="faustian-bargain"
                 :show-slogan="false"
             />
         </x-quotecard-grid>
 
         <div class="h-20"></div>
-
-
 
         <x-book-title-badge />
         <div class="flex justify-center mb-2">
@@ -107,8 +105,6 @@
         </div>
         <x-book-actions book="faustian-bargain" />
 
-
-        {{-- Table of contents --}}
         <x-toc heading="Chapters" id="chapters" />
 
         <x-food-for-thought-carousel :startNumber="0" lang="en" />

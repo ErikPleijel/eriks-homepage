@@ -32,10 +32,10 @@
     }
 @endphp
 
-<nav {{ $attributes->merge(['class' => 'my-8']) }} aria-label="{{ $heading ?? 'Table of contents' }}">
+<nav {{ $attributes->merge(['class' => 'my-8 bg-stone-100 p-4 rounded-lg border border-stone-200']) }} aria-label="{{ $heading ?? 'Table of contents' }}">
 
     @if ($heading)
-        <h2 class="mb-4 text-lg font-semibold">{{ $heading }}</h2>
+        <h2 class="mb-4 text-2xl font-semibold">{{ $heading }}</h2>
     @endif
 
     @if ($isStructured)
@@ -46,33 +46,33 @@
 
                 @if ($item['type'] === 'intro')
                     @php $isCurrent = $item['url'] === $currentUrl; $isNext = $item['url'] === $nextUrl; @endphp
-                    <div class="mb-4">
+                    <div class="mb-2">
                         @if ($isCurrent)
-                            <span class="text-stone-400">{{ $item['title'] }}</span>
+                            <span class="text-stone-700">{{ $item['title'] }}</span>
                         @else
                             <a href="{{ $item['url'] }}"
-                               class="text-amber-700 underline-offset-2 hover:underline {{ $isNext ? 'underline' : '' }}">
+                               class="text-blue-950 underline-offset-2 hover:underline {{ $isNext ? 'underline' : '' }}">
                                 {{ $item['title'] }}
                             </a>
                         @endif
                     </div>
 
                 @elseif ($item['type'] === 'part')
-                    <p class="mt-6 mb-2 text-xs font-semibold uppercase tracking-wide text-stone-400">
+                    <p class="mt-6 mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
                         {{ $item['label'] }}
                     </p>
 
                 @elseif ($item['type'] === 'chapter')
                     @php $isCurrent = $item['url'] === $currentUrl; $isNext = $item['url'] === $nextUrl; @endphp
                     <div class="flex items-baseline gap-2 mt-1">
-                        <span class="shrink-0 w-6 text-right text-sm text-stone-400">
+                        <span class="shrink-0 w-6 text-right text-sm text-blue-950">
                             {{ $item['number'] }}.
                         </span>
                         @if ($isCurrent)
                             <span class="text-stone-400">{{ $item['title'] }}</span>
                         @else
                             <a href="{{ $item['url'] }}"
-                               class="text-amber-700 underline-offset-2 hover:underline {{ $isNext ? 'underline' : '' }}">
+                               class="text-blue-950 underline-offset-2 hover:bg-stone-200 {{ $isNext ? 'underline' : '' }}">
                                 {{ $item['title'] }}
                             </a>
                         @endif

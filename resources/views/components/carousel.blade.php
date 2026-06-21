@@ -25,35 +25,41 @@
     role="region"
     aria-roledescription="carousel"
     aria-label="{{ $label }}"
-    {{ $attributes->merge(['class' => 'relative my-8 overflow-hidden rounded-lg border border-stone-200 bg-white']) }}
+    {{ $attributes->merge(['class' => 'my-8 rounded-lg border border-stone-200 bg-[#FBF0D9]']) }}
 >
-    {{-- Track: each slide is forced to full width and slid into view. --}}
-    <div
-        x-ref="track"
-        class="flex transition-transform duration-500 ease-out [&>*]:w-full [&>*]:shrink-0"
-        :style="`transform: translateX(-${current * 100}%)`"
-    >
-        {{ $slot }}
+    <div class="flex items-stretch">
+        {{-- Prev button — own column, never overlaps text --}}
+        <button type="button" @click="prev()" aria-label="Previous slide"
+                class="flex w-14 shrink-0 cursor-pointer items-center justify-center rounded-l-lg text-4xl text-stone-600 hover:bg-black/5">
+            ❮
+        </button>
+
+        {{-- Track --}}
+        <div class="flex-1 overflow-hidden">
+            <div
+                x-ref="track"
+                class="flex transition-transform duration-500 ease-out [&>*]:w-full [&>*]:shrink-0"
+                :style="`transform: translateX(-${current * 100}%)`"
+            >
+                {{ $slot }}
+            </div>
+        </div>
+
+        {{-- Next button — own column, never overlaps text --}}
+        <button type="button" @click="next()" aria-label="Next slide"
+                class="flex w-14 shrink-0 cursor-pointer items-center justify-center rounded-r-lg text-4xl text-stone-600 hover:bg-black/5">
+            ❯
+        </button>
     </div>
 
-    {{-- Prev / next --}}
-    <button type="button" @click="prev()" aria-label="Previous slide"
-            class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-stone-700 shadow hover:bg-white">
-        &larr;
-    </button>
-    <button type="button" @click="next()" aria-label="Next slide"
-            class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-stone-700 shadow hover:bg-white">
-        &rarr;
-    </button>
-
     {{-- Dots --}}
-    <div class="absolute inset-x-0 bottom-3 flex justify-center gap-2">
+    <div class="flex justify-center gap-2 py-2">
         <template x-for="i in count" :key="i">
             <button type="button"
                     @click="go(i - 1)"
                     :aria-label="`Go to slide ${i}`"
                     :class="current === i - 1 ? 'bg-amber-500' : 'bg-stone-300'"
-                    class="h-2 w-2 rounded-full"></button>
+                    class="h-2 w-2 cursor-pointer rounded-full"></button>
         </template>
     </div>
 </div>

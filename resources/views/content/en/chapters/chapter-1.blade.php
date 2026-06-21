@@ -115,10 +115,7 @@
             build inner health and resilience.
         </p>
 
-        @php
-            $ch1Quote = "Good and evil aren\u{2019}t only a war between nations and ideologies.\nIt\u{2019}s also a drama within us.\nTo label others \u{2018}monsters\u{2019} is the first step toward becoming one.";
-        @endphp
-        <x-quotecard :text="$ch1Quote" lang="en" id="chapter-1" :show-slogan="true" />
+
 
         <h2 class="chapter-heading">What makes us human?</h2>
 

@@ -155,6 +155,10 @@ Då har du inte längre tro på Gud – utan tro på&nbsp;din&nbsp;tro."
             motståndskraft mot den faustiska pakten.
         </p>
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
+
         <h2 class="chapter-heading">Ormen och storinkvisitorn</h2>
 
         <p class="chapter-text">

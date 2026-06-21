@@ -6,10 +6,10 @@
 <div @if($book) data-book="{{ $book }}" @endif>
     <x-carousel>
         @foreach ($slides as $slide)
-            <div class="px-8 py-6 pb-12">
-                <h2 class="chapter-title">{{ $slide['title'] }}</h2>
+            <div class="max-h-100 overflow-hidden px-6 py-5 font-serif">
+                <h2 class="carousel-title">{{ $slide['title'] }}</h2>
                 @foreach ($slide['paragraphs'] as $paragraph)
-                    <p class="chapter-text">{{ $paragraph }}</p>
+                    <p class="carousel-text">{{ $paragraph }}</p>
                 @endforeach
             </div>
         @endforeach

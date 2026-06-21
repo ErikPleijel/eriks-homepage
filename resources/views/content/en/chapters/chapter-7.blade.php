@@ -254,7 +254,7 @@
         <x-content-image
             src="/images/chapters/chapter-7/MarcusAurelius.JPG"
             alt="Marcus Aurelius"
-            caption="&quot;The best way to take revenge is to not to resemble those who have done us wrong.&quot; Marcus Aurelius"
+            caption="'The best way to take revenge is to not to resemble those who have done us wrong.' Marcus Aurelius"
             width="30" />
 
 

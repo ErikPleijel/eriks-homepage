@@ -182,7 +182,7 @@ Be truthful — and&nbsp;considerate."
         </p>
 
         <x-content-image
-            src="/images/chapters/chapter-8/aristoteles_2.png"
+            src="/images/chapters/chapter-8/aristotle.jpg"
             alt="Aristotle"
             caption="Aristotle"
             width="25" />

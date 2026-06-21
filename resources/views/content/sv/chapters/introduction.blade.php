@@ -154,7 +154,7 @@
 
         <x-quotecard
             id="chapter-0"
-            header="En vänlig påminnelse till dem som lockas av oinskränkt&nbsp;makt:"
+            header="En påminnelse till dem som lockas av oinskränkt&nbsp;makt:"
             text="“Vad hjälper det en människa om hon vinner hela världen men förlorar sin&nbsp;själ?”
 — Matteus 16:26 —"
             align="center"
@@ -407,7 +407,7 @@
         </p>
 
         <div class="flex justify-center m-12">
-            <x-buy-book lang="en" :single="true" />
+            <x-buy-book lang="sv" :single="true" />
         </div>
 
         <h2 class="chapter-heading">7. Hopp: Övervinn cynism och aptiten på kaos</h2>

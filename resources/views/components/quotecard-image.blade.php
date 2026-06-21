@@ -96,7 +96,7 @@
 })();
 </script>
 
-<div x-data="{{ $uid }}()" class="mx-auto w-full max-w-sm">
+<div x-data="{{ $uid }}()" class="mx-auto w-full max-w-sm my-16">
     {{-- Static image — no canvas, no placeholder GIF; the file already exists --}}
     <div class="relative overflow-hidden rounded-xl border border-stone-200 aspect-square">
         @if ($number !== null)

@@ -28,7 +28,7 @@
         'copied'       => $isSv ? 'Kopierad ✅'                        : 'Copied ✅',
         'share'        => $isSv ? 'Dela'                               : 'Share',
         'slogan'       => $isSv ? '💬 Idéer växer i gruppchattar 🌱'  : '💬 Ideas grow in group chats 🌱',
-        'shareCaption' => '👉 ErikPleijel.se',
+        'shareCaption' => $isSv ? '👉 ErikPleijel.se' : '👉 ErikPleijel.com',
         'shareLink' => $isSv ? 'https://ErikPleijel.se' : 'https://ErikPleijel.com',
     ];
 @endphp

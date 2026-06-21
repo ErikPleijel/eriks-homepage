@@ -257,7 +257,7 @@
         <x-content-image
             src="/images/chapters/chapter-7/MarcusAurelius.JPG"
             alt="Marcus Aurelius"
-            caption="&quot;Det bästa sättet att hämnas är att inte likna dem som gjort oss orätt.&quot; Marcus Aurelius"
+            caption="'Det bästa sättet att hämnas är att inte likna dem som gjort oss orätt.' Marcus Aurelius"
             width="30" />
 
 

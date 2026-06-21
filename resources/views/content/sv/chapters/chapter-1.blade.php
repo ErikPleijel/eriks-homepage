@@ -147,7 +147,7 @@
         </p>
 
         <div class="flex justify-center m-12">
-            <x-buy-book lang="en" :single="true" />
+            <x-buy-book lang="sv" :single="true" />
         </div>
 
         <h2 class="chapter-heading">Gott och ont</h2>

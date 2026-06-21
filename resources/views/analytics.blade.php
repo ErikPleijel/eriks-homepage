@@ -16,12 +16,25 @@
 </head>
 <body style="background:#f9fafb; padding:2rem; max-width:800px; margin:0 auto;">
 
+    @php
+        $rangeLabels = [
+            '30m'  => 'Last 30 minutes',
+            '3h'   => 'Last 3 hours',
+            '24h'  => 'Last 24 hours',
+            '7d'   => 'Last 7 days',
+            '28d'  => 'Last 28 days',
+            '3mo'  => 'Last 3 months',
+            '6mo'  => 'Last 6 months',
+            '12mo' => 'Last 12 months',
+        ];
+    @endphp
+
     <div style="margin-bottom:1.5rem;">
         <h1 style="font-size:1.4rem; font-weight:700; color:#111827; margin:0 0 .2rem;">Analytics</h1>
         <p style="font-size:.75rem; color:#6b7280; margin:0;">
             {{ $now->format('D d M Y, H:i') }} UTC
             &ensp;·&ensp;
-            <a href="?key={{ request()->query('key') }}" style="color:#3b82f6;">↻ Refresh</a>
+            <a href="?key={{ request()->query('key') }}&range={{ $range }}" style="color:#3b82f6;">↻ Refresh</a>
         </p>
     </div>
 
@@ -40,17 +53,54 @@
         @endforeach
     </div>
 
-    {{-- ── Daily breakdown ────────────────────────────────────────────────── --}}
+    {{-- ── Range selector ─────────────────────────────────────────────────── --}}
+    <div style="margin-bottom:2rem; display:flex; align-items:center; gap:.75rem;">
+        <label for="range-select" style="font-size:.7rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:#374151; white-space:nowrap;">
+            Time range
+        </label>
+        <select id="range-select"
+                onchange="const u=new URL(window.location);u.searchParams.set('range',this.value);location.href=u"
+                style="font-family:inherit; font-size:.8rem; border:1px solid #d1d5db; border-radius:4px; padding:.3rem .5rem; background:#fff; color:#111827; cursor:pointer;">
+            @foreach ($rangeLabels as $value => $label)
+            <option value="{{ $value }}" {{ $range === $value ? 'selected' : '' }}>{{ $label }}</option>
+            @endforeach
+        </select>
+        <span style="font-size:.7rem; color:#9ca3af;">Controls: Visited pages · Locale · Referrers</span>
+    </div>
+
+    {{-- ── Visited pages — dropdown-scoped ───────────────────────────────── --}}
     <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem;">
-        Last 10 days · newest first · UTC day boundaries
+        Visited pages · {{ $rangeLabels[$range] }} · pageviews · allow-listed paths only
     </h2>
     <table class="tbl" style="width:100%; border-collapse:collapse; margin-bottom:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
+        <thead>
+            <tr>
+                <th style="text-align:left;">Path</th>
+                <th class="num">Views</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($visitedPages as $row)
+            <tr>
+                <td>{{ $row->path }}</td>
+                <td class="num">{{ number_format($row->total) }}</td>
+            </tr>
+            @empty
+            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No pageviews in this period.</td></tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    {{-- ── Daily breakdown — fixed 10-day window ──────────────────────────── --}}
+    <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem;">
+        Last 10 days · newest first · UTC day boundaries · allow-listed paths only
+    </h2>
+    <table class="tbl" style="width:100%; border-collapse:collapse; margin-bottom:.4rem; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
         <thead>
             <tr>
                 <th style="text-align:left;">Date</th>
                 <th class="num">Home page</th>
                 <th class="num">Other pages</th>
-                <th class="num">Clicks</th>
             </tr>
         </thead>
         <tbody>
@@ -59,17 +109,23 @@
                 <td>{{ $row['label'] }}{{ $row['is_sunday'] ? ' ☀' : '' }}</td>
                 <td class="num">{{ $row['home'] }}</td>
                 <td class="num">{{ $row['other'] }}</td>
-                <td class="num">{{ $row['clicks'] }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    <p style="font-size:.7rem; margin:0 0 2rem; {{ $excludedStats['events'] > 0 ? 'color:#b45309;' : 'color:#9ca3af;' }}">
+        @if ($excludedStats['events'] > 0)
+            ⚠ {{ number_format($excludedStats['events']) }} event(s) on {{ $excludedStats['distinct_paths'] }} non-allow-listed path(s) excluded from this window.
+        @else
+            ✓ No non-allow-listed events in this window.
+        @endif
+    </p>
 
-    {{-- ── Locale breakdown ───────────────────────────────────────────────── --}}
+    {{-- ── Locale breakdown — dropdown-scoped ────────────────────────────── --}}
     <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem;">
-        Events by locale · all event types
+        Events by locale · {{ $rangeLabels[$range] }} · all event types
     </h2>
-    <table class="tbl" style="width:100%; border-collapse:collapse; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
+    <table class="tbl" style="width:100%; border-collapse:collapse; margin-bottom:2rem; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
         <thead>
             <tr>
                 <th style="text-align:left;">Locale</th>
@@ -83,14 +139,14 @@
                 <td class="num">{{ number_format($row->total) }}</td>
             </tr>
             @empty
-            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No events recorded yet.</td></tr>
+            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No events in this period.</td></tr>
             @endforelse
         </tbody>
     </table>
 
-    {{-- ── Referrer breakdown ────────────────────────────────────────────── --}}
-    <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem; margin-top:2rem;">
-        Referrers · last 24h
+    {{-- ── Referrer breakdown — dropdown-scoped ───────────────────────────── --}}
+    <h2 style="font-size:.8rem; font-weight:600; color:#374151; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.6rem;">
+        Referrers · {{ $rangeLabels[$range] }}
     </h2>
     <table class="tbl" style="width:100%; border-collapse:collapse; background:#fff; border:1px solid #e5e7eb; border-radius:6px; overflow:hidden;">
         <thead>
@@ -106,7 +162,7 @@
                 <td class="num">{{ number_format($row->total) }}</td>
             </tr>
             @empty
-            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No referrer data in the last 24h.</td></tr>
+            <tr><td colspan="2" style="color:#9ca3af; text-align:center;">No referrer data in this period.</td></tr>
             @endforelse
         </tbody>
     </table>

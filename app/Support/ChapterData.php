@@ -139,9 +139,19 @@ class ChapterData
      *
      * All chapters live at the site root; the slug is locale-specific (derived
      * from the localized title) and the correct domain is set by the host.
+     *
+     * On local, ?locale= is appended so every chapter link is self-describing
+     * and never depends on session state — avoids stale-session 404s when
+     * switching between EN and SV on localhost.
      */
     private static function chapterUrl(string $viewKey, string $title, string $locale): string
     {
-        return url(Str::slug($title));
+        $url = url(Str::slug($title));
+
+        if (app()->environment('local')) {
+            return $url . '?locale=' . $locale;
+        }
+
+        return $url;
     }
 }

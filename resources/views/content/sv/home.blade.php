@@ -23,7 +23,7 @@
 
         <p class="chapter-text">När hon fortsatte att beskriva sina föräldrars världsbild minns jag att jag tänkte: <i>det här låter lite grand som Nietzsche</i> – betoningen på gränslös självhävdelse, förakt för hämningar och moraliska begränsningar, ”viljan till makt”. Jag började ana hur det trots allt kunde hänga ihop.</p>
 
-        <p class="chapter-text">Vad betyder det egentligen att ”vara autentisk”? Många uppfattar det som att ge fritt utlopp för sina känslor och inte hålla dem tillbaka. <b>Med en sådan tolkning hade till och med en SS-officer kunnat tro att han levde ”autentiskt” och ”ärligt”.</b> Utan en etisk polstjärna förfaller autenticitet lätt till grymhet.</b></p>
+        <p class="chapter-text">Vad betyder det egentligen att ”vara autentisk”? Många uppfattar det som att ge fritt utlopp för sina känslor och inte hålla dem tillbaka. <b>Med en sådan tolkning hade till och med en SS-officer kunnat tro att han levde ”autentiskt” och ”ärligt”.</b> Utan en etisk polstjärna förfaller autenticitet lätt till grymhet.</p>
 
         <p class="chapter-text">Men det kan också betyda något helt annat: att leva i linje med sina värderingar och övertygelser. Det innebär att bli en väl integrerad människa vars tankar, känslor och handlingar drar åt samma håll – någon med inre styrka att stå emot inte bara yttre tryck, utan också sina egna impulser.</p>
 
@@ -48,7 +48,7 @@
 
         <div class="h-20"></div>
 
-        <h2 class="text-3xl font-bold tracking-tight text-center">Hur man förlorar vänner i 3 steg</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-center">Hur man förlorar vänner i 3&nbsp;steg</h2>
 
         <p class="text-center italic mb-4">Från individuell självbemästring till nationall självbemästring till världen.</p>
 
@@ -57,8 +57,8 @@
             <x-quotecard-image
                 src="/images/quotecard-swe-emotions-horses.jpg"
                 alt="Känslor är kraftfulla hästar. De sätter dig liv i rörelse. Behärskar du dem – eller behärskar de dig?"
-                text="Känslor är kraftfulla hästar./nDe sätter dig liv i rörelse./nBehärskar du dem – eller behärskar de dig?"
-                lang="en"
+                text="Känslor är kraftfulla hästar.\nDe sätter dig liv i rörelse.\nBehärskar du dem – eller behärskar de dig?"
+                lang="sv"
                 id="emotions-horses"
                 :show-slogan="false"
                 :number="1"
@@ -66,9 +66,9 @@
 
             <x-quotecard-image
                 src="/images/quotecard-swe-nationalism-alcohol.jpg"
-                alt="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
-                text="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende./nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
-                lang="en"
+                alt="Nationell stolthet fungerar som alkohol. Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
+                text="Nationell stolthet fungerar som alkohol.\nSmå doser ger mod och självförtroende.\nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
+                lang="sv"
                 id="nationalism-alcohol"
                 :show-slogan="false"
                 :number="2"
@@ -89,7 +89,7 @@
                 alt="Faustiski pakt, definition"
                 text="faus·tisk pakt\n/ˈfaʊstɪsk pakt/1.\nI myten: en uppgörelse med djävulen där man säljer sin själ i utbyte mot makt eller status.\n2. I vidare mening: en överens-kommelse där man vinner en omedelbar fördel till priset av frihet eller integritet.\nSe även: frestelse · korruption"
                 lang="en"
-                id="might-is-right"
+                id="faustian-bargain"
                 :show-slogan="false"
             />
         </x-quotecard-grid>
@@ -102,9 +102,6 @@
         </div>
         <x-book-actions book="faustian-bargain" />
 
-
-
-        {{-- Table of contents --}}
         <x-toc heading="Kapitel" id="chapters" />
 
         <x-food-for-thought-carousel :startNumber="0" lang="sv" />

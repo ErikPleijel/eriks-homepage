@@ -168,7 +168,7 @@ Då har du inte längre tro på Gud – utan tro på&nbsp;din&nbsp;tro."
 
 
         <div class="flex justify-center m-12">
-            <x-buy-book lang="en" :single="true" />
+            <x-buy-book lang="sv" :single="true" />
         </div>
 
         <h2 class="chapter-heading">Följ denne unge man</h2>

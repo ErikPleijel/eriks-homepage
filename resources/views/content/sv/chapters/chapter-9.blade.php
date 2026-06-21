@@ -110,9 +110,9 @@
 
         <x-quotecard-image
             src="/images/quotecard-swe-nationalism-alcohol.jpg"
-            alt="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
-            text="Nationell stolthet fungerar som alkohol.<br>Små doser ger mod och självförtroende./nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
-            lang="en"
+            alt="Nationell stolthet fungerar som alkohol. Små doser ger mod och självförtroende. Större doser ger tunnelseende, grumlat omdöme och aggressivitet."
+            text="Nationell stolthet fungerar som alkohol.\nSmå doser ger mod och självförtroende.\nStörre doser ger tunnelseende, grumlat omdöme och aggressivitet."
+            lang="sv"
             id="nationalism-alcohol"
             :show-slogan="true"
 
@@ -233,7 +233,7 @@
         </p>
 
         <x-quotecard-image
-            src="/images/quotecard-swe-law-and-restraint.jpg"
+            src="/images/quotecard-swe-law-and-restraint1.jpg"
             alt="Lagar, regler och återhållsamhet kan inte alltid stoppa onda regimer. Men de kan hindra goda människor från att bli onda."
             text="Lagar, regler och återhållsamhet kan inte alltid stoppa onda regimer.\nMen de kan hindra goda människor från att bli onda."
             lang="sv"

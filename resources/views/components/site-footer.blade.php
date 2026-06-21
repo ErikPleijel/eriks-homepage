@@ -28,7 +28,7 @@
         class="border-t-2 border-stone-300 bg-stone-100">
     <div class="mx-auto max-w-5xl px-6 py-8 text-sm text-stone-500">
 
-        <div class="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-[1.4fr_1fr_1.4fr_auto]">
+        <div class="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
 
             {{-- ── 1. Citation / share note ─────────────────────────────────── --}}
             <div>
@@ -39,9 +39,10 @@
                         Feel free to quote content from this page — just remember to credit me (Erik Pleijel) and include this link back here.
                     @endif
                 </p>
-                <p class="mt-2 flex flex-wrap items-center gap-2">
+                <p class="mt-2 flex flex-nowrap items-center gap-2 max-w-full">
                     <a href="{{ $pageUrl }}"
-                       class="break-all text-stone-600 underline underline-offset-2 transition-colors hover:text-amber-700">{{ $pageUrl }}</a>
+                       class="truncate text-stone-600 underline underline-offset-2 transition-colors hover:text-amber-700"
+                       title="{{ $pageUrl }}">{{ $pageUrl }}</a>
                     <button type="button"
                             @click="copy()"
                             x-text="copied ? lblCopied : lblCopy"
@@ -64,10 +65,15 @@
                        target="_blank" rel="noopener noreferrer license"
                        class="text-stone-600 underline underline-offset-2 transition-colors hover:text-amber-700">BY-NC-SA 4.0</a>.
                 @endif
+
+                    {{ $isSv ? 'Kontakt' : 'Contact' }}:
+                    <a href="mailto:epost@erikpleijel.se"
+                       class="text-stone-600 underline underline-offset-2 transition-colors hover:text-amber-700">{{ $isSv ? 'epost' : 'email' }}</a>
             </p>
 
+
             {{-- ── 3. Illustration credits ──────────────────────────────────── --}}
-            <div>
+            {{--<div>
                 <p class="mb-2 text-xs font-medium uppercase tracking-wide text-stone-400">
                     {{ $isSv ? 'Bildkällor' : 'Image credits' }}
                 </p>
@@ -120,14 +126,10 @@
 
                     @endif
                 </ul>
-            </div>
+            </div>--}}
 
             {{-- ── 4. Contact ──────────────────────────────────────────────── --}}
-            <p class="md:text-right">
-                {{ $isSv ? 'Kontakt' : 'Contact' }}:
-                <a href="mailto:epost@erikpleijel.se"
-                   class="text-stone-600 underline underline-offset-2 transition-colors hover:text-amber-700">{{ $isSv ? 'epost' : 'email' }}</a>
-            </p>
+
 
         </div>
     </div>
