@@ -207,6 +207,7 @@ the GDPR `contact_email` live in `config/site.php` as the single source of truth
 the one.com form; English is an adapted equivalent (not a literal translation).
 The removal-request contact email is unchanged from the original
 (`epost@erikpleijel.se`, now `config('site.contact_email')`).
+changed to mail@erikpleijel.com
 
 **Viewing the data:** as with `site_events`, no admin UI yet — query via
 `php artisan tinker`, e.g. `BookInterestSubscriber::count()`.

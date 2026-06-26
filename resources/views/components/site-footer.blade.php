@@ -67,7 +67,7 @@
                 @endif
 
                     {{ $isSv ? 'Kontakt' : 'Contact' }}:
-                    <a href="mailto:epost@erikpleijel.se"
+                    <a href="mailto:email@erikpleijel.com"
                        class="text-stone-600 underline underline-offset-2 transition-colors hover:text-amber-700">{{ $isSv ? 'epost' : 'email' }}</a>
             </p>
 

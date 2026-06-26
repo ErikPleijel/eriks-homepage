@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'contact_email' => 'epost@erikpleijel.se',
+    'contact_email' => 'email@erikpleijel.com',
 
     /*
     |--------------------------------------------------------------------------
