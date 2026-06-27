@@ -28,6 +28,9 @@
             :slides="config('book-excerpts.navigation-i-mangfalden-sv', [])"
             book="navigation-i-mangfalden" />
 
+        <div class="flex justify-center m-12">
+            <x-buy-book lang="sv" :single="true" />
+        </div>
 
 
         {{-- ── Recensioner ──────────────────────────────────────────────────────── --}}

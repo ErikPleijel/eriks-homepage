@@ -30,7 +30,7 @@
     <div class="flex items-stretch">
         {{-- Prev button — own column, never overlaps text --}}
         <button type="button" @click="prev()" aria-label="Previous slide"
-                class="flex w-14 shrink-0 cursor-pointer items-center justify-center rounded-l-lg text-4xl text-stone-600 hover:bg-black/5">
+                class="flex w-8 sm:w-14 shrink-0 cursor-pointer items-center justify-center rounded-l-lg text-2xl sm:text-4xl text-stone-600 hover:bg-black/5">
             ❮
         </button>
 
@@ -47,7 +47,7 @@
 
         {{-- Next button — own column, never overlaps text --}}
         <button type="button" @click="next()" aria-label="Next slide"
-                class="flex w-14 shrink-0 cursor-pointer items-center justify-center rounded-r-lg text-4xl text-stone-600 hover:bg-black/5">
+                class="flex w-8 sm:w-14 shrink-0 cursor-pointer items-center justify-center rounded-r-lg text-2xl sm:text-4xl text-stone-600 hover:bg-black/5">
             ❯
         </button>
     </div>

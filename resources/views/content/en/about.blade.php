@@ -30,7 +30,6 @@
         <div class="flex justify-center m-12">
             <x-buy-book lang="en" :single="true" />
         </div>
-
         {{-- ── Press reviews ────────────────────────────────────────────────────── --}}
         <section class="mt-12">
             <h2 class="chapter-heading">Reviews</h2>
@@ -43,6 +42,10 @@
                 text="Based on his life experience, he reflects on aid, philosophy and Christian faith on a Lutheran basis. It is a wise man who writes and his wisdom is often easily transferable to everyday life in Sweden."
                 attribution="Review in KT, the Swedish church newspaper (issue 34-2014), by Bishop Mikael Mogren" />
         </section>
+
+
+
+
 
     </article>
 
